@@ -1,0 +1,45 @@
+export const experiences = [
+  {
+    id: 1,
+    company: "FAST Enterprises",
+    position: "Implementation Consultant",
+    location: "Des Moines, IA",
+    startDate: "Aug 2025",
+    endDate: "Present",
+    responsibilities: [
+      "Assess agency needs and configure software solutions",
+      "Develop, test, and deploy features using C# .NET and PostgreSQL",
+      "Troubleshoot issues and support clients while maintaining data security",
+    ],
+    tags: [
+      "C#",
+      ".NET",
+      "PostgreSQL",
+      "Software Implementation",
+      "System Configuration",
+      "Client Support",
+      "Troubleshooting",
+      "Government Software",
+    ],
+  },
+  {
+    id: 2,
+    company: "Beaver Town Movers",
+    position: "Job Site Supervisor",
+    location: "Corvallis, OR",
+    startDate: "Aug 2023",
+    endDate: "Jul 2025",
+    responsibilities: [
+      "Led crews and coordinated on-site operations",
+      "Communicated clearly with customers and team members",
+      "Maintained safety standards and efficient workflows",
+    ],
+    tags: [
+      "Team Leadership",
+      "Customer Communication",
+      "Logistics",
+      "Safety Management",
+      "Operations",
+    ],
+  },
+];

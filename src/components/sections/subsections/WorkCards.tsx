@@ -1,11 +1,9 @@
-import { work } from "@/config/site";
+import { experiences } from "@/utils/data/experience";
 import { WorkCard } from "@/components/ui/Card";
 import DivideLayout from "@/components/layouts/Divide";
 
 export default function WorkCards() {
-  const sorted = [...work.experiences].sort(
-    (a, b) => a.displayOrder - b.displayOrder
-  );
+  const sorted = [...experiences].sort((a, b) => a.id - b.id);
 
   const workCards = sorted.map((exp) => (
     <WorkCard
@@ -17,9 +15,5 @@ export default function WorkCards() {
     />
   ));
 
-  return (
-    <DivideLayout direction="vertical">
-      {workCards}
-    </DivideLayout>
-  );
+  return <DivideLayout direction="vertical">{workCards}</DivideLayout>;
 }

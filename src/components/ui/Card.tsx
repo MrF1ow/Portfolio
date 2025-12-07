@@ -37,3 +37,20 @@ export const WorkCard = ({
     </div>
   );
 };
+
+export const SkillCard = ({
+  image,
+  skill,
+}: {
+  image: string;
+  skill: string;
+}) => {
+  return (
+    <div className="d-card w-full shadow-xl d-glass">
+      <div className="d-card-body items-center">
+        <img src={image} alt={skill} className="w-16 h-16 mb-4" />
+        <h3 className="d-card-title text-center">{skill}</h3>
+      </div>
+    </div>
+  );
+};
