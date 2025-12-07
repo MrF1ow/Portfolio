@@ -1,2 +1,40 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  prefix: "d-";
+}
+
+@plugin "daisyui/theme" {
+  name: "gradient";
+  default: true;
+  prefersdark: false;
+  color-scheme: "dark";
+  --color-base-100: oklch(0% 0 0);
+  --color-base-200: oklch(86% 0.005 56.366);
+  --color-base-300: #04ADBF;
+  --color-base-content: oklch(100% 0 0);
+  --color-primary: #05F2F2;
+  --color-primary-content: oklch(14% 0.005 285.823);
+  --color-secondary: oklch(0% 0 0);
+  --color-secondary-content: oklch(96% 0.016 293.756);
+  --color-accent: #05F2C7;
+  --color-accent-content: oklch(14% 0 0);
+  --color-neutral: oklch(100% 0 0);
+  --color-neutral-content: oklch(14% 0 0);
+  --color-info: oklch(68% 0.169 237.323);
+  --color-info-content: oklch(97% 0.013 236.62);
+  --color-success: oklch(69% 0.17 162.48);
+  --color-success-content: oklch(37% 0.077 168.94);
+  --color-warning: oklch(79% 0.184 86.047);
+  --color-warning-content: oklch(41% 0.112 45.904);
+  --color-error: oklch(70% 0.191 22.216);
+  --color-error-content: oklch(39% 0.141 25.723);
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
