@@ -1,16 +1,11 @@
 import type { Project } from "@/types/project";
+import type { PersonalInfo } from "@/types/personal";
 
-export const CodeMock = ({ project }: { project: Project }) => {
-  const wrapperProps = {
-    href: project.src,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    className: "no-underline",
-  };
+export const ProjectCode = ({ project }: { project: Project }) => {
   switch (project.language) {
     case "typescript":
       return (
-        <div className="d-mockup-browser bg-base-100 w-full border border-base-300">
+        <div className="d-mockup-browser d-glass w-full border border-base-300 h-80">
           <div className="d-mockup-browser-toolbar">
             <div className="flex w-full justify-center text-warning font-bold">
               {project.title}
@@ -59,7 +54,7 @@ export const CodeMock = ({ project }: { project: Project }) => {
 
     case "python":
       return (
-        <div className="d-mockup-browser bg-base-100 w-full border border-base-300">
+        <div className="d-mockup-browser d-glass w-full border border-base-300 h-80">
           <div className="d-mockup-browser-toolbar">
             <div className="flex w-full justify-center text-warning font-bold">
               {project.title}
@@ -107,7 +102,7 @@ export const CodeMock = ({ project }: { project: Project }) => {
 
     case "c":
       return (
-        <div className="d-mockup-browser bg-base-100 w-full border border-base-300">
+        <div className="d-mockup-browser d-glass w-full border border-base-300 h-80">
           <div className="d-mockup-browser-toolbar">
             <div className="flex w-full justify-center text-warning font-bold">
               {project.title}
@@ -158,4 +153,85 @@ export const CodeMock = ({ project }: { project: Project }) => {
     default:
       return null;
   }
+};
+
+export const UserCode = ({ user }: { user: PersonalInfo }) => {
+  return (
+    <div className="d-mockup-browser d-glass w-full border border-neutral">
+      <div className="d-mockup-browser-toolbar" />
+      <div className="border-t border-neutral p-4">
+        <code className="text-success font-semibold">const </code>
+        <code className="text-neutral">engineer</code>
+        <code className="text-neutral"> = </code>
+        <code className="text-neutral">{"{"}</code>
+        <div className="ml-4">
+          <code className="text-success font-semibold">firstName</code>
+          <code className="text-warning">: </code>
+          <code className="text-accent">"</code>
+          <code className="text-neutral">
+            {user.firstName} {user.lastName}
+          </code>
+          <code className="text-accent">"</code>
+          <code className="text-warning">,</code>
+        </div>
+        <div className="ml-4">
+          <code className="text-success font-semibold">title</code>
+          <code className="text-warning">: </code>
+          <code className="text-accent">"</code>
+          <code className="text-neutral">{user.titles[0]}</code>
+          <code className="text-accent">"</code>
+          <code className="text-warning">,</code>
+        </div>
+
+        {/* university */}
+        <div className="ml-4">
+          <code className="text-success font-semibold">university</code>
+          <code className="text-warning">: </code>
+          <code className="text-accent">"</code>
+          <code className="text-neutral">{user.university}</code>
+          <code className="text-accent">"</code>
+          <code className="text-warning">,</code>
+        </div>
+
+        {/* degree */}
+        <div className="ml-4">
+          <code className="text-success font-semibold">degree</code>
+          <code className="text-warning">: </code>
+          <code className="text-accent">"</code>
+          <code className="text-neutral">{user.degree}</code>
+          <code className="text-accent">"</code>
+          <code className="text-warning">,</code>
+        </div>
+
+        {/* graduationYear */}
+        <div className="ml-4">
+          <code className="text-success font-semibold">graduated</code>
+          <code className="text-warning">: </code>
+          <code className="text-accent">"</code>
+          <code className="text-neutral">{user.graduated}</code>
+          <code className="text-accent">"</code>
+          <code className="text-warning">,</code>
+        </div>
+
+        {/* traits array */}
+        <div className="ml-4">
+          <code className="text-success font-semibold">traits</code>
+          <code className="text-warning">: </code>
+          <code className="text-neutral">[</code>
+          {user.traits.map((t: string, i: number) => (
+            <span key={i}>
+              <code className="text-accent">"</code>
+              <code className="text-neutral">{t}</code>
+              <code className="text-accent">"</code>
+              {i < user.traits.length - 1 && (
+                <code className="text-neutral">, </code>
+              )}
+            </span>
+          ))}
+          <code className="text-neutral">]</code>
+        </div>
+        <code className="text-neutral">{"}"}</code>
+      </div>
+    </div>
+  );
 };

@@ -1,14 +1,29 @@
-import SwipeCards from "@/components/ui/SwipeCards";
+import { projects } from "@/utils/data/projects";
+import { ProjectCode } from "@/components/ui/CodeMock";
 import DivideLayout from "@/components/layouts/Divide";
-import Lottie from "lottie-react";
-import webCoding from "@/assets/lotties/web-coding.json";
+import SectionTitle from "@/components/ui/SectionTitle";
 
 export default function Portfolio() {
+  const midpoint = Math.ceil(projects.length / 2);
+  const leftProjects = projects.slice(0, midpoint);
+  const rightProjects = projects.slice(midpoint);
+
   return (
-    <div className="w-full flex justify-center items-center">
-        <div className="w-full md:w-[75%] lg:w-[50%]">
-            <SwipeCards />
-        </div>
-    </div>
+    <>
+      <SectionTitle title="Projects" variant="left" />
+      <DivideLayout direction="horizontal">
+        <DivideLayout direction="vertical">
+          {leftProjects.map((project) => (
+            <ProjectCode key={project.id} project={project} />
+          ))}
+        </DivideLayout>
+
+        <DivideLayout direction="vertical">
+          {rightProjects.map((project) => (
+            <ProjectCode key={project.id} project={project} />
+          ))}
+        </DivideLayout>
+      </DivideLayout>
+    </>
   );
 }

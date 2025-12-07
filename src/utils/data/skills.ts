@@ -16,7 +16,6 @@ export const skills = [
   "Vue",
   ".NET",
   "Tailwind",
-  "Jest",
   "AWS",
   "PostgreSQL",
   "MySQL",

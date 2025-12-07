@@ -7,7 +7,7 @@ export default function Navbar({
 }) {
   return (
     <>
-      <div className="d-navbar bg-transparent">
+      <div className="d-navbar bg-transparent p-0">
         <div className="flex-1">
           <a className="text-3xl">{title}</a>
         </div>

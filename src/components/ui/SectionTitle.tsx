@@ -1,7 +1,24 @@
-export default function SectionTitle({ title }: { title: string }) {
+type SectionTitleProps = {
+  title: string;
+  variant?: "center" | "left" | "right";
+};
+
+export default function SectionTitle({
+  title,
+  variant = "center",
+}: SectionTitleProps) {
+  const base =
+    "font-bold tracking-wide text-neutral text-3xl inline-block";
+
+  const variants = {
+    center: "text-center w-full justify-center flex",
+    left: "text-left w-full justify-start flex",
+    right: "text-right w-full justify-end flex",
+  };
+
   return (
-    <h2 className="text-3xl font-bold mb-4 border-b-2 border-gray-300 pb-2">
-      {title}
-    </h2>
+    <div className={`${variants[variant]}`}>
+      <h2 className={base}>{title}</h2>
+    </div>
   );
 }

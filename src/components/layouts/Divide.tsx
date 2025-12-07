@@ -12,7 +12,7 @@ export default function DivideLayout({
     direction === "horizontal" ? "flex-col md:flex-row" : "flex-col";
 
   return (
-    <div className={`flex ${flexDirection} flex-wrap gap-4 justify-center items-center`}>
+    <div className={`flex ${flexDirection} flex-wrap gap-4 items-center`}>
       {children.map((child, index) => (
         <div key={index} className="w-full md:flex-1 min-w-0">
           {child}
