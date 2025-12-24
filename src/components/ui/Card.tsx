@@ -1,3 +1,7 @@
+import type { Skill } from "@/types/skill";
+import AnimatedLine from "./AnimatedLine";
+import { skills } from "@/utils/data/skills";
+
 export const WorkCard = ({
   company,
   title,
@@ -39,17 +43,24 @@ export const WorkCard = ({
 };
 
 export const SkillCard = ({
-  image,
-  skill,
+  category,
+  items,
 }: {
-  image: string;
-  skill: string;
+  category: string;
+  items: Skill[];
 }) => {
   return (
-    <div className="d-card w-full shadow-xl d-glass">
-      <div className="d-card-body items-center">
-        <img src={image} alt={skill} className="w-16 h-16 mb-4" />
-        <h3 className="d-card-title text-center">{skill}</h3>
+    <div className="d-card w-full">
+      <div className="d-card-body gap-3">
+        <h2 className="d-card-title">
+          {category.charAt(0).toUpperCase() + category.slice(1)}
+        </h2>
+        {items.map((skill) => (
+          <div id={skill.title}>
+            <h4 className="">{skill.title}</h4>
+            <AnimatedLine value={skill.value} />
+          </div>
+        ))}
       </div>
     </div>
   );

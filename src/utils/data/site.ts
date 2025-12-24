@@ -2,6 +2,14 @@ export const site = {
   sections: ["home", "about", "projects", "contact"],
 };
 
+export const sections = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+];
+
 export const syntax = {
   typescript: {
     custom: ["title", "description", "tools"],

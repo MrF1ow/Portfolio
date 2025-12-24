@@ -2,28 +2,17 @@ import { projects } from "@/utils/data/projects";
 import { ProjectCode } from "@/components/ui/CodeMock";
 import DivideLayout from "@/components/layouts/Divide";
 import SectionTitle from "@/components/ui/SectionTitle";
+import webCoding from "@/assets/lotties/web-coding.json";
+import Lottie from "lottie-react";
 
 export default function Portfolio() {
-  const midpoint = Math.ceil(projects.length / 2);
-  const leftProjects = projects.slice(0, midpoint);
-  const rightProjects = projects.slice(midpoint);
-
   return (
-    <>
-      <SectionTitle title="Projects" variant="left" />
+    <section id="projects">
+      <SectionTitle title="Projects" variant="center" />
       <DivideLayout direction="horizontal">
-        <DivideLayout direction="vertical">
-          {leftProjects.map((project) => (
-            <ProjectCode key={project.id} project={project} />
-          ))}
-        </DivideLayout>
-
-        <DivideLayout direction="vertical">
-          {rightProjects.map((project) => (
-            <ProjectCode key={project.id} project={project} />
-          ))}
-        </DivideLayout>
+        <div>hello</div>
+        <Lottie animationData={webCoding} />
       </DivideLayout>
-    </>
+    </section>
   );
 }

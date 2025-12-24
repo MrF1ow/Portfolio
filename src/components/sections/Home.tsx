@@ -6,10 +6,12 @@ import HomeInfo from "@/components/sections/subsections/HomeInfo";
 export default function Home() {
   {
     return (
-      <DivideLayout direction="horizontal">
-        <HomeInfo user={personalInfo} />
-        <UserCode user={personalInfo} />
-      </DivideLayout>
+      <section id="home">
+        <DivideLayout direction="horizontal">
+          <HomeInfo user={personalInfo} />
+          <UserCode user={personalInfo} />
+        </DivideLayout>
+      </section>
     );
   }
 }

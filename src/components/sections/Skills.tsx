@@ -1,28 +1,18 @@
-import Marquee from "react-fast-marquee";
-import { SkillCard } from "@/components/ui/Card";
-import { skillsImage } from "@/utils/skills-image";
-import { skills as skillData } from "@/utils/data/skills";
+import { skills } from "@/utils/data/skills";
 import SectionTitle from "@/components/ui/SectionTitle";
+import { SkillCard } from "@/components/ui/Card";
 
 export default function Skills() {
   return (
-    <>
+    <section id="skills">
       <SectionTitle title="Skills" variant="center" />
-      <Marquee
-        gradient={false}
-        speed={50}
-        pauseOnHover={true}
-        pauseOnClick={true}
-        delay={0}
-        play={true}
-        direction="left"
-      >
-        {skillData.map((skill) => (
-          <div key={skill} className="mx-4">
-            <SkillCard image={skillsImage({ skill })!} skill={skill} />
+      <div className="d-stats d-stats-vertical lg:d-stats-horizontal shadow w-full">
+        {Object.entries(skills).map(([category, items]) => (
+          <div className="d-stat">
+            <SkillCard key={category} category={category} items={items} />
           </div>
         ))}
-      </Marquee>
-    </>
+      </div>
+    </section>
   );
 }

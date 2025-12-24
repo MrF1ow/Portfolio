@@ -6,12 +6,12 @@ import SectionTitle from "@/components/ui/SectionTitle";
 
 export default function Experience() {
   return (
-    <>
+    <section id="experience">
       <SectionTitle title="Experience" variant="center" />
       <DivideLayout direction="horizontal">
         <Lottie animationData={businessMan} />
         <WorkCards />
       </DivideLayout>
-    </>
+    </section>
   );
 }

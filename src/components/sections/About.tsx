@@ -5,11 +5,13 @@ import { ProfileImagesStack } from "@/components/sections/subsections/ProfileIma
 
 export default function About() {
   return (
-    <DivideLayout direction="horizontal">
-      <AboutInfo user={personal} />
-      <div className="pr-0 md:pr-5 lg:pr-10">
-        <ProfileImagesStack user={personal} />
-      </div>
-    </DivideLayout>
+    <section id="home">
+      <DivideLayout direction="horizontal">
+        <AboutInfo user={personal} />
+        <div className="pr-0 md:pr-5 lg:pr-10">
+          <ProfileImagesStack user={personal} />
+        </div>
+      </DivideLayout>
+    </section>
   );
 }

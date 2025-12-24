@@ -20,8 +20,9 @@ function App() {
         alt="Background"
         className="absolute inset-0 w-full h-full object-cover blur-3xl -z-10"
       />
+      {/* <div className="absolute inset-0 bg-black/25" /> */}
+      <Navbar title={fullName}/>
       <MainLayout>
-        <Navbar title={fullName} sections={siteConfig.sections} />
         <Home />
         <About />
         <Experience />

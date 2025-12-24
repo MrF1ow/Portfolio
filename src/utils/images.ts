@@ -7,6 +7,7 @@ import personal1 from "@/assets/images/personal/personal-1.jpg";
 import personal2 from "@/assets/images/personal/personal-2.jpg";
 import personal3 from "@/assets/images/personal/personal-3.jpg";
 import personal4 from "@/assets/images/personal/personal-4.jpg";
+import profile from "@/assets/images/personal/profile.jpg"
 
 /* Project Images */
 import foodableImg from "@/assets/images/projects/foodable.png";
@@ -50,6 +51,8 @@ export const personalImages = ({ image }: { image: string }) => {
       return personal3;
     case "personal-4":
       return personal4;
+    case "profile":
+      return profile;
     default:
       return null;
   }
