@@ -1,24 +1,15 @@
-type SectionTitleProps = {
-  title: string;
-  variant?: "center" | "left" | "right";
-};
+import type { SectionTitleProps } from "@/types/section";
 
-export default function SectionTitle({
-  title,
-  variant = "center",
-}: SectionTitleProps) {
-  const base =
-    "font-bold tracking-wide text-neutral text-3xl inline-block";
-
-  const variants = {
-    center: "text-center w-full justify-center flex",
-    left: "text-left w-full justify-start flex",
-    right: "text-right w-full justify-end flex",
-  };
-
+export default function SectionTitle({ title, color }: SectionTitleProps) {
   return (
-    <div className={`${variants[variant]}`}>
-      <h2 className={base}>{title}</h2>
+    <div className="w-full flex items-center justify-center">
+      <h2
+        className={`font-bold tracking-wide text-neutral text-4xl inline-block ${
+          color || ""
+        }`}
+      >
+        {title}
+      </h2>
     </div>
   );
 }

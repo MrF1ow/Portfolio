@@ -3,11 +3,12 @@ import darkBg from "@/assets/images/site/dark-bg.jpg";
 import lightBg from "@/assets/images/site/light-bg.jpg";
 
 /* Personal Images */
-import personal1 from "@/assets/images/personal/personal-1.jpg";
-import personal2 from "@/assets/images/personal/personal-2.jpg";
-import personal3 from "@/assets/images/personal/personal-3.jpg";
-import personal4 from "@/assets/images/personal/personal-4.jpg";
-import profile from "@/assets/images/personal/profile.jpg"
+import personalAdv from "@/assets/images/personal/personal-adventure.jpg";
+import personalChr from "@/assets/images/personal/personal-christ.jpg";
+import personalFri from "@/assets/images/personal/personal-friend.jpg";
+import personalHus from "@/assets/images/personal/personal-husband.jpg";
+import profilePer from "@/assets/images/personal/profile-per.jpg";
+import profileEng from "@/assets/images/personal/profile-eng.jpg";
 
 /* Project Images */
 import foodableImg from "@/assets/images/projects/foodable.png";
@@ -43,16 +44,18 @@ export const projectImages = ({ project }: { project: string }) => {
 export const personalImages = ({ image }: { image: string }) => {
   const imageId = image.toLowerCase();
   switch (imageId) {
-    case "personal-1":
-      return personal1;
-    case "personal-2":
-      return personal2;
-    case "personal-3":
-      return personal3;
-    case "personal-4":
-      return personal4;
-    case "profile":
-      return profile;
+    case "husband":
+      return personalHus;
+    case "adventure":
+      return personalAdv;
+    case "christ":
+      return personalChr;
+    case "friend":
+      return personalFri;
+    case "professional":
+      return profileEng;
+    case "personal":
+      return profilePer;
     default:
       return null;
   }

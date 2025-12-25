@@ -1,15 +1,15 @@
 import DivideLayout from "@/components/layouts/Divide";
-import AboutInfo from "@/components/sections/subsections/AboutInfo";
-import { personal } from "@/utils/data/personal";
-import { ProfileImagesStack } from "@/components/sections/subsections/ProfileImagesStack";
+import SectionTitle from "@/components/ui/SectionTitle";
 
-export default function About() {
+export default function About({ about }: { about: string }) {
   return (
-    <section id="home">
-      <DivideLayout direction="horizontal">
-        <AboutInfo user={personal} />
-        <div className="pr-0 md:pr-5 lg:pr-10">
-          <ProfileImagesStack user={personal} />
+    <section id="about">
+      <DivideLayout direction="vertical">
+        <SectionTitle title="Who am I?" color="text-warning" />
+        <div className="flex items-center justify-center w-full">
+          <p className="text-xl w-full md:w-3/4 lg:w-1/2 text-center">
+            {about}
+          </p>
         </div>
       </DivideLayout>
     </section>

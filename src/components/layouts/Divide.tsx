@@ -1,13 +1,9 @@
-type DivideLayoutProps = {
-  children: React.ReactNode[];
-  direction?: "horizontal" | "vertical";
-};
+import type { DivideLayoutProps } from "@/types/layouts";
 
 export default function DivideLayout({
   children,
   direction = "horizontal",
 }: DivideLayoutProps) {
-
   const flexDirection =
     direction === "horizontal" ? "flex-col md:flex-row" : "flex-col";
 

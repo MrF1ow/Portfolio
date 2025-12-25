@@ -8,10 +8,10 @@ import Lottie from "lottie-react";
 export default function Portfolio() {
   return (
     <section id="projects">
-      <SectionTitle title="Projects" variant="center" />
+      <SectionTitle title="Projects" />
       <DivideLayout direction="horizontal">
-        <div>hello</div>
         <Lottie animationData={webCoding} />
+        <div>hello</div>
       </DivideLayout>
     </section>
   );

@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Science+Gothic:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
+
 @import "tailwindcss";
 @theme {
   --font-league: "League Spartan", sans-serif;
   --font-science: "Science Gothic", sans-serif;
+  --font-jua: "Jua", sans-serif;
 }
 @plugin "daisyui" {
   prefix: "d-";
@@ -15,13 +18,13 @@
   color-scheme: "dark";
   --color-base-100: oklch(0% 0 0);
   --color-base-200: oklch(86% 0.005 56.366);
-  --color-base-300: #04ADBF;
+  --color-base-300: #04adbf;
   --color-base-content: oklch(100% 0 0);
-  --color-primary: #05F2F2;
+  --color-primary: #05f2f2;
   --color-primary-content: oklch(14% 0.005 285.823);
   --color-secondary: oklch(0% 0 0);
   --color-secondary-content: oklch(96% 0.016 293.756);
-  --color-accent: #05F2C7;
+  --color-accent: #05f2c7;
   --color-accent-content: oklch(14% 0 0);
   --color-neutral: oklch(100% 0 0);
   --color-neutral-content: oklch(14% 0 0);
@@ -41,8 +44,38 @@
   --border: 1px;
   --depth: 1;
   --noise: 0;
-};
+}
 
 html {
   scroll-behavior: smooth;
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  15% {
+    transform: rotate(14deg);
+  }
+  30% {
+    transform: rotate(-8deg);
+  }
+  45% {
+    transform: rotate(14deg);
+  }
+  60% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-wave {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: wave 2s infinite;
 }
