@@ -2,6 +2,7 @@ export type ProfileInfo = {
   titles: string[];
   slogan: string;
   about: string;
+  contact: string;
   image: string;
 };
 

@@ -1,33 +1,29 @@
 import type { Skill } from "@/types/skill";
 import AnimatedLine from "./AnimatedLine";
-import { skills } from "@/utils/data/skills";
+import { personalImages } from "@/utils/images";
 
 export const WorkCard = ({
   company,
   title,
-  responsibilities,
+  description,
   tags,
 }: {
   company: string;
   title: string;
-  responsibilities: string[];
+  description: string[];
   tags: string[];
 }) => {
   return (
-    <div className="d-card w-full shadow-xl d-glass">
+    <div className="d-card shadow-xl bg-base-100/25">
       <div className="d-card-body items-start">
-        {/* Title */}
-        <h2 className="d-card-title text-left w-full">{title}</h2>
 
-        {/* Company badge */}
+        <h2 className="d-card-title text-left w-full tracking-widest">{title}</h2>
+
+
         <div className="d-badge d-badge-accent">{company}</div>
 
-        {/* Responsibilities */}
-        <ul className="list-disc list-inside space-y-1 text-sm mt-2 w-full text-left">
-          {responsibilities.map((item, i) => (
-            <li key={i}>{item}</li>
-          ))}
-        </ul>
+
+        <p>{description}</p>
 
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mt-2 w-full justify-start">
@@ -96,6 +92,32 @@ export const ProjectCard = ({
             </div>
           ))}
         </div>
+      </div>
+    </div>
+  );
+};
+
+export const TraitCard = ({
+  title,
+  description,
+  image,
+}: {
+  title: string;
+  description: string;
+  image: string;
+}) => {
+  return (
+    <div className="d-card bg-base-100/50 w-full md:w-80 shadow-sm">
+      <figure className="h-48 w-full overflow-hidden">
+        <img
+          src={personalImages({ image: image })!}
+          alt={title}
+          className="h-full w-full object-cover"
+        />
+      </figure>
+      <div className="d-card-body">
+        <h2 className="d-card-title text-2xl tracking-wider">{title}</h2>
+        <p>{description}</p>
       </div>
     </div>
   );

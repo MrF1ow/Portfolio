@@ -35,7 +35,9 @@ export default function Home({ profile }: { profile: ProfileInfo }) {
 
             <p className="py-6">{profile.slogan}</p>
             <div className="flex flex-row gap-2">
-              <button className="d-btn d-btn-primary">Contact Me</button>
+              <a href="#contact" className="d-btn d-btn-primary">
+                Contact Me
+              </a>
               <button className="d-btn d-btn-outline d-btn-warning">
                 Resume
               </button>

@@ -4,7 +4,7 @@ export default function SectionTitle({ title, color }: SectionTitleProps) {
   return (
     <div className="w-full flex items-center justify-center">
       <h2
-        className={`font-bold tracking-wide text-neutral text-4xl inline-block ${
+        className={`font-bold tracking-wide text-neutral text-5xl inline-block ${
           color || ""
         }`}
       >

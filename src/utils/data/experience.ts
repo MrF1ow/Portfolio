@@ -6,11 +6,7 @@ export const experiences = [
     location: "Des Moines, IA",
     startDate: "Aug 2025",
     endDate: "Present",
-    responsibilities: [
-      "Assess agency needs and configure software solutions",
-      "Develop, test, and deploy features using C# .NET and PostgreSQL",
-      "Troubleshoot issues and support clients while maintaining data security",
-    ],
+    description: "",
     tags: [
       "C#",
       ".NET",
@@ -29,11 +25,7 @@ export const experiences = [
     location: "Corvallis, OR",
     startDate: "Aug 2023",
     endDate: "Jul 2025",
-    responsibilities: [
-      "Led crews and coordinated on-site operations",
-      "Communicated clearly with customers and team members",
-      "Maintained safety standards and efficient workflows",
-    ],
+    description: "",
     tags: [
       "Team Leadership",
       "Customer Communication",

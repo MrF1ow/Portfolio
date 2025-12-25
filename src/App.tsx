@@ -9,14 +9,36 @@ import Navbar from "@/components/ui/Navbar";
 import Home from "@/components/sections/Home";
 import About from "@/components/sections/About";
 import Experience from "@/components/sections/Experience";
-import Skills from "@/components/sections/Skills";
 import Portfolio from "@/components/sections/Portfolio";
+import Skills from "@/components/sections/Skills";
+import Traits from "@/components/sections/Traits";
+import Contact from "@/components/sections/Contact";
+import Footer from "@/components/sections/Footer";
 import ThemeSwitch from "./components/ui/ThemeSwitch";
+import type { JSX } from "react";
 
-function App() {
+function EngineerComponents(): JSX.Element {
+  return (
+    <>
+      <Portfolio />
+      <Skills />
+    </>
+  );
+}
+
+function PersonalComponents(): JSX.Element {
+  return (
+    <>
+      <Experience />
+      <Traits />
+    </>
+  );
+}
+
+export default function App() {
   const { mode } = useProfileMode();
 
-  const font = mode === "engineer" ? 'font-league' : 'font-jua';
+  const font = mode === "engineer" ? "font-league" : "font-jua";
   const profile = mode === "engineer" ? engineer : personal;
   const backgroundImg = mode === "engineer" ? "dark-bg" : "light-bg";
   const sections = mode == "engineer" ? engineerSections : personalSections;
@@ -35,11 +57,12 @@ function App() {
         <Home profile={profile} />
         <About about={profile.about} />
         {mode === "personal" ? (
-          <Experience />
+          <PersonalComponents />
         ) : mode === "engineer" ? (
-          <Portfolio />
+          <EngineerComponents />
         ) : null}
-        <Skills />
+        <Contact description={profile.contact} />
+        <Footer />
         <div className="fixed bottom-0 right-0 flex mr-5 mb-5 p-2 md:hidden bg-black/70 backdrop-blur-md rounded-full">
           <ThemeSwitch />
         </div>
@@ -47,5 +70,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

@@ -15,5 +15,5 @@ export default function WorkCards() {
     />
   ));
 
-  return <DivideLayout direction="vertical">{workCards}</DivideLayout>;
+  return <DivideLayout direction="vertical" width="w-full">{workCards}</DivideLayout>;
 }
