@@ -52,7 +52,13 @@ export const SkillCard = ({
         </h2>
         {items.map((skill) => (
           <div id={skill.title}>
-            <h4 className="">{skill.title}</h4>
+            <div className="flex flex-row items-center gap-2">
+              <skill.icon
+                className="text-lg"
+                style={{ color: skill.iconColor }}
+              />
+              <h4>{skill.title}</h4>
+            </div>
             <AnimatedLine value={skill.value} />
           </div>
         ))}
