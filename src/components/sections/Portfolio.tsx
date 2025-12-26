@@ -14,11 +14,13 @@ export default function Portfolio() {
   ));
   return (
     <section id="projects">
-      <SectionTitle title="Projects" />
-      <DivideLayout direction="horizontal">
-        <Lottie animationData={webCoding} />
-        <DivideLayout direction="vertical" width="w-full">
-          {projectCards}
+      <DivideLayout direction="vertical">
+        <SectionTitle title="Projects" />
+        <DivideLayout direction="horizontal">
+          <Lottie animationData={webCoding} />
+          <DivideLayout direction="vertical" width="w-full" animated={true}>
+            {projectCards}
+          </DivideLayout>
         </DivideLayout>
       </DivideLayout>
     </section>

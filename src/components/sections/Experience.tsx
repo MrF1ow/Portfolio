@@ -13,14 +13,14 @@ export default function Experience() {
     <WorkCard key={exp.company + exp.id} job={exp} />
   ));
 
-  
+
   return (
     <section id="experience">
       <DivideLayout direction="vertical">
         <SectionTitle title="Work Experience" />
         <DivideLayout direction="horizontal">
           <Lottie animationData={businessMan} />
-          <DivideLayout direction="vertical" width="w-full">
+          <DivideLayout direction="vertical" width="w-full" animated={true}>
             {workCards}
           </DivideLayout>
         </DivideLayout>

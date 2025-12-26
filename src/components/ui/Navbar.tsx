@@ -32,7 +32,7 @@ export default function Navbar({
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle"
+                className="btn btn-ghost btn-circle cursor-pointer"
               >
                 <BiMenuAltLeft className="h-8 w-8 md:h-10 md:w-10" />
               </div>
@@ -49,7 +49,7 @@ export default function Navbar({
             </div>
           </div>
           <div className="d-navbar-center">
-            <a className="text-5xl font-bold tracking-wide uppercase">
+            <a className="text-4xl font-bold tracking-wide uppercase">
               {title}
             </a>
           </div>

@@ -1,5 +1,5 @@
 import type { Skill } from "@/types/skill";
-import AnimatedLine from "./AnimatedLine";
+import { AnimatedLine } from "@/components/ui/Animated";
 import { personalImages } from "@/utils/images";
 import type { Project } from "@/types/project";
 import type { Job } from "@/types/experience";
@@ -19,7 +19,7 @@ export const WorkCard = ({ job }: { job: Job }) => {
 
         <div className="d-badge d-badge-primary">{job.company}</div>
 
-        <p>{job.description}</p>
+        <p className="tracking-wider">{job.description}</p>
 
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mt-2 w-full justify-start">
@@ -76,7 +76,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
             {project.title}{" "}
           </h2>
 
-          <p>{project.description}</p>
+          <p className="tracking-wide">{project.description}</p>
 
           {/* Tags */}
           <div className="flex flex-wrap gap-2 mt-2 w-full justify-start">
@@ -105,7 +105,7 @@ export const TraitCard = ({
   image: string;
 }) => {
   return (
-    <div className="d-card bg-base-100/50 shadow-sm">
+    <div className="d-card bg-base-100/50 shadow-xl">
       <figure className="h-48 w-full overflow-hidden">
         <img
           src={personalImages({ image: image })!}
