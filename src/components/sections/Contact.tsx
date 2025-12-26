@@ -6,7 +6,7 @@ import Description from "@/components/ui/Description";
 export default function Contact({ description }: { description: string }) {
   return (
     <section id="contact">
-      <DivideLayout direction="vertical" width="w-full md:w-auto">
+      <DivideLayout direction="vertical" width="w-full lg:w-auto">
         <SectionTitle title="Let's Connect" />
         <Description content={description} />
         <ContactForm />

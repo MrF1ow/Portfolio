@@ -5,23 +5,31 @@ import { personalImages } from "@/utils/images";
 export const WorkCard = ({
   company,
   title,
+  startDate,
+  endDate,
   description,
   tags,
 }: {
   company: string;
   title: string;
-  description: string[];
+  startDate: string;
+  endDate: string;
+  description: string;
   tags: string[];
 }) => {
   return (
     <div className="d-card shadow-xl bg-base-100/25">
       <div className="d-card-body items-start">
+        <div className="flex flex-col md:flex-row w-full items-center">
+          <h2 className="d-card-title text-left w-full tracking-widest">
+            {title}{" "}
+          </h2>
+          <div className="text-left md:text-right w-full text-sm italic font-extralight">
+            {startDate} <span>-</span> {endDate}
+          </div>
+        </div>
 
-        <h2 className="d-card-title text-left w-full tracking-widest">{title}</h2>
-
-
-        <div className="d-badge d-badge-accent">{company}</div>
-
+        <div className="d-badge d-badge-primary">{company}</div>
 
         <p>{description}</p>
 
@@ -107,7 +115,7 @@ export const TraitCard = ({
   image: string;
 }) => {
   return (
-    <div className="d-card bg-base-100/50 w-full md:w-80 shadow-sm">
+    <div className="d-card bg-base-100/50 shadow-sm">
       <figure className="h-48 w-full overflow-hidden">
         <img
           src={personalImages({ image: image })!}

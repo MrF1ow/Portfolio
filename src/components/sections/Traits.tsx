@@ -8,7 +8,7 @@ export default function Traits() {
     <section id="traits">
       <DivideLayout direction="vertical">
         <SectionTitle title="Traits" />
-        <DivideLayout direction="horizontal" width="w-full md:w-auto">
+        <DivideLayout direction="horizontal" width="w-full lg:w-auto">
           {traits.map((trait) => (
             <TraitCard
               key={trait.title}

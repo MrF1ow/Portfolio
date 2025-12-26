@@ -10,7 +10,9 @@ export default function WorkCards() {
       key={exp.company}
       company={exp.company}
       title={exp.position}
-      responsibilities={exp.responsibilities}
+      startDate={exp.startDate}
+      endDate={exp.endDate}
+      description={exp.description}
       tags={exp.tags}
     />
   ));

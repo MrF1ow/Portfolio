@@ -6,7 +6,7 @@ export default function DivideLayout({
   width,
 }: DivideLayoutProps) {
   const flexDirection =
-    direction === "horizontal" ? "flex-col md:flex-row" : "flex-col";
+    direction === "horizontal" ? "flex-col lg:flex-row" : "flex-col";
 
   return (
     <div className={`flex ${flexDirection} flex-wrap gap-4 items-center`}>

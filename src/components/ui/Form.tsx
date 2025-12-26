@@ -8,14 +8,14 @@ export const ContactForm = () => {
           <DivideLayout direction="horizontal" width="w-full">
             <div className="flex flex-col gap-1 w-full">
               <label className="d-label text-warning">Name</label>
-              <input type="text" className="d-input" placeholder="Enter Name" />
+              <input type="text" className="d-input w-full" placeholder="Enter Name" />
             </div>
 
             <div className="flex flex-col gap-1 w-full">
               <label className="d-label text-warning">Email</label>
               <input
                 type="email"
-                className="d-input"
+                className="d-input w-full"
                 placeholder="Enter Email"
               />
             </div>
