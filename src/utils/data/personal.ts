@@ -14,6 +14,7 @@ export const contact: ContactInfo = {
     github: "https://github.com/MrF1ow",
     linkedin: "https://www.linkedin.com/in/ethanflow/",
   },
+  resumePath: "@/assets/pdfs/resume.pdf",
 };
 
 export const engineer: ProfileInfo = {

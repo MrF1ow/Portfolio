@@ -1,5 +1,6 @@
 import type { ProfileInfo } from "@/types/personal";
 import { personalImages } from "@/utils/images";
+import { contact } from "@/utils/data/personal";
 
 export default function Home({ profile }: { profile: ProfileInfo }) {
   return (
@@ -38,9 +39,14 @@ export default function Home({ profile }: { profile: ProfileInfo }) {
               <a href="#contact" className="d-btn d-btn-primary">
                 Contact Me
               </a>
-              <button className="d-btn d-btn-outline d-btn-warning">
+              <a
+                href="/Ethan-Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="d-btn d-btn-outline d-btn-warning"
+              >
                 Resume
-              </button>
+              </a>
             </div>
           </div>
         </div>
