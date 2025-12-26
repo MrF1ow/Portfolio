@@ -1,4 +1,6 @@
-const languages = [
+import type { Skill } from "@/types/skill";
+
+const languages: Skill[] = [
   {
     title: "TypeScript",
     value: 90,
@@ -17,7 +19,7 @@ const languages = [
   },
 ];
 
-const databases = [
+const databases: Skill[] = [
   {
     title: "MongoDB",
     value: 90,
@@ -36,7 +38,7 @@ const databases = [
   },
 ];
 
-const frameworks = [
+const frameworks: Skill[] = [
   {
     title: "React",
     value: 90,
@@ -55,7 +57,7 @@ const frameworks = [
   },
 ];
 
-const tools = [
+const tools: Skill[] = [
   {
     title: "Git",
     value: 90,

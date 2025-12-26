@@ -1,5 +1,4 @@
 import type { Project } from "@/types/project";
-import type { PersonalInfo } from "@/types/personal";
 
 export const ProjectCode = ({ project }: { project: Project }) => {
   switch (project.language) {

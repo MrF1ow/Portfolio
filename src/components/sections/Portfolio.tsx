@@ -1,17 +1,25 @@
-import { projects } from "@/utils/data/projects";
-import { ProjectCode } from "@/components/ui/CodeMock";
 import DivideLayout from "@/components/layouts/Divide";
 import SectionTitle from "@/components/ui/SectionTitle";
 import webCoding from "@/assets/lotties/web-coding.json";
 import Lottie from "lottie-react";
 
+import { projects } from "@/utils/data/projects";
+import { ProjectCard } from "@/components/ui/Card";
+
 export default function Portfolio() {
+  const sorted = [...projects].sort((a, b) => a.id - b.id);
+
+  const projectCards = sorted.map((proj) => (
+    <ProjectCard key={proj.title + proj.id} project={proj} />
+  ));
   return (
     <section id="projects">
       <SectionTitle title="Projects" />
       <DivideLayout direction="horizontal">
         <Lottie animationData={webCoding} />
-        <div>hello</div>
+        <DivideLayout direction="vertical" width="w-full">
+          {projectCards}
+        </DivideLayout>
       </DivideLayout>
     </section>
   );

@@ -1,42 +1,33 @@
 import type { Skill } from "@/types/skill";
 import AnimatedLine from "./AnimatedLine";
 import { personalImages } from "@/utils/images";
+import type { Project } from "@/types/project";
+import type { Job } from "@/types/experience";
 
-export const WorkCard = ({
-  company,
-  title,
-  startDate,
-  endDate,
-  description,
-  tags,
-}: {
-  company: string;
-  title: string;
-  startDate: string;
-  endDate: string;
-  description: string;
-  tags: string[];
-}) => {
+export const WorkCard = ({ job }: { job: Job }) => {
   return (
     <div className="d-card shadow-xl bg-base-100/25">
       <div className="d-card-body items-start">
         <div className="flex flex-col md:flex-row w-full items-center">
           <h2 className="d-card-title text-left w-full tracking-widest">
-            {title}{" "}
+            {job.position}{" "}
           </h2>
           <div className="text-left md:text-right w-full text-sm italic font-extralight">
-            {startDate} <span>-</span> {endDate}
+            {job.startDate} <span>-</span> {job.endDate}
           </div>
         </div>
 
-        <div className="d-badge d-badge-primary">{company}</div>
+        <div className="d-badge d-badge-primary">{job.company}</div>
 
-        <p>{description}</p>
+        <p>{job.description}</p>
 
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mt-2 w-full justify-start">
-          {tags.map((tag) => (
-            <div key={tag} className="d-badge d-badge-outline">
+          {job.tags.map((tag) => (
+            <div
+              key={tag}
+              className="d-badge d-badge-outline hover:bg-warning transition-all"
+            >
               {tag}
             </div>
           ))}
@@ -70,38 +61,31 @@ export const SkillCard = ({
   );
 };
 
-export const ProjectCard = ({
-  image,
-  title,
-  description,
-  tags,
-}: {
-  image: string;
-  title: string;
-  description: string;
-  tags: string[];
-}) => {
+export const ProjectCard = ({ project }: { project: Project }) => {
   return (
-    <div className="d-card w-[75%] d-image-full shadow-xl">
-      <figure>
-        <img
-          src={image}
-          className="object-cover object-center w-full h-50"
-          alt="Project"
-        />
-      </figure>
-      <div className="d-card-body">
-        <h2 className="d-card-title">{title}</h2>
-        <p>{description}</p>
-        <div className="flex flex-wrap gap-2 mt-2 w-full justify-start">
-          {tags.map((tag) => (
-            <div key={tag} className="d-badge d-badge-outline">
-              {tag}
-            </div>
-          ))}
+    <a href={project.src}>
+      <div className="d-card shadow-xl bg-base-100/25 hover:scale-101 transition-all">
+        <div className="d-card-body items-start">
+          <h2 className="d-card-title text-left w-full tracking-widest">
+            {project.title}{" "}
+          </h2>
+
+          <p>{project.description}</p>
+
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2 mt-2 w-full justify-start">
+            {project.tags.map((tag) => (
+              <div
+                key={tag}
+                className="d-badge d-badge-outline hover:bg-warning transition-all"
+              >
+                {tag}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 
