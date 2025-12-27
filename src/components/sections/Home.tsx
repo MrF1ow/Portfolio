@@ -56,14 +56,14 @@ export default function Home({
 
             <p className="py-6 md:py-4 text-xl">{profile.slogan}</p>
             <div className="flex flex-row gap-2">
-              <a href="#contact" className="d-btn d-btn-primary">
+              <a href="#contact" className="d-btn d-btn-primary font-bold">
                 Contact Me
               </a>
               <a
                 href="/Ethan-Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="d-btn d-btn-warning"
+                className="d-btn d-btn-warning font-bold"
               >
                 Resume
               </a>

@@ -44,7 +44,7 @@ export default function Navbar({
         scrolled ? "bg-base-100/50 backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <nav className="container left-0 right-0 mx-auto px-4 md:px-2 lg:px-0">
+      <nav className="container left-0 right-0 mx-auto px-4">
         <div className="d-navbar p-0 h-24">
           <div className="d-navbar-start">
             <div className="d-dropdown d-dropdown-start">

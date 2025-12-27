@@ -23,7 +23,7 @@ export default function Description({
   return (
     <div className="flex items-center justify-center w-full">
       <motion.p
-        className="text-xl w-full md:w-3/4 lg:w-1/2 text-center"
+        className="text-xl w-full md:w-7/8 lg:w-3/4 xl:w-1/2 text-center"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}

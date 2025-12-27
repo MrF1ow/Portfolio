@@ -4,6 +4,9 @@ import type { Project } from "@/types/project";
 import type { Job } from "@/types/experience";
 import type { JSX } from "react";
 
+/* Package Imports */
+import { motion } from "framer-motion";
+
 /* Component Imports */
 import { AnimatedLine } from "@/components/ui/Animated";
 
@@ -112,7 +115,7 @@ export const SkillCard = ({
 export const ProjectCard = ({ project }: { project: Project }): JSX.Element => {
   return (
     <a href={project.src}>
-      <div className="d-card shadow-xl bg-base-100/25 hover:scale-101 border border-transparent hover:border hover:border-primary transition-all">
+      <div className="d-card shadow-xl bg-base-100/25 border border-transparent hover:border hover:border-primary transition-all">
         <div className="d-card-body items-start">
           <h2 className="d-card-title text-left w-full tracking-widest">
             {project.title}{" "}
@@ -160,18 +163,36 @@ export const TraitCard = ({
   image: string;
 }): JSX.Element => {
   return (
-    <div className="d-card bg-base-100/50 shadow-xl">
-      <figure className="h-48 w-full overflow-hidden">
-        <img
-          src={personalImages({ image: image })!}
-          alt={title}
-          className="h-full w-full object-cover"
-        />
-      </figure>
-      <div className="d-card-body">
-        <h2 className="d-card-title text-2xl tracking-wider">{title}</h2>
-        <p>{description}</p>
-      </div>
+    <div
+      className="relative bg-cover bg-center rounded-xl overflow-hidden shadow-xl h-48 md:h-60 lg:h-72 w-full"
+      style={{ backgroundImage: `url(${personalImages({ image: image })!})` }}
+    >
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          hidden: { opacity: 0, y: 40 },
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: { staggerChildren: 0.1 },
+          },
+        }}
+        className="absolute bottom-0 left-0 flex flex-col w-full justify-start bg-base-100/50 p-4"
+      >
+        <motion.h2
+          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+          className="text-2xl tracking-wider"
+        >
+          {title}
+        </motion.h2>
+        <motion.p
+          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+        >
+          {description}
+        </motion.p>
+      </motion.div>
     </div>
   );
 };

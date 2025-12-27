@@ -64,7 +64,7 @@ export const ContactForm = (): JSX.Element => {
                 type="text"
                 name="name"
                 className="d-input w-full"
-                placeholder="Enter Name"
+                placeholder="Your Name"
               />
             </div>
 
@@ -74,7 +74,7 @@ export const ContactForm = (): JSX.Element => {
                 type="email"
                 name="email"
                 className="d-input w-full"
-                placeholder="Enter Email"
+                placeholder="Your Email"
               />
             </div>
           </DivideLayout>
@@ -89,7 +89,7 @@ export const ContactForm = (): JSX.Element => {
             />
           </div>
 
-          <button type="submit" className="d-btn d-btn-warning mt-4">
+          <button type="submit" className="d-btn d-btn-warning mt-4 text-lg">
             Send
           </button>
         </fieldset>
