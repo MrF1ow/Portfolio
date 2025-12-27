@@ -1,4 +1,9 @@
+/* Type Imports */
 import type { ContactInfo, GeneralInfo, ProfileInfo } from "@/types/personal";
+
+/* Package Imports */
+import { FaCode } from "react-icons/fa";
+import { FaPersonHiking } from "react-icons/fa6";
 
 /*
  * general
@@ -54,7 +59,7 @@ export const contact: ContactInfo = {
  * @property {string} about - Detailed background and professional story.
  * @property {string} contact - Contact message or invitation to connect.
  * @property {string} image - Key representing the profile image.
- *
+ * @property {IconType} icon - Icon representing this profile
  * */
 export const engineer: ProfileInfo = {
   titles: ["Software Engineer", "Team Player", "Hard Worker", "Machine"],
@@ -65,6 +70,7 @@ export const engineer: ProfileInfo = {
   contact:
     "Whether it’s software, business ideas, or just chatting about tech and games, I’m always up for a good conversation. Drop me a message through the form or connect via any of the links below. I’d love to hear from you.",
   image: "professional",
+  icon: FaCode,
 };
 
 /*
@@ -79,6 +85,7 @@ export const engineer: ProfileInfo = {
  * @property {string} about - Detailed background and personal story.
  * @property {string} contact - Contact message or invitation to connect.
  * @property {string} image - Key representing the profile image.
+ * @property {IconType} icon - Icon representing this profile
  *
  * */
 export const personal: ProfileInfo = {
@@ -90,4 +97,5 @@ export const personal: ProfileInfo = {
   contact:
     "Whether it’s diving into the word together, discussing travel ideas, or just talking about life, I’m always up for a great conversation. Reach out through the form or any of my links below. I’d love to connect and hear your story.",
   image: "personal",
+  icon: FaPersonHiking,
 };

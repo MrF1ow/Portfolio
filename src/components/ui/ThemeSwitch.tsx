@@ -1,9 +1,7 @@
 /* Type Imports */
 import type { JSX } from "react";
 
-/* Package Imports */
-import { FaCode } from "react-icons/fa";
-import { FaPersonHiking } from "react-icons/fa6";
+import { engineer, personal } from "@/utils/data/personal";
 
 /* Local Imports */
 import { useProfileMode } from "@/context/ProfileModeContext";
@@ -27,9 +25,9 @@ export default function ThemeSwitch(): JSX.Element {
         onChange={toggleMode}
       />
 
-      <FaCode className="d-swap-off h-8 w-8 md:h-10 md:w-10" />
+      <engineer.icon className="d-swap-off h-8 w-8 md:h-10 md:w-10" />
 
-      <FaPersonHiking className="d-swap-on h-8 w-8 md:h-10 md:w-10" />
+      <personal.icon className="d-swap-on h-8 w-8 md:h-10 md:w-10" />
     </label>
   );
 }

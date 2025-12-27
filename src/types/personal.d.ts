@@ -1,3 +1,7 @@
+/* Type Imports */
+import type { Skill } from "@/types/skill";
+import type { IconType } from "react-icons";
+
 /**
  * Profile-related display information shown on the site.
  */
@@ -29,6 +33,11 @@ export type ProfileInfo = {
    * Check utils/images.ts to see how it is used
    */
   image: string;
+
+  /**
+   * Icon representing this profile
+   */
+  icon: IconType;
 };
 
 /**
