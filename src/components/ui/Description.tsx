@@ -1,6 +1,25 @@
+/* Type Imports */
+import type { JSX } from "react";
+
+/* Package Imports */
 import { motion } from "framer-motion";
 
-export default function Description({ content }: { content: string }) {
+/*
+ * Description
+ *
+ * This component displays a block of text with a fade-in and upward
+ * motion animation using Framer Motion.
+ *
+ * @param {string} content - The text content to display.
+ *
+ * @returns {JSX.Element} - The Description component.
+ *
+ * */
+export default function Description({
+  content,
+}: {
+  content: string;
+}): JSX.Element {
   return (
     <div className="flex items-center justify-center w-full">
       <motion.p

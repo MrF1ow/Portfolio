@@ -46,11 +46,13 @@
   --noise: 0;
 }
 
+/* Global scroll settings */
 html {
-  scroll-padding-top: 8rem;
+  scroll-padding-top: 8rem; /* Offset for Navbar */
   scroll-behavior: smooth;
 }
 
+/* Keyframes for waving animation */
 @keyframes wave {
   0% {
     transform: rotate(0deg);
@@ -75,8 +77,9 @@ html {
   }
 }
 
+/* Apply waving animation to elements */
 .animate-wave {
   display: inline-block;
   transform-origin: 70% 70%;
-  animation: wave 2s infinite;
+  animation: wave 2s infinite; /* Continuous 2-second wave loop */
 }

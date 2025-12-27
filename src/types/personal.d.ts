@@ -20,5 +20,4 @@ export type ContactInfo = {
     github: string;
     linkedin: string;
   };
-  resumePath: string;
 };

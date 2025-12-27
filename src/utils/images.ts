@@ -10,11 +10,16 @@ import personalHus from "@/assets/images/personal/personal-husband.jpg";
 import profilePer from "@/assets/images/personal/profile-per.jpg";
 import profileEng from "@/assets/images/personal/profile-eng.jpg";
 
-/* Project Images */
-import foodableImg from "@/assets/images/projects/foodable.png";
-import imageEditorImg from "@/assets/images/projects/image-editor.png";
-import playlistPartnerImg from "@/assets/images/projects/playlist-partner.png";
-
+/*
+ * siteImages
+ *
+ * Utility function to retrieve site images by name.
+ *
+ * @param {string} image - The name of the image to retrieve (case-insensitive).
+ *
+ * @returns {string | null} - The corresponding image import or null if not found.
+ *
+ * */
 export const siteImages = ({ image }: { image: string }) => {
   const imageId = image.toLowerCase();
   switch (imageId) {
@@ -27,20 +32,16 @@ export const siteImages = ({ image }: { image: string }) => {
   }
 };
 
-export const projectImages = ({ project }: { project: string }) => {
-  const projectId = project.toLowerCase();
-  switch (projectId) {
-    case "foodable":
-      return foodableImg;
-    case "image editor":
-      return imageEditorImg;
-    case "playlist partner":
-      return playlistPartnerImg;
-    default:
-      return null;
-  }
-};
-
+/*
+ * personalImages
+ *
+ * Utility function to retrieve personal profile images by name.
+ *
+ * @param {string} image - The name of the personal image to retrieve (case-insensitive).
+ *
+ * @returns {string | null} - The corresponding personal image import or null if not found.
+ *
+ * */
 export const personalImages = ({ image }: { image: string }) => {
   const imageId = image.toLowerCase();
   switch (imageId) {

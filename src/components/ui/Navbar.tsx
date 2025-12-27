@@ -1,15 +1,34 @@
+/* Type Imports */
+import type { JSX } from "react";
 import type { Section } from "@/types/section";
-import { BiMenuAltLeft } from "react-icons/bi";
-import ThemeSwitch from "./ThemeSwitch";
-import { useEffect, useState } from "react";
 
+/* Package Imports */
+import { useEffect, useState } from "react";
+import { BiMenuAltLeft } from "react-icons/bi";
+
+/* Component Imports */
+import ThemeSwitch from "@/components/ui/ThemeSwitch";
+
+/*
+ * Navbar
+ *
+ * This component renders the site navigation bar. It includes a title,
+ * responsive menu sections, a dropdown menu for smaller screens, and
+ * a theme switcher. The navbar changes background when the page is scrolled.
+ *
+ * @param {string} title - The site or page title displayed in the navbar.
+ * @param {Section[]} sections - An array of sections with labels and hrefs for navigation links.
+ *
+ * @returns {JSX.Element} - The Navbar component.
+ *
+ * */
 export default function Navbar({
   title,
   sections,
 }: {
   title: string;
   sections: Section[];
-}) {
+}): JSX.Element {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {

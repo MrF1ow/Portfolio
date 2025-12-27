@@ -1,3 +1,15 @@
+/*
+ * MainLayout
+ *
+ * This component serves as the primary page layout wrapper.
+ * It constrains content width, applies responsive horizontal padding,
+ * and spaces child elements vertically using adaptive gaps.
+ *
+ * @param {React.ReactNode} children - The content to be rendered inside the layout.
+ *
+ * @returns {JSX.Element} - The MainLayout component.
+ *
+ * */
 export default function MainLayout({
   children,
 }: {

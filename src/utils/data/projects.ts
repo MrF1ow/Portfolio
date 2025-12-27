@@ -1,5 +1,19 @@
 import type { Project } from "@/types/project";
 
+/*
+ * projects
+ *
+ * Array of project entries for portfolio or showcase purposes.
+ * Each project includes a title, description, technology tags, and source link.
+ *
+ * @type {Project[]}
+ * @property {number} id - Unique identifier for the project.
+ * @property {string} title - The name of the project.
+ * @property {string} description - A detailed description of the project.
+ * @property {string[]} tags - Technologies and tools used in the project.
+ * @property {string} src - URL or repository link for the project.
+ *
+ * */
 export const projects: Project[] = [
   {
     id: 1,
@@ -45,5 +59,5 @@ export const projects: Project[] = [
       "A lightweight desktop application built with Python and OpenCV that provides real-time image editing capabilities. Includes tools for resizing, cropping, filtering, and color adjustments, paired with optimized processing routines to handle large image files efficiently. Designed with an intuitive interface that allows users to quickly view, modify, and preview changes with immediate visual feedback.",
     tags: ["Python", "OpenCV"],
     src: "https://github.com/MrF1ow/Image_Viewer_Editor",
-  }
+  },
 ];

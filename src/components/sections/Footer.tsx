@@ -1,7 +1,23 @@
+/* Type Imports */
+import type { JSX } from "react";
+
+/* Package Imports */
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+
+/* Data Imports */
 import { contact } from "@/utils/data/personal";
 
-export default function Footer() {
+/*
+ * Footer
+ *
+ * This component renders the site footer.
+ * It displays branding text and social media links with
+ * hover interactions for visual feedback.
+ *
+ * @returns {JSX.Element} - The Footer component.
+ *
+ * */
+export default function Footer(): JSX.Element {
   return (
     <footer className="d-footer sm:d-footer-horizontal items-center p-4">
       <aside className="grid-flow-col items-center">

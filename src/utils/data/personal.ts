@@ -1,5 +1,18 @@
 import type { ContactInfo, GeneralInfo, ProfileInfo } from "@/types/personal";
 
+/*
+ * general
+ *
+ * Object containing basic personal information for the profile or resume.
+ *
+ * @type {GeneralInfo}
+ * @property {string} firstName - The first name of the person.
+ * @property {string} lastName - The last name of the person.
+ * @property {string} university - The university attended.
+ * @property {string} degree - The degree obtained.
+ * @property {string} graduated - Graduation date.
+ *
+ * */
 export const general: GeneralInfo = {
   firstName: "Ethan",
   lastName: "Flow",
@@ -8,15 +21,41 @@ export const general: GeneralInfo = {
   graduated: "Jun 2025",
 };
 
+/*
+ * contact
+ *
+ * Object containing contact information for the profile or website.
+ *
+ * @type {ContactInfo}
+ * @property {string} email - The email address for contacting.
+ * @property {object} links - Social media or professional links.
+ * @property {string} links.github - GitHub profile URL.
+ * @property {string} links.linkedin - LinkedIn profile URL.
+ * @property {string} resumePath - Path to the resume PDF.
+ *
+ * */
 export const contact: ContactInfo = {
   email: "eflow1280@gmail.com",
   links: {
     github: "https://github.com/MrF1ow",
     linkedin: "https://www.linkedin.com/in/ethanflow/",
   },
-  resumePath: "@/assets/pdfs/resume.pdf",
 };
 
+/*
+ * engineer
+ *
+ * Object containing profile information for the "engineer" persona.
+ * Includes titles, personal slogan, about section, contact message, and profile image.
+ *
+ * @type {ProfileInfo}
+ * @property {string[]} titles - Array of titles describing the persona.
+ * @property {string} slogan - A brief personal motto or slogan.
+ * @property {string} about - Detailed background and professional story.
+ * @property {string} contact - Contact message or invitation to connect.
+ * @property {string} image - Key representing the profile image.
+ *
+ * */
 export const engineer: ProfileInfo = {
   titles: ["Software Engineer", "Team Player", "Hard Worker", "Machine"],
   slogan:
@@ -28,6 +67,20 @@ export const engineer: ProfileInfo = {
   image: "professional",
 };
 
+/*
+ * personal
+ *
+ * Object containing profile information for the "personal" persona.
+ * Includes titles, personal slogan, about section, contact message, and profile image.
+ *
+ * @type {ProfileInfo}
+ * @property {string[]} titles - Array of titles describing the persona.
+ * @property {string} slogan - A brief personal motto or slogan.
+ * @property {string} about - Detailed background and personal story.
+ * @property {string} contact - Contact message or invitation to connect.
+ * @property {string} image - Key representing the profile image.
+ *
+ * */
 export const personal: ProfileInfo = {
   titles: ["Husband", "Family Man", "Christ Follower", "Anime Lover"],
   slogan:

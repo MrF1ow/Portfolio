@@ -1,5 +1,15 @@
 import type { Job } from "@/types/experience";
 
+/*
+ * experiences
+ *
+ * Array of work experience entries used in the resume or portfolio sections.
+ * Each entry includes company, position, location, dates, description, and relevant tags.
+ * Id is used for sorting.
+ *
+ * @type {Job[]}
+ *
+ * */
 export const experiences: Job[] = [
   {
     id: 1,

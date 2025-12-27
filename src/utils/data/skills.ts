@@ -1,5 +1,7 @@
+/* Type Imports */
 import type { Skill } from "@/types/skill";
 
+/* Package Imports */
 import {
   BiLogoTypescript,
   BiLogoJavascript,
@@ -13,7 +15,6 @@ import {
   BiLogoGit,
   BiLogoDocker,
 } from "react-icons/bi";
-
 import { GrMysql } from "react-icons/gr";
 import { VscVscode } from "react-icons/vsc";
 import { RiNextjsFill } from "react-icons/ri";
@@ -127,6 +128,19 @@ const tools: Skill[] = [
   },
 ];
 
+/*
+ * skills
+ *
+ * Object grouping various skill categories for the profile.
+ * Includes programming languages, databases, frameworks, and tools.
+ *
+ * @type {object}
+ * @property {Skill[]} languages - Array of programming language skills.
+ * @property {Skill[]} databases - Array of database-related skills.
+ * @property {Skill[]} frameworks - Array of framework skills.
+ * @property {Skill[]} tools - Array of tool-related skills.
+ *
+ * */
 export const skills = {
   languages,
   databases,

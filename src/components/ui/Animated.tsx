@@ -1,14 +1,31 @@
-import type { AnimatedProps } from "@/types/animated";
-import { motion } from "framer-motion";
+/* Type Imports */
+import type { JSX } from "react";
 import type React from "react";
+import type { AnimatedProps } from "@/types/animated";
 
+/* Package Imports */
+import { motion } from "framer-motion";
+
+/*
+ * AnimatedCardContainer
+ *
+ * This component wraps its children in a Framer Motion container
+ * that applies staggered animations to child elements when they
+ * come into view.
+ *
+ * @param {React.ReactNode} children - The elements to animate.
+ * @param {number} [stagger=0.2] - The stagger delay between child animations in seconds.
+ *
+ * @returns {JSX.Element} - The AnimatedCardContainer component.
+ *
+ * */
 export const AnimatedCardContainer = ({
   children,
   stagger = 0.2,
 }: {
   children: React.ReactNode;
   stagger?: number;
-}) => (
+}): JSX.Element => (
   <motion.div
     initial="hidden"
     whileInView="show"
@@ -22,6 +39,18 @@ export const AnimatedCardContainer = ({
   </motion.div>
 );
 
+/*
+ * AnimatedCard
+ *
+ * This component wraps its children in a Framer Motion element
+ * that animates them from a specified direction when entering view.
+ *
+ * @param {React.ReactNode} children - The elements to animate.
+ * @param {"right" | "left" | "top" | "bottom"} [animateFrom="right"] - The direction from which the animation originates.
+ *
+ * @returns {JSX.Element} - The AnimatedCard component.
+ *
+ * */
 export const AnimatedCard = ({
   children,
   animateFrom = "right",
@@ -34,39 +63,15 @@ export const AnimatedCard = ({
   };
 
   return (
-    <motion.div variants={variants[animateFrom]} transition={{ duration: 0.6, ease: "easeOut" }} className="w-full">
+    <motion.div
+      variants={variants[animateFrom]}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="w-full"
+    >
       {children}
     </motion.div>
   );
 };
-
-// export const AnimatedCard = ({
-//   children,
-//   animateFrom = "right",
-// }: AnimatedProps) => {
-//   const variants = {
-//     right: { initial: { opacity: 0, x: 100 }, animate: { opacity: 1, x: 0 } },
-//     left: { initial: { opacity: 0, x: -100 }, animate: { opacity: 1, x: 0 } },
-//     bottom: { initial: { opacity: 0, y: 100 }, animate: { opacity: 1, y: 0 } },
-//     top: { initial: { opacity: 0, y: -100 }, animate: { opacity: 1, y: 0 } },
-//   };
-
-//   return (
-//     <motion.div
-//       initial="initial"
-//       whileInView="animate"
-//       viewport={{ once: true, amount: 0.2 }}
-//       variants={{
-//         initial: variants[animateFrom].initial,
-//         animate: variants[animateFrom].animate,
-//       }}
-//       transition={{ duration: 0.6, ease: "easeOut" }}
-//       className="w-full"
-//     >
-//       {children}
-//     </motion.div>
-//   );
-// };
 
 /*
  * AnimatedLine
@@ -85,11 +90,7 @@ export const AnimatedLine = ({ value }: { value: number }): JSX.Element => {
       whileInView={{ width: `${value}%` }}
       viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      style={{
-        height: "5px",
-        backgroundColor: "#ffffff",
-        borderRadius: "0.25rem",
-      }}
+      className="h-[5px] bg-neutral rounded"
     />
   );
 };

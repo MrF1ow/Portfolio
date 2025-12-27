@@ -25,4 +25,13 @@ const friend: Trait = {
   image: "friend",
 };
 
+/*
+ * traits
+ *
+ * Array of personal trait entries representing different aspects of the "personal" profile.
+ * Each trait includes a title, description, and associated image.
+ *
+ * @type {Trait[]}
+ *
+ * */
 export const traits: Trait[] = [husband, adventurer, christ, friend];

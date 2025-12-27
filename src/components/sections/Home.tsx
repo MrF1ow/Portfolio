@@ -1,7 +1,27 @@
+/* Type Imports */
+import type { JSX } from "react";
 import type { ProfileInfo } from "@/types/personal";
+
+/* Data Imports */
 import { personalImages } from "@/utils/images";
 
-export default function Home({ profile }: { profile: ProfileInfo }) {
+/*
+ * Home
+ *
+ * This component renders the Home section of the page.
+ * It displays the profile image, animated greetings, rotating titles,
+ * slogan, and action buttons for contacting or viewing the resume.
+ *
+ * @param {ProfileInfo} profile - The profile information including image, titles, and slogan.
+ *
+ * @returns {JSX.Element} - The Home section component.
+ *
+ * */
+export default function Home({
+  profile,
+}: {
+  profile: ProfileInfo;
+}): JSX.Element {
   return (
     <section id="home">
       <div className="d-hero bg-none min-h-screen select-none">
@@ -19,7 +39,8 @@ export default function Home({ profile }: { profile: ProfileInfo }) {
                 Hey <span className="inline-block animate-wave">👋</span>
               </span>
               <span className="block">
-                I'm <span className="text-primary">Ethan</span> <span className="md:hidden">a</span>
+                I'm <span className="text-primary">Ethan</span>{" "}
+                <span className="md:hidden">a</span>
               </span>
               <span className="hidden md:inline">a {""}</span>
               <span className="d-text-rotate">

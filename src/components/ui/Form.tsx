@@ -1,8 +1,23 @@
-import DivideLayout from "@/components/layouts/Divide";
+/* Type Imports */
+import type { JSX } from "react";
+
+/* Package Imports */
 import emailjs from "@emailjs/browser";
 import { useRef } from "react";
 
-export const ContactForm = () => {
+/* Component Imports */
+import DivideLayout from "@/components/layouts/Divide";
+
+/*
+ * ContactForm
+ *
+ * This component renders a contact form with fields for name, email,
+ * and message. It uses EmailJS to send the form data to the website owner.
+ *
+ * @returns {JSX.Element} - The ContactForm component.
+ *
+ * */
+export const ContactForm = (): JSX.Element => {
   const form = useRef<HTMLFormElement>(null);
 
   /*

@@ -1,9 +1,7 @@
-import { useProfileMode } from "@/context/ProfileModeContext";
-import { general as personalConfig } from "@/utils/data/personal";
-import { engineer, personal } from "@/utils/data/personal";
-import { engineerSections, personalSections } from "@/utils/data/site";
-import { siteImages } from "@/utils/images";
+/* Type Imports */
+import type { JSX } from "react";
 
+/* Component Imports */
 import MainLayout from "@/components/layouts/Main";
 import Navbar from "@/components/ui/Navbar";
 import Home from "@/components/sections/Home";
@@ -14,8 +12,28 @@ import Skills from "@/components/sections/Skills";
 import Traits from "@/components/sections/Traits";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
-import ThemeSwitch from "./components/ui/ThemeSwitch";
-import type { JSX } from "react";
+import ThemeSwitch from "@/components/ui/ThemeSwitch";
+
+/* Data Imports */
+import { general as personalConfig } from "@/utils/data/personal";
+import { engineer, personal } from "@/utils/data/personal";
+import { engineerSections, personalSections } from "@/utils/data/site";
+
+/* Utility Imports */
+import { siteImages } from "@/utils/images";
+
+/* Local Imports */
+import { useProfileMode } from "@/context/ProfileModeContext";
+
+/*
+ * EngineerComponents
+ *
+ * This component aggregates the main sections for the "engineer" profile mode.
+ * It includes the Portfolio and Skills sections.
+ *
+ * @returns {JSX.Element} - The EngineerComponents wrapper component.
+ *
+ * */
 
 function EngineerComponents(): JSX.Element {
   return (
@@ -26,6 +44,15 @@ function EngineerComponents(): JSX.Element {
   );
 }
 
+/*
+ * PersonalComponents
+ *
+ * This component aggregates the main sections for the "personal" profile mode.
+ * It includes the Experience and Traits sections.
+ *
+ * @returns {JSX.Element} - The PersonalComponents wrapper component.
+ *
+ * */
 function PersonalComponents(): JSX.Element {
   return (
     <>
@@ -35,7 +62,17 @@ function PersonalComponents(): JSX.Element {
   );
 }
 
-export default function App() {
+/*
+ * App
+ *
+ * The main application component. It sets up the page layout and dynamically
+ * renders sections based on the current profile mode ("engineer" or "personal").
+ * Applies appropriate fonts, background images, and navigation sections.
+ *
+ * @returns {JSX.Element} - The root App component containing the full page structure.
+ *
+ * */
+export default function App(): JSX.Element {
   const { mode } = useProfileMode();
 
   const font = mode === "engineer" ? "font-league" : "font-jua";

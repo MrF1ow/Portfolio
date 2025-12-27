@@ -1,9 +1,26 @@
-import { skills } from "@/utils/data/skills";
-import SectionTitle from "@/components/ui/SectionTitle";
-import { SkillCard } from "@/components/ui/Card";
-import DivideLayout from "../layouts/Divide";
+/* Type Imports */
+import type { JSX } from "react";
 
-export default function Skills() {
+/* Component Imports */
+import SectionTitle from "@/components/ui/SectionTitle";
+import DivideLayout from "@/components/layouts/Divide";
+import { SkillCard } from "@/components/ui/Card";
+
+/* Data Imports */
+import { skills } from "@/utils/data/skills";
+
+/*
+ * Skills
+ *
+ * This component renders the Skills section of the page.
+ * It displays skill categories and their respective items using
+ * SkillCard components within a responsive vertical/horizontal stats layout.
+ *
+ * @returns {JSX.Element} - The Skills section component.
+ *
+ * */
+
+export default function Skills(): JSX.Element {
   return (
     <section id="skills">
       <DivideLayout direction="vertical" width="w-full">

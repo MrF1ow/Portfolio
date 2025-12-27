@@ -1,6 +1,23 @@
+/* Type Imports */
+import type { JSX } from "react";
 import type { SectionTitleProps } from "@/types/section";
 
-export default function SectionTitle({ title, color }: SectionTitleProps) {
+/*
+ * SectionTitle
+ *
+ * This component displays a section title with individual letters
+ * that animate on hover. An optional color can be applied to the text.
+ *
+ * @param {string} title - The text of the section title.
+ * @param {string} [color] - Optional Tailwind color class to apply to the title.
+ *
+ * @returns {JSX.Element} - The SectionTitle component.
+ *
+ * */
+export default function SectionTitle({
+  title,
+  color,
+}: SectionTitleProps): JSX.Element {
   return (
     <div className="w-full flex items-center justify-center">
       <h2
