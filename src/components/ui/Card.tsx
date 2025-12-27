@@ -70,7 +70,7 @@ export const SkillCard = ({
 export const ProjectCard = ({ project }: { project: Project }) => {
   return (
     <a href={project.src}>
-      <div className="d-card shadow-xl bg-base-100/25 hover:scale-101 transition-all">
+      <div className="d-card shadow-xl bg-base-100/25 hover:scale-101 border border-transparent hover:border hover:border-primary transition-all">
         <div className="d-card-body items-start">
           <h2 className="d-card-title text-left w-full tracking-widest">
             {project.title}{" "}
