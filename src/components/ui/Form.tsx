@@ -64,6 +64,7 @@ export const ContactForm = (): JSX.Element => {
                 type="text"
                 name="name"
                 className="d-input w-full"
+                required
                 placeholder="Your Name"
               />
             </div>
@@ -74,6 +75,7 @@ export const ContactForm = (): JSX.Element => {
                 type="email"
                 name="email"
                 className="d-input w-full"
+                required
                 placeholder="Your Email"
               />
             </div>
@@ -85,7 +87,8 @@ export const ContactForm = (): JSX.Element => {
             <textarea
               name="message"
               className="d-textarea w-full h-40 resize-none"
-              placeholder="Message to send me"
+              required
+              placeholder="A long time ago in a galaxy far, far away..."
             />
           </div>
 
