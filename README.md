@@ -35,6 +35,9 @@ If you’d like to fork this repo and customize it for yourself, go ahead! Here 
 7. **Theming**  
    To change the application’s theme, use the [DaisyUI Theme Generator](https://daisyui.com/theme-generator).
 
+8. **EmailJS**  
+   EmailJS is used for sending emails directly from the frontend. Make sure to configure your environment variables (prefixed with `VITE_` in Vite) and use the EmailJS service, template, and public key to enable email functionality.
+
 
 
 

@@ -20,6 +20,10 @@ import DivideLayout from "@/components/layouts/Divide";
 export const ContactForm = (): JSX.Element => {
   const form = useRef<HTMLFormElement>(null);
 
+  const templateId = import.meta.env.VITE_EMAIL_TEMPLATE;
+  const serviceId = import.meta.env.VITE_EMAIL_SERVICE;
+  const publicKey = import.meta.env.VITE_EMAIL_KEY;
+
   /*
    * This function sends an email to the owner of the website.
    * It uses the emailjs library to send the email.
@@ -36,10 +40,10 @@ export const ContactForm = (): JSX.Element => {
     }
     emailjs
       .sendForm(
-        "service_vvmo2po",
-        "template_ydxmazn",
+        serviceId,
+        templateId,
         form.current,
-        "gHbohdTGXICJZMhQU"
+        publicKey
       )
       .then(
         (result) => {
