@@ -1,4 +1,4 @@
-<img src="./site.png" alt="ProjectImage" style="display:block; margin:auto; padding-bottom: 10px;" />
+![ProjectImage](./site.png)
 
 # The Whole Me
 
