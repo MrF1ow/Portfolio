@@ -14,15 +14,17 @@ import { contact } from "@/utils/data/personal";
  * It displays branding text and social media links with
  * hover interactions for visual feedback.
  *
+ * @param {string} name - The name of the person or entity for copyright
+ *
  * @returns {JSX.Element} - The Footer component.
  *
  * */
-export default function Footer(): JSX.Element {
+export default function Footer({ name }: { name: string }): JSX.Element {
   return (
     <footer className="d-footer sm:d-footer-horizontal items-center p-4">
       <aside className="grid-flow-col items-center">
         <p>
-          &copy; 2025 Ethan Flow. All rights reserved.
+          &copy; 2025 {name}. All rights reserved.
           <br />
           Providing awesome hair and laughter since 2001
         </p>

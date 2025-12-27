@@ -99,7 +99,7 @@ export default function App(): JSX.Element {
           <EngineerComponents />
         ) : null}
         <Contact description={profile.contact} />
-        <Footer />
+        <Footer name={fullName}/>
         <div className="fixed bottom-0 right-0 flex mr-5 mb-5 p-2 md:hidden bg-black/70 backdrop-blur-md rounded-full">
           <ThemeSwitch />
         </div>
