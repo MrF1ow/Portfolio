@@ -84,3 +84,60 @@ html {
   transform-origin: 70% 70%;
   animation: wave 2s infinite; /* Continuous 2-second wave loop */
 }
+
+.animate-card {
+  opacity: 0;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition-delay: var(--stagger-delay, 3s);
+  will-change: transform, opacity;
+}
+
+/* Directional variants */
+.from-right  { transform: translateX(100px); }
+.from-left   { transform: translateX(-100px); }
+.from-top    { transform: translateY(-100px); }
+.from-bottom { transform: translateY(100px); }
+
+/* Triggered State via Parent */
+.in-view .animate-card {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Animated Line */
+.animate-line {
+  width: 0;
+  transition: width 0.8s ease-out;
+}
+.in-view .animate-line {
+  width: var(--line-width);
+}
+
+.trait-overlay {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+  will-change: transform, opacity;
+}
+
+/* Internal text elements */
+.trait-text {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
+
+/* States when in view */
+.in-view .trait-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.in-view .trait-text-title {
+  opacity: 1;
+  transition-delay: 0.2s; 
+}
+
+.in-view .trait-text-desc {
+  opacity: 1;
+  transition-delay: 0.3s; 
+}

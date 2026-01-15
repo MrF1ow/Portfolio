@@ -2,6 +2,9 @@
 import type { DivideLayoutProps } from "@/types/layouts";
 import type { JSX } from "react";
 
+/* Package Imports */
+import { Children } from "react";
+
 /* Component Imports */
 import { AnimatedCard, AnimatedCardContainer } from "@/components/ui/Animated";
 
@@ -26,16 +29,23 @@ export default function DivideLayout({
   width = "w-full",
   animated = false,
   animateFrom = "right",
-}: DivideLayoutProps): JSX.Element {
+  stagger = 0.2, // Add a default stagger prop
+}: DivideLayoutProps & { stagger?: number }): JSX.Element {
   const flexDirection =
     direction === "horizontal" ? "flex-col lg:flex-row" : "flex-col";
 
   const content = (
     <div className={`flex ${flexDirection} flex-wrap gap-4 items-center`}>
-      {children.map((child, index) => (
+      {Children.map(children, (child, index) => (
         <div key={index} className={`${width} md:flex-1 min-w-0`}>
           {animated ? (
-            <AnimatedCard animateFrom={animateFrom}>{child}</AnimatedCard>
+            <AnimatedCard 
+              animateFrom={animateFrom}
+              // Pass the delay directly to the card's style
+              style={{ "--stagger-delay": `${index * stagger}s` } as React.CSSProperties}
+            >
+              {child}
+            </AnimatedCard>
           ) : (
             child
           )}
@@ -50,3 +60,4 @@ export default function DivideLayout({
     content
   );
 }
+

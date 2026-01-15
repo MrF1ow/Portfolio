@@ -4,7 +4,10 @@ import type React from "react";
 import type { AnimatedProps } from "@/types/animated";
 
 /* Package Imports */
-import { motion } from "framer-motion";
+import { isValidElement, Children, cloneElement } from "react";
+
+/* Hook Imports */
+import { useInView } from "@/hooks/useInView";
 
 /*
  * AnimatedCardContainer
@@ -25,19 +28,25 @@ export const AnimatedCardContainer = ({
 }: {
   children: React.ReactNode;
   stagger?: number;
-}): JSX.Element => (
-  <motion.div
-    initial="hidden"
-    whileInView="show"
-    viewport={{ once: true, amount: 0.2 }}
-    variants={{
-      hidden: {},
-      show: { transition: { staggerChildren: stagger } },
-    }}
-  >
-    {children}
-  </motion.div>
-);
+}): JSX.Element => {
+  const { ref, isInView } = useInView(0.2);
+
+  // We inject the stagger delay into children using CSS variables
+  return (
+    <div ref={ref} className={isInView ? "in-view" : ""}>
+      {Children.map(children, (child, index) => {
+        if (isValidElement(child)) {
+          return cloneElement(child as React.ReactElement<any>, {
+            style: {
+              "--stagger-delay": `${index * stagger}s`,
+            } as React.CSSProperties,
+          });
+        }
+        return child;
+      })}
+    </div>
+  );
+};
 
 /*
  * AnimatedCard
@@ -54,22 +63,14 @@ export const AnimatedCardContainer = ({
 export const AnimatedCard = ({
   children,
   animateFrom = "right",
-}: AnimatedProps) => {
-  const variants = {
-    right: { hidden: { opacity: 0, x: 100 }, show: { opacity: 1, x: 0 } },
-    left: { hidden: { opacity: 0, x: -100 }, show: { opacity: 1, x: 0 } },
-    bottom: { hidden: { opacity: 0, y: 100 }, show: { opacity: 1, y: 0 } },
-    top: { hidden: { opacity: 0, y: -100 }, show: { opacity: 1, y: 0 } },
-  };
+  style,
+}: AnimatedProps & { style?: React.CSSProperties }) => {
+  const directionClass = `from-${animateFrom}`;
 
   return (
-    <motion.div
-      variants={variants[animateFrom]}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="w-full"
-    >
+    <div className={`w-full animate-card ${directionClass}`} style={style}>
       {children}
-    </motion.div>
+    </div>
   );
 };
 
@@ -84,13 +85,14 @@ export const AnimatedCard = ({
  *
  * */
 export const AnimatedLine = ({ value }: { value: number }): JSX.Element => {
+  const { ref, isInView } = useInView(0.4);
+
   return (
-    <motion.div
-      initial={{ width: 0 }}
-      whileInView={{ width: `${value}%` }}
-      viewport={{ once: true, amount: 0.4 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="h-[5px] bg-neutral rounded"
-    />
+    <div ref={ref} className={isInView ? "in-view" : ""}>
+      <div
+        className="h-[5px] bg-neutral rounded animate-line"
+        style={{ "--line-width": `${value}%` } as React.CSSProperties}
+      />
+    </div>
   );
 };

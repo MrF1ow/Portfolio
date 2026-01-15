@@ -4,8 +4,8 @@ import type { Project } from "@/types/project";
 import type { Job } from "@/types/experience";
 import type { JSX } from "react";
 
-/* Package Imports */
-import { motion } from "framer-motion";
+/* Hook Imports */
+import { useInView } from "@/hooks/useInView";
 
 /* Component Imports */
 import { AnimatedLine } from "@/components/ui/Animated";
@@ -162,37 +162,24 @@ export const TraitCard = ({
   description: string;
   image: string;
 }): JSX.Element => {
+  const { ref, isInView } = useInView(0.2);
+
   return (
     <div
+      ref={ref}
       className="relative bg-cover bg-center rounded-xl overflow-hidden shadow-xl h-48 md:h-60 lg:h-72 w-full"
       style={{ backgroundImage: `url(${personalImages({ image: image })!})` }}
     >
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={{
-          hidden: { opacity: 0, y: 40 },
-          visible: {
-            opacity: 1,
-            y: 0,
-            transition: { staggerChildren: 0.1 },
-          },
-        }}
-        className="absolute bottom-0 left-0 flex flex-col w-full justify-start bg-base-100/50 p-4"
+      <div
+        className={`absolute bottom-0 left-0 flex flex-col w-full justify-start bg-base-100/50 p-4 trait-overlay ${
+          isInView ? "in-view" : ""
+        }`}
       >
-        <motion.h2
-          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-          className="text-2xl tracking-wider"
-        >
+        <h2 className="text-2xl tracking-wider trait-text trait-text-title">
           {title}
-        </motion.h2>
-        <motion.p
-          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-        >
-          {description}
-        </motion.p>
-      </motion.div>
+        </h2>
+        <p className="trait-text trait-text-desc">{description}</p>
+      </div>
     </div>
   );
 };
