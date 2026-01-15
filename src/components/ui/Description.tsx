@@ -1,8 +1,8 @@
 /* Type Imports */
 import type { JSX } from "react";
 
-/* Package Imports */
-import { motion } from "framer-motion";
+/* Hook Imports */
+import { useInView } from "@/hooks/useInView";
 
 /*
  * Description
@@ -20,17 +20,19 @@ export default function Description({
 }: {
   content: string;
 }): JSX.Element {
+  // Trigger when 30% of the text is in view (amount: 0.3)
+  const { ref, isInView } = useInView(0.3);
+
   return (
     <div className="flex items-center justify-center w-full">
-      <motion.p
-        className="text-xl w-full md:w-7/8 lg:w-3/4 xl:w-1/2 text-center"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+      <p
+        ref={ref}
+        className={`text-xl w-full md:w-7/8 lg:w-3/4 xl:w-1/2 text-center fade-up-text ${
+          isInView ? "in-view" : ""
+        }`}
       >
         {content}
-      </motion.p>
+      </p>
     </div>
   );
 }
