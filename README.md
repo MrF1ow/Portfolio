@@ -29,13 +29,10 @@ If you’d like to fork this repo and customize it for yourself, go ahead! Here 
 5. **Lottie Animations**  
    Lottie files are used for animations. Learn more [here](https://lottiefiles.com/blog/working-with-lottie-animations/how-to-use-lottie-in-react-app).  
 
-6. **Framer Motion**  
-   Animations are handled using Framer Motion. Learn more [here](https://medium.com/@sanksiddharth/animating-your-web-pages-a-beginners-guide-with-framer-motion-5de404cd25df).  
-
-7. **Theming**  
+6. **Theming**  
    To change the application’s theme, use the [DaisyUI Theme Generator](https://daisyui.com/theme-generator).
 
-8. **EmailJS**  
+7. **EmailJS**  
    EmailJS is used for sending emails directly from the frontend. Make sure to configure your environment variables (prefixed with `VITE_` in Vite) and use the EmailJS service, template, and public key to enable email functionality.
 
 
