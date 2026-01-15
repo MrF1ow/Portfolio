@@ -24,7 +24,7 @@ export default function Footer({ name }: { name: string }): JSX.Element {
     <footer className="d-footer sm:d-footer-horizontal items-center p-4">
       <aside className="grid-flow-col items-center">
         <p>
-          &copy; 2025 {name}. All rights reserved.
+          &copy; 2026 {name}. All rights reserved.
           <br />
           Providing awesome hair and laughter since 2001
         </p>
