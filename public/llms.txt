@@ -1,0 +1,31 @@
+# Ethan Flow — Portfolio
+
+> Personal portfolio of Ethan Flow, Software Engineer, Full-Stack Developer, and Founder of Jedidiah Digital.
+
+## About
+
+Ethan Flow is a software engineer based in Oregon with a B.S. in Computer Science from Oregon State University (Jun 2025). He specializes in full-stack development, building clean and efficient software solutions. He is also the founder of Jedidiah Digital, a web development agency.
+
+## Skills
+
+- Backend: Node.js, Express, MongoDB, PostgreSQL, MySQL, Docker, AWS, Go
+- Frontend: React, Next.js, TypeScript, JavaScript, HTML/CSS, Tailwind
+- Systems & Networking: Linux, Git, Docker, CI/CD, Networking, Shell Scripting
+
+## Projects
+
+- Foodable: AI-driven full-stack web app for personalized food recommendations
+- Playlist Partner: Spotify playlist remixer with algorithmic recommendations
+- Image Editor: Python/OpenCV desktop app for real-time image editing
+- Portfolio Site: Single-page React + Tailwind v4 portfolio
+
+## Links
+
+- GitHub: https://github.com/MrF1ow
+- LinkedIn: https://www.linkedin.com/in/ethanflow/
+- Email: eflow1280@gmail.com
+- Resume: /Ethan-Resume.pdf
+
+## Full Content
+
+For complete portfolio content, see [llms-full.txt](/llms-full.txt).

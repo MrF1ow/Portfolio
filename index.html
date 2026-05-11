@@ -10,22 +10,118 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <title>Ethan Flow — Software Engineer</title>
-    <meta name="description" content="Portfolio of Ethan Flow — Software Engineer, Full-Stack Developer, and Problem Solver." />
+    <title>Ethan Flow — Software Engineer & Founder of Jedidiah Digital</title>
+    <meta name="description" content="Ethan Flow is a Software Engineer, Full-Stack Developer, and Founder of Jedidiah Digital. B.S. Computer Science from Oregon State University. Building with React, TypeScript, Node.js, and more." />
+    <meta name="author" content="Ethan Flow" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Ethan Flow — Software Engineer" />
-    <meta property="og:description" content="Portfolio of Ethan Flow — Software Engineer, Full-Stack Developer, and Problem Solver." />
+    <meta property="og:title" content="Ethan Flow — Software Engineer & Founder of Jedidiah Digital" />
+    <meta property="og:description" content="Ethan Flow is a Software Engineer, Full-Stack Developer, and Founder of Jedidiah Digital. B.S. Computer Science from Oregon State University." />
     <meta property="og:image" content="/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Ethan Flow — Software Engineer, Full-Stack Developer, Problem Solver" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Ethan Flow Portfolio" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Ethan Flow — Software Engineer" />
-    <meta name="twitter:description" content="Portfolio of Ethan Flow — Software Engineer, Full-Stack Developer, and Problem Solver." />
+    <meta name="twitter:description" content="Software Engineer, Full-Stack Developer, and Founder of Jedidiah Digital." />
     <meta name="twitter:image" content="/og-image.png" />
+    <meta name="twitter:image:alt" content="Ethan Flow — Software Engineer, Full-Stack Developer, Problem Solver" />
+
+    <!-- JSON-LD: Person + WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "name": "Ethan Flow Portfolio",
+          "description": "Personal portfolio of Ethan Flow — Software Engineer, Full-Stack Developer, and Founder of Jedidiah Digital.",
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "Person",
+          "name": "Ethan Flow",
+          "givenName": "Ethan",
+          "familyName": "Flow",
+          "jobTitle": "Software Engineer",
+          "description": "Software Engineer, Full-Stack Developer, and Founder of Jedidiah Digital. B.S. Computer Science from Oregon State University.",
+          "email": "eflow1280@gmail.com",
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Oregon State University"
+          },
+          "hasCredential": {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "degree",
+            "educationalLevel": "Bachelor of Science",
+            "about": {
+              "@type": "DefinedTerm",
+              "name": "Computer Science"
+            }
+          },
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Jedidiah Digital",
+            "founder": { "@type": "Person", "name": "Ethan Flow" }
+          },
+          "knowsAbout": [
+            "TypeScript", "React", "Next.js", "Node.js", "Express",
+            "MongoDB", "PostgreSQL", "Docker", "AWS", "Go",
+            "JavaScript", "HTML", "CSS", "Tailwind CSS",
+            "Linux", "Git", "CI/CD", "Shell Scripting"
+          ],
+          "sameAs": [
+            "https://github.com/MrF1ow",
+            "https://www.linkedin.com/in/ethanflow/"
+          ]
+        },
+        {
+          "@type": "ItemList",
+          "name": "Portfolio Projects",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "SoftwareSourceCode",
+                "name": "Foodable",
+                "description": "AI-driven full-stack web app delivering personalized food recommendations using vector search, REST APIs, and intelligent meal insight generation.",
+                "programmingLanguage": ["TypeScript", "JavaScript"],
+                "codeRepository": "https://github.com/MrF1ow/foodable-legacy"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "SoftwareApplication",
+                "name": "Playlist Partner",
+                "description": "Generates algorithmic playlist recommendations by filtering and remixing a user's existing Spotify playlists.",
+                "url": "https://playlist-partner.vercel.app/"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "SoftwareSourceCode",
+                "name": "Image Editor",
+                "description": "Lightweight desktop app with real-time image editing — resizing, cropping, filtering, and color adjustments.",
+                "programmingLanguage": "Python",
+                "codeRepository": "https://github.com/MrF1ow/Image_Viewer_Editor"
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
