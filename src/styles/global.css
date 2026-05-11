@@ -1,155 +1,81 @@
-/* Font Importing */
-@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Science+Gothic:wght@100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
-
 @import "tailwindcss";
+
 @theme {
-  --font-league: "League Spartan", sans-serif;
-  --font-science: "Science Gothic", sans-serif;
-  --font-jua: "Jua", sans-serif;
-}
-@plugin "daisyui" {
-  prefix: "d-";
-}
-@plugin "daisyui/theme" {
-  name: "gradient";
-  default: true;
-  prefersdark: false;
-  color-scheme: "dark";
-  --color-base-100: oklch(0% 0 0);
-  --color-base-200: oklch(86% 0.005 56.366);
-  --color-base-300: #04adbf;
-  --color-base-content: oklch(100% 0 0);
-  --color-primary: #05f2f2;
-  --color-primary-content: oklch(14% 0.005 285.823);
-  --color-secondary: oklch(0% 0 0);
-  --color-secondary-content: oklch(96% 0.016 293.756);
-  --color-accent: #05f2c7;
-  --color-accent-content: oklch(14% 0 0);
-  --color-neutral: oklch(100% 0 0);
-  --color-neutral-content: oklch(14% 0 0);
-  --color-info: oklch(68% 0.169 237.323);
-  --color-info-content: oklch(97% 0.013 236.62);
-  --color-success: oklch(69% 0.17 162.48);
-  --color-success-content: oklch(37% 0.077 168.94);
-  --color-warning: oklch(79% 0.184 86.047);
-  --color-warning-content: oklch(41% 0.112 45.904);
-  --color-error: oklch(70% 0.191 22.216);
-  --color-error-content: oklch(39% 0.141 25.723);
-  --radius-selector: 1rem;
-  --radius-field: 0.5rem;
-  --radius-box: 1rem;
-  --size-selector: 0.25rem;
-  --size-field: 0.25rem;
-  --border: 1px;
-  --depth: 1;
-  --noise: 0;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+
+  /* Light base (inverted from agency) */
+  --color-bg: #f5f2ee;
+  --color-bg-alt: #eae6e0;
+
+  /* Text on light */
+  --color-text: #1a1a1a;
+  --color-text-muted: #555555;
+  --color-text-faint: #888888;
+
+  /* Dark surfaces (agency's bg becomes accent surface) */
+  --color-dark: #05090c;
+  --color-dark-text: #f5f2ee;
+  --color-dark-muted: #aaaaaa;
+
+  /* Accent — shared with agency */
+  --color-accent: #4a9eff;
+
+  /* Borders */
+  --color-border: #d4d0ca;
+  --color-border-dark: #2a2a2a;
 }
 
-/* Global scroll settings */
 html {
-  scroll-padding-top: 8rem; /* Offset for Navbar */
+  background-color: var(--color-bg);
   scroll-behavior: smooth;
 }
 
-/* Keyframes for waving animation */
-@keyframes wave {
-  0% {
-    transform: rotate(0deg);
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Grain texture overlay ──────────────── */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 512px 512px;
+}
+
+/* ── Hero entrance animations ───────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
   }
-  15% {
-    transform: rotate(14deg);
-  }
-  30% {
-    transform: rotate(-8deg);
-  }
-  45% {
-    transform: rotate(14deg);
-  }
-  60% {
-    transform: rotate(-4deg);
-  }
-  75% {
-    transform: rotate(10deg);
-  }
-  100% {
-    transform: rotate(0deg);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Apply waving animation to elements */
-.animate-wave {
-  display: inline-block;
-  transform-origin: 70% 70%;
-  animation: wave 2s infinite; /* Continuous 2-second wave loop */
+.animate-in {
+  animation: fadeInUp 0.6s ease-out both;
 }
 
-.animate-card {
-  opacity: 0;
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  transition-delay: var(--stagger-delay, 3s);
-  will-change: transform, opacity;
-}
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.3s; }
+.delay-3 { animation-delay: 0.5s; }
+.delay-4 { animation-delay: 0.7s; }
 
-/* Directional variants */
-.from-right  { transform: translateX(100px); }
-.from-left   { transform: translateX(-100px); }
-.from-top    { transform: translateY(-100px); }
-.from-bottom { transform: translateY(100px); }
-
-/* Triggered State via Parent */
-.in-view .animate-card {
-  opacity: 1;
-  transform: translate(0, 0);
-}
-
-/* Animated Line */
-.animate-line {
-  width: 0;
-  transition: width 0.8s ease-out;
-}
-.in-view .animate-line {
-  width: var(--line-width);
-}
-
-.trait-overlay {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
-  will-change: transform, opacity;
-}
-
-/* Internal text elements */
-.trait-text {
-  opacity: 0;
-  transition: opacity 0.4s ease-out;
-}
-
-/* States when in view */
-.in-view .trait-overlay {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.in-view .trait-text-title {
-  opacity: 1;
-  transition-delay: 0.2s; 
-}
-
-.in-view .trait-text-desc {
-  opacity: 1;
-  transition-delay: 0.3s; 
-}
-
-.fade-up-text {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  will-change: transform, opacity;
-}
-
-.fade-up-text.in-view {
-  opacity: 1;
-  transform: translateY(0);
+/* ── Title rotation ─────────────────────── */
+@keyframes fadeTitle {
+  0%, 100% { opacity: 0; transform: translateY(8px); }
+  10%, 90% { opacity: 1; transform: translateY(0); }
 }
