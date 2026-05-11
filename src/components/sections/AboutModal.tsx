@@ -30,10 +30,15 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
   const [mobileNav, setMobileNav] = useState(false);
   const backdropRef = useRef<HTMLDivElement>(null);
 
+  const [prevOpen, setPrevOpen] = useState(false);
+  if (open !== prevOpen) {
+    setPrevOpen(open);
+    if (open) setMobileNav(false);
+  }
+
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
-      setMobileNav(false);
     } else {
       document.body.style.overflow = "";
     }

@@ -25,7 +25,7 @@ export default function ScrambleText({
       const target = texts[indexRef.current] ?? "";
       iterRef.current = 0;
 
-      const maxLen = Math.max(display.length, target.length);
+      const maxLen = Math.max(target.length, ...texts.map((t) => t.length));
       const step = scrambleDuration / (maxLen * 10);
 
       const scramble = setInterval(() => {
