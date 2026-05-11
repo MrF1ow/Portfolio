@@ -1,149 +1,34 @@
-/* Type Imports */
-import type { Skill } from "@/types/skill";
+import type { SkillCategory } from "@/types/skill";
 
-/* Package Imports */
-import {
-  BiLogoTypescript,
-  BiLogoJavascript,
-  BiLogoCss3,
-  BiLogoGoLang,
-  BiLogoMongodb,
-  BiLogoPostgresql,
-  BiLogoAws,
-  BiLogoReact,
-  BiLogoNodejs,
-  BiLogoGit,
-  BiLogoDocker,
-} from "react-icons/bi";
-import { GrMysql } from "react-icons/gr";
-import { VscVscode } from "react-icons/vsc";
-import { RiNextjsFill } from "react-icons/ri";
-import { SiExpress } from "react-icons/si";
-import { FcLinux } from "react-icons/fc";
-
-const languages: Skill[] = [
+export const skillCategories: SkillCategory[] = [
   {
-    title: "TypeScript",
-    value: 90,
-    icon: BiLogoTypescript,
-    iconColor: "#3178C6",
+    id: "backend",
+    label: "Backend",
+    description: "Server-side systems and data layers",
+    skills: ["Node.js", "Express", "MongoDB", "PostgreSQL", "MySQL", "Docker", "AWS", "Go"],
   },
   {
-    title: "JavaScript",
-    value: 85,
-    icon: BiLogoJavascript,
-    iconColor: "#F7DF1E",
+    id: "frontend",
+    label: "Frontend",
+    description: "Interfaces and client-side architecture",
+    skills: ["React", "Next.js", "TypeScript", "JavaScript", "HTML/CSS", "Tailwind"],
   },
   {
-    title: "HTML/CSS",
-    value: 80,
-    icon: BiLogoCss3,
-    iconColor: "#E44D26",
+    id: "systems",
+    label: "Systems & Networking",
+    description: "Infrastructure and tooling",
+    skills: ["Linux", "Git", "Docker", "CI/CD", "Networking", "Shell Scripting"],
   },
   {
-    title: "Go",
-    value: 75,
-    icon: BiLogoGoLang,
-    iconColor: "#00ADD8",
+    id: "personal",
+    label: "Personal",
+    description: "How I work with people",
+    skills: ["Problem Solving", "Team Collaboration", "Communication", "Adaptability", "Leadership"],
+  },
+  {
+    id: "life",
+    label: "Life",
+    description: "What drives me outside of code",
+    skills: ["Faith", "Family", "Hiking", "Continuous Learning", "Community"],
   },
 ];
-
-const databases: Skill[] = [
-  {
-    title: "MongoDB",
-    value: 90,
-    icon: BiLogoMongodb,
-    iconColor: "#47A248",
-  },
-  {
-    title: "PostgreSQL",
-    value: 85,
-    icon: BiLogoPostgresql,
-    iconColor: "#4169E1",
-  },
-  {
-    title: "MySQL",
-    value: 80,
-    icon: GrMysql,
-    iconColor: "#4479A1",
-  },
-  {
-    title: "AWS",
-    value: 75,
-    icon: BiLogoAws,
-    iconColor: "#FF9900",
-  },
-];
-
-const frameworks: Skill[] = [
-  {
-    title: "React",
-    value: 90,
-    icon: BiLogoReact,
-    iconColor: "#61DAFB",
-  },
-  {
-    title: "Node.js",
-    value: 85,
-    icon: BiLogoNodejs,
-    iconColor: "#339933",
-  },
-  {
-    title: "Next.js",
-    value: 80,
-    icon: RiNextjsFill,
-    iconColor: "#000000",
-  },
-  {
-    title: "Express",
-    value: 75,
-    icon: SiExpress,
-    iconColor: "#000000",
-  },
-];
-
-const tools: Skill[] = [
-  {
-    title: "Git",
-    value: 90,
-    icon: BiLogoGit,
-    iconColor: "#F05032",
-  },
-  {
-    title: "Docker",
-    value: 85,
-    icon: BiLogoDocker,
-    iconColor: "#2496ED",
-  },
-  {
-    title: "VS Code",
-    value: 80,
-    icon: VscVscode,
-    iconColor: "#007ACC",
-  },
-  {
-    title: "Linux",
-    value: 75,
-    icon: FcLinux, // intentionally no iconColor
-  },
-];
-
-/*
- * skills
- *
- * Object grouping various skill categories for the profile.
- * Includes programming languages, databases, frameworks, and tools.
- *
- * @type {object}
- * @property {Skill[]} languages - Array of programming language skills.
- * @property {Skill[]} databases - Array of database-related skills.
- * @property {Skill[]} frameworks - Array of framework skills.
- * @property {Skill[]} tools - Array of tool-related skills.
- *
- * */
-export const skills = {
-  languages,
-  databases,
-  frameworks,
-  tools,
-};
