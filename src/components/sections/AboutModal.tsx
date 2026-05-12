@@ -29,11 +29,16 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
   const [contentFade, setContentFade] = useState(true);
   const [mobileNav, setMobileNav] = useState(false);
   const backdropRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const [prevOpen, setPrevOpen] = useState(false);
   if (open !== prevOpen) {
     setPrevOpen(open);
-    if (open) setMobileNav(false);
+    if (open) {
+      setMobileNav(false);
+      setActiveTab(aboutTabs[0]!.id);
+      contentRef.current?.scrollTo(0, 0);
+    }
   }
 
   useEffect(() => {
@@ -59,7 +64,11 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
   const switchTab = (id: string) => {
     if (id === activeTab) return;
     setContentFade(false);
-    setTimeout(() => { setActiveTab(id); setContentFade(true); }, 150);
+    setTimeout(() => {
+      setActiveTab(id);
+      setContentFade(true);
+      contentRef.current?.scrollTo(0, 0);
+    }, 150);
     setMobileNav(false);
   };
 
@@ -76,6 +85,9 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-in" style={{ animationDuration: "0.2s" }} />
 
       <div className="relative z-10 bg-dark text-dark-text w-full max-w-4xl h-[520px] flex animate-in overflow-hidden" style={{ animationDuration: "0.3s" }}>
+        {/* Mobile top bar */}
+        <div className="sm:hidden absolute top-0 left-0 right-0 z-20 h-14 bg-dark border-b border-border-dark" />
+
         {/* Close */}
         <button onClick={onClose} className="absolute top-4 right-4 z-30 w-8 h-8 flex items-center justify-center text-dark-muted hover:text-dark-text transition-colors cursor-pointer">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -111,8 +123,8 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
         {mobileNav && <div className="sm:hidden absolute inset-0 z-10 bg-black/40" onClick={() => setMobileNav(false)} />}
 
         {/* Content */}
-        <div className="flex-1 p-8 sm:p-10 overflow-y-auto">
-          <div className={`transition-all duration-150 pt-8 sm:pt-0 ${contentFade ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1"}`}>
+        <div ref={contentRef} className="flex-1 p-8 sm:p-10 overflow-y-auto scrollbar-hide">
+          <div className={`transition-all duration-150 pt-12 sm:pt-0 ${contentFade ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1"}`}>
             <h3 className="font-sans text-2xl font-medium tracking-tight mb-6">{active.heading}</h3>
             {active.content.map((block, i) => <BlockRenderer key={i} block={block} />)}
           </div>

@@ -47,7 +47,7 @@ export default function Hero() {
         </div>
 
         <div className="animate-in delay-2 flex-shrink-0">
-          <div className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 bg-bg-alt border border-border overflow-hidden">
+          <div className="w-56 h-56 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-bg-alt border border-border overflow-hidden">
             {photo ? (
               <img
                 src={photo}

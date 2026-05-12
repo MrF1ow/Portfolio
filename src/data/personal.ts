@@ -4,12 +4,12 @@ export const personal = {
   firstName: "Ethan",
   lastName: "Flow",
   fullName: "Ethan Flow",
-  email: "eflow1280@gmail.com",
+  email: "ethanflowdev@gmail.com",
   university: "Oregon State University",
   degree: "B.S. Computer Science",
   graduated: "Jun 2025",
   tagline:
-    "I build clean, efficient code, collaborate with teams, and tackle challenges with relentless focus.",
+    "Trying my hardest to get a little better every day",
   aboutShort:
     "Starting out in medicine might surprise some people, but once I got a job in that field, I quickly realized it wasn't the right fit for me. I decided to follow my other passion: software. Since then, I've been honing my skills in full-stack development, always looking for new challenges.",
   contactMessage:
@@ -23,4 +23,4 @@ export const socialLinks: SocialLink[] = [
   { label: "Email", href: "mailto:eflow1280@gmail.com", icon: "email" },
 ];
 
-export const titles = ["Software Engineer", "Full-Stack Developer", "Problem Solver"];
+export const titles = ["Software Engineer", "Jesus Follower", "Nature Lover"];

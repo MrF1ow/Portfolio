@@ -41,6 +41,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* ── Grain texture overlay ──────────────── */
 .grain::before {
   content: "";
