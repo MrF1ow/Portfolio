@@ -11,7 +11,7 @@ export const personal = {
   tagline:
     "Trying my hardest to get a little better every day",
   aboutShort:
-    "Starting out in medicine might surprise some people, but once I got a job in that field, I quickly realized it wasn't the right fit for me. I decided to follow my other passion: software. Since then, I've been honing my skills in full-stack development, always looking for new challenges.",
+    "I started in healthcare, switched to computer science, and never looked back. My faith, my wife, and my family keep me grounded through all of it. When I'm not writing code, I'm probably outside somewhere or eating something I shouldn't be.",
   contactMessage:
     "Whether it's software, business ideas, or just chatting about tech and games, I'm always up for a good conversation. Drop me a message through the form or connect via any of the links below.",
   funLine: "Providing awesome hair and laughter since 2001",

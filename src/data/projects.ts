@@ -12,15 +12,6 @@ export const projects: Project[] = [
   },
   {
     id: 2,
-    title: "SimplySigned",
-    description:
-      "Legal e-signature SaaS platform — upload PDFs, send signing links, and collect legally-binding electronic signatures with full audit trails and tamper detection.",
-    tags: ["TypeScript", "Next.js", "React", "Supabase", "Stripe", "Tailwind"],
-    repo: "https://github.com/MrF1ow/SimplySigned",
-    featured: true,
-  },
-  {
-    id: 3,
     title: "Foodable",
     description:
       "AI-driven full-stack web app delivering personalized food recommendations using vector search, REST APIs, and intelligent meal insight generation.",
@@ -28,7 +19,7 @@ export const projects: Project[] = [
     repo: "https://github.com/MrF1ow/foodable-legacy",
   },
   {
-    id: 4,
+    id: 3,
     title: "Image Editor",
     description:
       "Lightweight desktop app with real-time image editing — resizing, cropping, filtering, and color adjustments.",
@@ -36,12 +27,12 @@ export const projects: Project[] = [
     repo: "https://github.com/MrF1ow/Image_Viewer_Editor",
   },
   {
-    id: 5,
-    title: "Portfolio Site",
+    id: 4,
+    title: "SimplySigned",
     description:
-      "This site. Single-page portfolio built with React, Tailwind v4, and custom design system inspired by my agency work.",
-    tags: ["TypeScript", "React", "Vite", "Tailwind"],
-    repo: "#",
+      "Legal e-signature SaaS platform — upload PDFs, send signing links, and collect legally-binding electronic signatures with full audit trails and tamper detection.",
+    tags: ["TypeScript", "Next.js", "React", "Supabase", "Stripe", "Tailwind"],
+    repo: "https://github.com/MrF1ow/SimplySigned",
     featured: true,
   },
 ];

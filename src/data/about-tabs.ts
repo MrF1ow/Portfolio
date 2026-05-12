@@ -4,7 +4,7 @@ export const aboutTabs: AboutTabContent[] = [
     {
     id: "faith",
     label: "Faith",
-    heading: "My Faith through Life",
+    heading: "My Faith through life",
     content: [
       { type: "text", value: "Everyone's faith journey looks different. Mine took a few detours before it stuck." },
       { type: "text", value: "Growing up, faith wasn't really a thing in our house. We'd go to church here and there, but nothing consistent. Then when I was eight, my parents got divorced. We left my dad, moved into a rental, and everyone dealt with it the way people deal with hard stuff — imperfectly." },
@@ -18,7 +18,7 @@ export const aboutTabs: AboutTabContent[] = [
   {
     id: "education",
     label: "Education",
-    heading: "The Degree on the Wall",
+    heading: "The Degree on the wall",
     content: [
       { type: "text", value: "I do have a degree. But getting there was more of an adventure than a straight line." },
       { type: "text", value: "I started in a Spanish immersion school. Went all the way through middle school in it too. Then I quit because I realized I don't actually like speaking Spanish. Do I regret it? A little. Can I speak Spanish now? Not even close." },
@@ -32,7 +32,7 @@ export const aboutTabs: AboutTabContent[] = [
   {
     id: "family",
     label: "Family",
-    heading: "I have been blessed.",
+    heading: "I have been blessed",
     content: [
       { type: "text", value: "We all got family. Mine's pretty frickin' crazy. Smart and efficient, but absolutely nuts. If you ever meet them, you'll know exactly what I'm talking about." },
       { type: "text", value: "I'm the youngest of 15 cousins. Yeah, 15. We're not going into the full family tree because honestly I'm not sure I can name all of them. So let's stick to the immediate crew." },
@@ -46,7 +46,7 @@ export const aboutTabs: AboutTabContent[] = [
   {
     id: "life",
     label: "Life",
-    heading: "Outside of Software",
+    heading: "Outside of software",
     content: [
       { type: "text", value: "Don't get me wrong — I love waking up, pouring a cup of coffee, putting the headphones on, and just going at it. But software isn't the only thing that gets me out of bed." },
       { type: "text", value: "I was born in Oregon. That is the definition of outdoors. Hiking, exploring new places, meeting new people — it's all second nature. I'm always down to try something new. Bungee jumping? Okay, maybe not bungee jumping. But most things." },

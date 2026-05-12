@@ -5,19 +5,25 @@ export const skillCategories: SkillCategory[] = [
     id: "backend",
     label: "Backend",
     description: "Server-side systems and data layers",
-    skills: ["Node.js", "Express", "MongoDB", "PostgreSQL", "MySQL", "Docker", "AWS", "Go"],
+    skills: ["Go", "Node.js", "Express", "MongoDB", "PostgreSQL", "MySQL", "Docker", "AWS", "Stripe"],
   },
   {
     id: "frontend",
     label: "Frontend",
     description: "Interfaces and client-side architecture",
-    skills: ["React", "Next.js", "TypeScript", "JavaScript", "HTML/CSS", "Tailwind"],
+    skills: ["React", "Next.js", "Solid.js", "TypeScript", "JavaScript", "HTML/CSS", "Tailwind"],
   },
   {
     id: "systems",
     label: "Systems & Networking",
     description: "Infrastructure and tooling",
     skills: ["Linux", "Git", "Docker", "CI/CD", "Networking", "Shell Scripting"],
+  },
+  {
+    id: "ai-tools",
+    label: "AI Tools",
+    description: "AI-assisted development workflows",
+    skills: ["Claude Code", "Codex", "OpenCode"],
   },
   {
     id: "personal",
