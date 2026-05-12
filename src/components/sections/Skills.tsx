@@ -16,10 +16,10 @@ function SkillCard({
   return (
     <button
       onClick={onToggle}
-      className={`text-left w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)] p-6 bg-dark border transition-all duration-300 cursor-pointer ${
+      className={`text-left w-full p-6 bg-dark border border-l-2 transition-all duration-300 cursor-pointer ${
         expanded
-          ? "border-accent/40 border-l-accent border-l-2"
-          : "border-border-dark hover:border-border-dark/80"
+          ? "border-accent/40 border-l-accent"
+          : "border-border-dark border-l-dark hover:border-border-dark/80"
       }`}
     >
       <div className="flex items-center justify-between">
@@ -73,7 +73,7 @@ function SkillCard({
 }
 
 export default function Skills() {
-  const [expanded, setExpanded] = useState<string | null>(null);
+  const [expanded, setExpanded] = useState<Set<string>>(new Set());
 
   return (
     <section id="skills" className="py-24 px-6 md:px-12 lg:px-20">
@@ -85,14 +85,19 @@ export default function Skills() {
           What I bring to the table
         </h2>
 
-        <div className="flex flex-wrap justify-center gap-4 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
           {skillCategories.map((cat) => (
             <SkillCard
               key={cat.id}
               category={cat}
-              expanded={expanded === cat.id}
+              expanded={expanded.has(cat.id)}
               onToggle={() =>
-                setExpanded(expanded === cat.id ? null : cat.id)
+                setExpanded((prev) => {
+                  const next = new Set(prev);
+                  if (next.has(cat.id)) next.delete(cat.id);
+                  else next.add(cat.id);
+                  return next;
+                })
               }
             />
           ))}
