@@ -7,10 +7,12 @@ import Footer from "@/components/sections/Footer";
 export default function App() {
   return (
     <div className="grain">
+      <main>
       <Hero />
       <About />
       <Portfolio />
       <Skills />
+      </main>
       <Footer />
     </div>
   );

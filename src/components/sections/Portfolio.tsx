@@ -8,14 +8,14 @@ function ProjectCard({ project }: { project: Project }) {
       target="_blank"
       rel="noopener noreferrer"
       className={`group flex flex-col justify-between p-6 sm:p-8 bg-bg-alt border border-border transition-colors duration-300 hover:bg-dark hover:border-border-dark ${
-        project.featured ? "md:col-span-2" : ""
+        project.featured ? "lg:col-span-2" : ""
       }`}
     >
       <div>
         <div className="flex items-center justify-between mb-4">
           <h3
             className={`font-sans font-medium tracking-tight text-text group-hover:text-dark-text transition-colors duration-300 ${
-              project.featured ? "text-2xl sm:text-3xl" : "text-xl"
+              project.featured ? "text-xl lg:text-3xl" : "text-xl"
             }`}
           >
             {project.title}
@@ -38,8 +38,8 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
 
         <p
-          className={`font-mono text-text-muted group-hover:text-dark-muted leading-relaxed transition-colors duration-300 ${
-            project.featured ? "text-sm sm:text-base max-w-lg" : "text-sm"
+          className={`font-mono text-sm text-text-muted group-hover:text-dark-muted leading-relaxed transition-colors duration-300 ${
+            project.featured ? "lg:text-base max-w-lg" : ""
           }`}
         >
           {project.description}
@@ -69,7 +69,7 @@ export default function Portfolio() {
           Things I've built
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
@@ -82,7 +82,7 @@ export default function Portfolio() {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-7 py-3 font-mono text-sm tracking-wide bg-transparent text-text border border-text hover:bg-text/5 transition-colors"
           >
-            See More
+            See More Projects on GitHub
           </a>
         </div>
       </div>

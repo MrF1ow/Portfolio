@@ -31,7 +31,7 @@ export default function Footer() {
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
           {/* Bio + links */}
           <div className="flex-1 order-1 lg:order-2">
-            <SectionLabel text="Get In Touch" />
+            <SectionLabel text="Get In Touch" dark />
             <h2 className="font-sans text-3xl md:text-4xl font-medium tracking-tight text-dark-text mb-6">
               Let's connect
             </h2>
@@ -101,7 +101,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-20 pt-6 border-t border-border-dark text-center">
-          <p className="font-mono text-xs text-dark-muted/60 mb-1">
+          <p className="font-mono text-xs text-dark-muted mb-1">
             {personal.funLine}
           </p>
           <p className="font-mono text-xs text-dark-muted">
