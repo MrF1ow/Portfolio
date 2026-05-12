@@ -1,3 +1,4 @@
+import SectionLabel from "@/components/ui/SectionLabel";
 import { projects } from "@/data/projects";
 import type { Project } from "@/types/project";
 
@@ -64,7 +65,7 @@ export default function Portfolio() {
   return (
     <section id="projects" className="py-24 px-6 md:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto">
-        <p className="font-mono text-sm tracking-widest uppercase text-text-faint mb-4">Portfolio</p>
+        <SectionLabel text="Portfolio" />
         <h2 className="font-sans text-3xl md:text-4xl font-medium tracking-tight text-text mb-12">
           Things I've built
         </h2>

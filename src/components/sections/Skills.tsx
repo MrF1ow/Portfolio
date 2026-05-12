@@ -1,6 +1,5 @@
-"use client";
-
 import { useState } from "react";
+import SectionLabel from "@/components/ui/SectionLabel";
 import { skillCategories } from "@/data/skills";
 import type { SkillCategory } from "@/types/skill";
 
@@ -16,6 +15,7 @@ function SkillCard({
   return (
     <button
       onClick={onToggle}
+      aria-expanded={expanded}
       className={`text-left w-full p-6 bg-dark border border-l-2 transition-all duration-300 cursor-pointer ${
         expanded
           ? "border-accent/40 border-l-accent"
@@ -78,9 +78,7 @@ export default function Skills() {
   return (
     <section id="skills" className="py-24 px-6 md:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto">
-        <p className="font-mono text-sm tracking-widest uppercase text-text-faint mb-4">
-          Skills
-        </p>
+        <SectionLabel text="Skills" />
         <h2 className="font-sans text-3xl md:text-4xl font-medium tracking-tight text-text mb-12">
           What I bring to the table
         </h2>

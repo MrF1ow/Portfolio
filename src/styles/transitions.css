@@ -18,9 +18,3 @@
 .delay-2 { animation-delay: 0.3s; }
 .delay-3 { animation-delay: 0.5s; }
 .delay-4 { animation-delay: 0.7s; }
-
-/* ── Title rotation ─────────────────────── */
-@keyframes fadeTitle {
-  0%, 100% { opacity: 0; transform: translateY(8px); }
-  10%, 90% { opacity: 1; transform: translateY(0); }
-}

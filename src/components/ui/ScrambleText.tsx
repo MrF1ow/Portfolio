@@ -20,18 +20,21 @@ export default function ScrambleText({
   const iterRef = useRef(0);
 
   useEffect(() => {
+    const maxLen = Math.max(...texts.map((t) => t.length));
+    let scrambleId: ReturnType<typeof setInterval>;
+
     const cycle = setInterval(() => {
       indexRef.current = (indexRef.current + 1) % texts.length;
       const target = texts[indexRef.current] ?? "";
       iterRef.current = 0;
 
-      const maxLen = Math.max(target.length, ...texts.map((t) => t.length));
       const step = scrambleDuration / (maxLen * 10);
 
-      const scramble = setInterval(() => {
+      clearInterval(scrambleId);
+      scrambleId = setInterval(() => {
         if (iterRef.current >= target.length) {
           setDisplay(target.split(""));
-          clearInterval(scramble);
+          clearInterval(scrambleId);
           return;
         }
 
@@ -48,7 +51,10 @@ export default function ScrambleText({
       }, step);
     }, interval);
 
-    return () => clearInterval(cycle);
+    return () => {
+      clearInterval(cycle);
+      clearInterval(scrambleId);
+    };
   }, [texts, interval, scrambleDuration]);
 
   return (

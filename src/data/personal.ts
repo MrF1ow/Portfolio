@@ -20,7 +20,8 @@ export const personal = {
 export const socialLinks: SocialLink[] = [
   { label: "GitHub", href: "https://github.com/MrF1ow", icon: "github" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/ethanflow/", icon: "linkedin" },
-  { label: "Email", href: "mailto:eflow1280@gmail.com", icon: "email" },
+  { label: "X", href: "https://x.com/MrF1ow", icon: "x" },
+  { label: "Email", href: "mailto:ethanflowdev@gmail.com", icon: "email" },
 ];
 
 export const titles = ["Software Engineer", "Jesus Follower", "Nature Lover"];

@@ -55,10 +55,11 @@ export default function Footer() {
           <div className="flex-1 order-2 lg:order-1">
             <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-5">
               <div>
-                <label className="block font-mono text-xs tracking-wide text-dark-muted mb-2">
+                <label htmlFor="contact-name" className="block font-mono text-xs tracking-wide text-dark-muted mb-2">
                   Name
                 </label>
                 <input
+                  id="contact-name"
                   type="text"
                   name="name"
                   required
@@ -67,10 +68,11 @@ export default function Footer() {
                 />
               </div>
               <div>
-                <label className="block font-mono text-xs tracking-wide text-dark-muted mb-2">
+                <label htmlFor="contact-email" className="block font-mono text-xs tracking-wide text-dark-muted mb-2">
                   Email
                 </label>
                 <input
+                  id="contact-email"
                   type="email"
                   name="email"
                   required
@@ -79,10 +81,11 @@ export default function Footer() {
                 />
               </div>
               <div>
-                <label className="block font-mono text-xs tracking-wide text-dark-muted mb-2">
+                <label htmlFor="contact-message" className="block font-mono text-xs tracking-wide text-dark-muted mb-2">
                   Message
                 </label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   rows={5}
                   required
