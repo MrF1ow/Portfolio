@@ -20,11 +20,11 @@ export const projects: Project[] = [
   },
   {
     id: 3,
-    title: "Image Editor",
+    title: "Gitlawb Go Proxy",
     description:
-      "Lightweight desktop app with real-time image editing — resizing, cropping, filtering, and color adjustments.",
-    tags: ["Python", "OpenCV"],
-    repo: "https://github.com/MrF1ow/Image_Viewer_Editor",
+      "Go module proxy bridging the standard Go toolchain with Gitlawb — a decentralized git network built on DIDs and IPFS/libp2p. Enables `go get` for decentralized modules with disk caching and zero external dependencies.",
+    tags: ["Go", "GOPROXY", "IPFS", "libp2p", "DID", "Git"],
+    repo: "https://github.com/MrF1ow/gitlawb-goproxy",
   },
   {
     id: 4,
