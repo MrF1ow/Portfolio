@@ -46,18 +46,24 @@
       "@graph": [
         {
           "@type": "WebSite",
+          "@id": "https://ethanflow.dev/#website",
+          "url": "https://ethanflow.dev/",
           "name": "Ethan Flow Portfolio",
           "description": "Personal portfolio of Ethan Flow — Software Engineer, Full-Stack Developer, and Founder of Jedidiah Digital.",
-          "inLanguage": "en-US"
+          "inLanguage": "en-US",
+          "mainEntity": { "@id": "https://ethanflow.dev/#person" }
         },
         {
           "@type": "Person",
+          "@id": "https://ethanflow.dev/#person",
+          "url": "https://ethanflow.dev/",
+          "image": "https://ethanflow.dev/pfp.webp",
           "name": "Ethan Flow",
           "givenName": "Ethan",
           "familyName": "Flow",
           "jobTitle": "Software Engineer",
           "description": "Software Engineer, Full-Stack Developer, and Founder of Jedidiah Digital. B.S. Computer Science from Oregon State University.",
-          "email": "eflow1280@gmail.com",
+          "email": "ethanflowdev@gmail.com",
           "alumniOf": {
             "@type": "CollegeOrUniversity",
             "name": "Oregon State University"
@@ -84,7 +90,8 @@
           ],
           "sameAs": [
             "https://github.com/MrF1ow",
-            "https://www.linkedin.com/in/ethanflow/"
+            "https://www.linkedin.com/in/ethanflow/",
+            "https://x.com/MrF1ow"
           ]
         },
         {
@@ -99,7 +106,8 @@
                 "name": "Go Core",
                 "description": "Multi-tenant authentication and authorization module for Go — JWT auth, OAuth2 social login, WebAuthn/passkeys, magic links, 2FA, RBAC, and an embedded HTMX admin GUI.",
                 "programmingLanguage": "Go",
-                "codeRepository": "https://github.com/MrF1ow/go-core"
+                "codeRepository": "https://github.com/MrF1ow/go-core",
+                "author": { "@id": "https://ethanflow.dev/#person" }
               }
             },
             {
@@ -110,7 +118,8 @@
                 "name": "SimplySigned",
                 "description": "Legal e-signature SaaS platform — upload PDFs, send signing links, and collect legally-binding electronic signatures with full audit trails and tamper detection.",
                 "programmingLanguage": ["TypeScript", "JavaScript"],
-                "codeRepository": "https://github.com/MrF1ow/SimplySigned"
+                "codeRepository": "https://github.com/MrF1ow/SimplySigned",
+                "author": { "@id": "https://ethanflow.dev/#person" }
               }
             },
             {
@@ -121,7 +130,8 @@
                 "name": "Foodable",
                 "description": "AI-driven full-stack web app delivering personalized food recommendations using vector search, REST APIs, and intelligent meal insight generation.",
                 "programmingLanguage": ["TypeScript", "JavaScript"],
-                "codeRepository": "https://github.com/MrF1ow/foodable-legacy"
+                "codeRepository": "https://github.com/MrF1ow/foodable-legacy",
+                "author": { "@id": "https://ethanflow.dev/#person" }
               }
             },
             {
@@ -129,10 +139,11 @@
               "position": 4,
               "item": {
                 "@type": "SoftwareSourceCode",
-                "name": "Image Editor",
-                "description": "Lightweight desktop app with real-time image editing — resizing, cropping, filtering, and color adjustments.",
-                "programmingLanguage": "Python",
-                "codeRepository": "https://github.com/MrF1ow/Image_Viewer_Editor"
+                "name": "Gitlawb Go Proxy",
+                "description": "Go module proxy bridging the standard Go toolchain with Gitlawb — a decentralized git network built on DIDs and IPFS/libp2p. Enables go get for decentralized modules with disk caching and zero external dependencies.",
+                "programmingLanguage": "Go",
+                "codeRepository": "https://github.com/MrF1ow/gitlawb-goproxy",
+                "author": { "@id": "https://ethanflow.dev/#person" }
               }
             }
           ]
