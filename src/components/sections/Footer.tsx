@@ -108,15 +108,7 @@ export default function Footer() {
             {personal.funLine}
           </p>
           <p className="font-mono text-xs text-dark-muted">
-            &copy; {new Date().getFullYear()} {personal.fullName}. All rights
-            reserved.{" "}
-            <span className="mx-1">·</span>
-            <a
-              href="/privacy"
-              className="text-dark-muted hover:text-dark-text transition-colors underline underline-offset-2"
-            >
-              Privacy
-            </a>
+            &copy; {new Date().getFullYear()} {personal.fullName}. All rights reserved.
           </p>
         </div>
       </div>
