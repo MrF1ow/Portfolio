@@ -108,12 +108,12 @@ AI-driven full-stack web app delivering personalized food recommendations using 
 - **Technologies:** TypeScript, React, Next.js, Node.js, MongoDB, OpenAI, Docker
 - **Repository:** https://github.com/MrF1ow/foodable-legacy
 
-### Image Editor
+### Gitlawb Go Proxy
 
-Lightweight desktop app with real-time image editing — resizing, cropping, filtering, and color adjustments.
+Go module proxy bridging the standard Go toolchain with Gitlawb — a decentralized git network built on DIDs and IPFS/libp2p. Enables `go get` for decentralized modules with disk caching and zero external dependencies.
 
-- **Technologies:** Python, OpenCV
-- **Repository:** https://github.com/MrF1ow/Image_Viewer_Editor
+- **Technologies:** Go, GOPROXY, IPFS, libp2p, DID, Git
+- **Repository:** https://github.com/MrF1ow/gitlawb-goproxy
 
 ---
 
