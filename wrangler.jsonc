@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ethanflow",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  },
+  "routes": [{ "pattern": "ethanflow.dev", "custom_domain": true }],
+  "workers_dev": true,
+  "vars": {
+    "TURNSTILE_HOSTNAMES": "ethanflow.dev,ethanflow.ethan-flow-a33.workers.dev"
+  },
+  "observability": { "enabled": true }
+}
