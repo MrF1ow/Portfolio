@@ -37,9 +37,12 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
     if (open) {
       setMobileNav(false);
       setActiveTab(aboutTabs[0]!.id);
-      contentRef.current?.scrollTo(0, 0);
     }
   }
+
+  useEffect(() => {
+    if (open) contentRef.current?.scrollTo(0, 0);
+  }, [open]);
 
   useEffect(() => {
     if (open) {
