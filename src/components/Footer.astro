@@ -1,1 +1,61 @@
-<footer id="footer" data-section="footer">see you on the trail.</footer>
+---
+import { site } from "../data/site";
+---
+
+<footer id="footer" data-section="footer">
+  <span class="sig serif">see you on the trail.</span>
+  <span class="m meta">
+    © 2026
+    <a href={site.links.github} target="_blank" rel="noopener noreferrer">github</a>
+    <a href={site.links.linkedin} target="_blank" rel="noopener noreferrer"
+      >linkedin</a
+    >
+    <a href={site.links.x} target="_blank" rel="noopener noreferrer">x</a>
+  </span>
+</footer>
+
+<style>
+  footer {
+    position: relative;
+    margin-top: 70px;
+    padding: 26px var(--space-gutter) 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: var(--size-hairline) solid var(--line-subtle);
+  }
+
+  .sig {
+    color: var(--text-primary);
+    font-size: var(--type-sign-off);
+    line-height: 1.1;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    font-size: var(--type-meta);
+    color: var(--text-muted);
+  }
+
+  .meta a {
+    color: var(--text-body);
+    text-decoration: none;
+  }
+
+  .meta a:hover {
+    color: var(--text-primary);
+  }
+
+  @container site (max-width: 560px) {
+    footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 24px var(--space-gutter) 26px;
+    }
+
+  }
+</style>

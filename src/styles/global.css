@@ -24,9 +24,66 @@ body {
   line-height: 1.5;
 }
 
-.site section,
-.site footer {
-  padding: var(--space-section) var(--space-gutter);
+.site {
+  position: relative;
+  /* Clip both axes (as trail.html does) so the hero's ambient glow never adds scroll past the footer. */
+  overflow: clip;
+}
+
+.m {
+  font-family: var(--font-mono);
+}
+
+.serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.sec {
+  position: relative;
+  padding: var(--space-section) var(--space-gutter) 0;
+}
+
+.wp {
+  display: flex;
+  align-items: center;
+  gap: var(--space-waypoint-gap);
+  font-size: var(--type-label);
+  letter-spacing: 0.16em;
+  color: var(--accent-gold);
+  margin-bottom: 14px;
+}
+
+.wp::after {
+  content: "";
+  flex: 1;
+  height: var(--size-hairline);
+  background: linear-gradient(
+    90deg,
+    var(--accent-gold-rule),
+    var(--accent-gold-clear)
+  );
+}
+
+.sec h2 {
+  font-weight: 700;
+  font-size: var(--type-h2);
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  line-height: 1.05;
+}
+
+.sec h2 .serif {
+  font-size: var(--type-h2-serif);
+  color: var(--accent-gold);
+}
+
+.sub {
+  font-size: var(--type-intro);
+  color: var(--text-body);
+  max-width: 560px;
+  margin-top: 12px;
 }
 
 @media (prefers-reduced-motion: reduce) {

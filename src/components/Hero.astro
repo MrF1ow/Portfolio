@@ -1,3 +1,596 @@
-<section id="hero" data-section="hero">
-  I don't write code. I build what writes it.
-</section>
+---
+import { Picture, getImage } from "astro:assets";
+import mountain from "../assets/hero/mountain.jpg";
+import { site } from "../data/site";
+
+const blurTwin = await getImage({
+  src: mountain,
+  width: 600,
+  format: "jpg",
+  quality: 55,
+});
+
+const ambientImg = await getImage({
+  src: mountain,
+  width: 600,
+  format: "jpg",
+  quality: 50,
+});
+---
+
+<div
+  class="ambient"
+  aria-hidden="true"
+  style={`--hero-ambient: url(${ambientImg.src})`}
+></div>
+
+<header
+  id="hero"
+  data-section="hero"
+  class="hero"
+  style={`--hero-img: url(${blurTwin.src})`}
+>
+  <div class="bgblur" aria-hidden="true"></div>
+  <div class="photo-wrap">
+    <Picture
+      id="photo"
+      class="photo"
+      src={mountain}
+      widths={[480, 600, 900, 1200]}
+      formats={["avif", "webp", "jpeg"]}
+      sizes="(max-width: 560px) 100vw, 60vw"
+      alt=""
+      width={1200}
+      height={1600}
+      loading="eager"
+      fetchpriority="high"
+    />
+  </div>
+  <div class="tint" aria-hidden="true"></div>
+  <div class="fadeout" aria-hidden="true"></div>
+
+  <nav class="m" aria-label="Site">
+    <b class="wordmark">ethan flow</b>
+    <span class="links">
+      <a href={site.links.github} target="_blank" rel="noopener"
+        >GitHub <i aria-hidden="true">↗</i></a
+      >
+      <a href={site.links.x} target="_blank" rel="noopener"
+        >X <i aria-hidden="true">↗</i></a
+      >
+    </span>
+  </nav>
+
+  <div class="glass">
+    <i class="corner tl" aria-hidden="true"></i>
+    <i class="corner tr" aria-hidden="true"></i>
+    <i class="corner bl" aria-hidden="true"></i>
+    <i class="corner br" aria-hidden="true"></i>
+    <p class="eyebrow m">TRAILHEAD · SOFTWARE ENGINEER</p>
+    <h1>
+      <span>I don't write code.</span>
+      <span class="serif">I build what</span>
+      <span>writes it.</span>
+    </h1>
+    <p class="lede">{site.description}</p>
+    <div class="gfoot m">
+      <span><i aria-hidden="true"></i>CURRENTLY BUILDING</span>
+      <span>BORN IN OREGON</span>
+    </div>
+  </div>
+
+  <p class="marker m"><i aria-hidden="true"></i>SCROLL TO START THE CLIMB</p>
+</header>
+
+<script>
+  import "../scripts/hero.ts";
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: min(780px, 100svh);
+    height: min(780px, 100svh);
+    overflow: hidden;
+    color: var(--hero-ink);
+    padding: 0;
+  }
+
+  .ambient {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 480px;
+    width: 100%;
+    height: 1400px;
+    z-index: -1;
+    pointer-events: none;
+    background: var(--hero-ambient) center 40% / cover no-repeat;
+    filter: blur(70px) saturate(1.3);
+    opacity: 0.32;
+    animation: ambient-drift 18s ease-in-out infinite alternate;
+  }
+
+  .ambient::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      var(--surface-page) 0%,
+      transparent 25%,
+      transparent 55%,
+      var(--surface-page) 100%
+    );
+  }
+
+  @keyframes ambient-drift {
+    from {
+      transform: translateY(0) scale(1);
+      filter: blur(70px) saturate(1.3) hue-rotate(-8deg);
+    }
+    to {
+      transform: translateY(-60px) scale(1.08);
+      filter: blur(80px) saturate(1.5) hue-rotate(10deg);
+    }
+  }
+
+  .bgblur {
+    position: absolute;
+    inset: -60px;
+    background: var(--hero-img) 30% 40% / cover no-repeat;
+    filter: blur(38px) saturate(1.35) brightness(1.05);
+    transform: scale(1.15);
+    animation: bg-drift 16s ease-in-out infinite alternate;
+  }
+
+  @keyframes bg-drift {
+    from {
+      filter: blur(38px) saturate(1.35) hue-rotate(-10deg);
+    }
+    to {
+      filter: blur(44px) saturate(1.6) hue-rotate(12deg);
+      transform: scale(1.22) translateX(-20px);
+    }
+  }
+
+  .photo-wrap {
+    position: absolute;
+    top: -20px;
+    bottom: -20px;
+    right: -20px;
+    width: 60%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 30%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 30%);
+  }
+
+  .photo-wrap :global(img.photo),
+  .photo-wrap :global(picture) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 52%;
+    animation:
+      focus-pull 2.6s cubic-bezier(0.2, 0.7, 0.2, 1) both,
+      photo-breathe 22s 2.6s ease-in-out infinite alternate;
+    will-change: transform, filter;
+  }
+
+  @keyframes focus-pull {
+    from {
+      filter: blur(22px) saturate(0.2) brightness(1.15);
+      transform: scale(1.12);
+    }
+    to {
+      filter: blur(0) saturate(1.08) brightness(1.02);
+      transform: scale(1);
+    }
+  }
+
+  @keyframes photo-breathe {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.05);
+    }
+  }
+
+  .tint {
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: soft-light;
+    background: linear-gradient(
+      120deg,
+      var(--hero-drift-warm),
+      var(--hero-drift-cool),
+      var(--hero-drift-warm)
+    );
+    background-size: 300% 300%;
+    opacity: 0.35;
+    animation: tint-shift 14s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes tint-shift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .fadeout {
+    position: absolute;
+    inset: auto 0 0;
+    height: 120px;
+    background: linear-gradient(transparent, var(--surface-page));
+    pointer-events: none;
+  }
+
+  nav {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px var(--space-gutter);
+    font-size: var(--type-wordmark);
+    color: var(--hero-label);
+  }
+
+  .wordmark {
+    color: var(--hero-ink);
+    font-weight: 500;
+    text-transform: lowercase;
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .links a {
+    padding: 5px 9px;
+    color: var(--hero-ink);
+    background: var(--hero-chip);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: var(--size-hairline) solid var(--hero-chip-edge);
+    text-decoration: none;
+    transition: background 0.25s;
+  }
+
+  .links a:hover {
+    background: var(--hero-glass-high);
+  }
+
+  .links i {
+    font-style: normal;
+    opacity: 0.6;
+  }
+
+  .glass {
+    position: absolute;
+    z-index: 2;
+    left: var(--space-gutter);
+    top: 118px;
+    width: min(580px, 100% - 2 * var(--space-gutter));
+    padding: var(--space-glass-pad) 28px 26px;
+    background: linear-gradient(
+      140deg,
+      var(--hero-glass-high),
+      var(--hero-glass-low) 55%,
+      var(--hero-glass-mid)
+    );
+    -webkit-backdrop-filter: blur(22px) saturate(1.5);
+    backdrop-filter: blur(22px) saturate(1.5);
+    border: var(--size-hairline) solid var(--hero-glass-edge);
+    box-shadow:
+      inset 0 1px 0 var(--hero-glass-highlight),
+      0 30px 80px var(--hero-shadow);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(-24px);
+    animation: glass-in 1.1s 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  }
+
+  @keyframes glass-in {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .glass::before {
+    content: "";
+    position: absolute;
+    inset: -50% auto -50% -60%;
+    width: 40%;
+    transform: rotate(18deg);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--hero-glass-high),
+      transparent
+    );
+    animation: glass-sheen 7s 2.4s ease-in-out infinite;
+  }
+
+  @keyframes glass-sheen {
+    0% {
+      left: -60%;
+    }
+    35%,
+    100% {
+      left: 140%;
+    }
+  }
+
+  .glass::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.18;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .corner {
+    position: absolute;
+    width: var(--size-bracket);
+    height: var(--size-bracket);
+    border-color: var(--hero-bracket);
+    border-style: solid;
+  }
+
+  .tl {
+    top: 8px;
+    left: 8px;
+    border-width: var(--size-hairline) 0 0 var(--size-hairline);
+  }
+  .tr {
+    top: 8px;
+    right: 8px;
+    border-width: var(--size-hairline) var(--size-hairline) 0 0;
+  }
+  .bl {
+    bottom: 8px;
+    left: 8px;
+    border-width: 0 0 var(--size-hairline) var(--size-hairline);
+  }
+  .br {
+    bottom: 8px;
+    right: 8px;
+    border-width: 0 var(--size-hairline) var(--size-hairline) 0;
+  }
+
+  .eyebrow {
+    font-size: var(--type-label-sm);
+    letter-spacing: 0.16em;
+    color: var(--hero-label);
+  }
+
+  h1 {
+    font-weight: 800;
+    font-size: var(--type-display);
+    line-height: 0.94;
+    letter-spacing: -0.05em;
+    color: var(--hero-ink);
+    margin: 14px 0 16px;
+  }
+
+  h1 .serif {
+    font-size: var(--type-display-serif);
+    color: var(--hero-serif);
+    letter-spacing: -0.02em;
+  }
+
+  h1 span {
+    display: block;
+    opacity: 0;
+    transform: translateY(0.35em);
+    animation: headline-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  }
+
+  h1 span:nth-child(1) {
+    animation-delay: 1.3s;
+  }
+  h1 span:nth-child(2) {
+    animation-delay: 1.45s;
+  }
+  h1 span:nth-child(3) {
+    animation-delay: 1.6s;
+  }
+
+  @keyframes headline-rise {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .lede {
+    color: var(--hero-lede);
+    font-size: var(--type-lede);
+    opacity: 0;
+    animation: headline-rise 0.9s 1.85s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  }
+
+  .gfoot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 22px;
+    padding-top: 14px;
+    border-top: var(--size-hairline) solid var(--hero-rule);
+    font-size: var(--type-label-sm);
+    letter-spacing: 0.12em;
+    color: var(--hero-label);
+  }
+
+  .gfoot i {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--hero-serif);
+    margin-right: 8px;
+    animation: gfoot-pulse 1.6s steps(2) infinite;
+  }
+
+  @keyframes gfoot-pulse {
+    50% {
+      opacity: 0.25;
+    }
+  }
+
+  .marker {
+    position: absolute;
+    z-index: 2;
+    left: var(--space-gutter);
+    bottom: 32px;
+    color: var(--hero-on-photo);
+    font-size: var(--type-label);
+    letter-spacing: 0.14em;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .marker i {
+    display: inline-block;
+    width: var(--size-hairline);
+    height: 24px;
+    background: var(--hero-on-photo);
+    animation: marker-drop 1.8s ease-in-out infinite;
+  }
+
+  @keyframes marker-drop {
+    0% {
+      transform: scaleY(0);
+      transform-origin: top;
+    }
+    50% {
+      transform: scaleY(1);
+      transform-origin: top;
+    }
+    51% {
+      transform-origin: bottom;
+    }
+    100% {
+      transform: scaleY(0);
+      transform-origin: bottom;
+    }
+  }
+
+  @container site (max-width: 560px) {
+    .hero {
+      height: 740px;
+    }
+
+    .photo-wrap {
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: auto;
+      width: auto;
+      height: 500px;
+      -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent 100%);
+      mask-image: linear-gradient(180deg, #000 60%, transparent 100%);
+    }
+
+    .photo-wrap :global(img.photo),
+    .photo-wrap :global(picture) {
+      object-position: center 66%;
+    }
+
+    nav {
+      padding: 14px var(--space-gutter);
+    }
+
+    .links a {
+      padding: 5px 7px;
+      font-size: var(--type-label-sm);
+    }
+
+    .glass {
+      left: 12px;
+      right: 12px;
+      width: auto;
+      top: auto;
+      bottom: 66px;
+      padding: 22px 20px 18px;
+      transform: translateY(28px);
+      animation-name: glass-in-mobile;
+    }
+
+    .glass::before {
+      width: 60%;
+    }
+
+    .gfoot {
+      margin-top: 16px;
+    }
+
+    .marker {
+      left: var(--space-gutter);
+      bottom: 22px;
+    }
+
+    .ambient {
+      inset: 620px -50% auto;
+    }
+  }
+
+  @keyframes glass-in-mobile {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .glass {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    h1 span,
+    .lede {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    .photo-wrap :global(img.photo),
+    .photo-wrap :global(picture) {
+      animation: none;
+      filter: blur(0) saturate(1.08) brightness(1.02);
+      transform: scale(1);
+    }
+
+    .bgblur,
+    .ambient,
+    .tint,
+    .glass::before,
+    .gfoot i,
+    .marker i {
+      animation: none;
+    }
+  }
+
+  @container site (max-width: 560px) {
+    @media (prefers-reduced-motion: reduce) {
+      .glass {
+        transform: none;
+      }
+    }
+  }
+</style>
