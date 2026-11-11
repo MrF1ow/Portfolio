@@ -1,0 +1,427 @@
+.machine {
+  margin-top: 6px;
+}
+
+.machine-figure--mobile {
+  display: none;
+}
+
+@container site (max-width: 560px) {
+  .machine-figure--desktop {
+    display: none;
+  }
+
+  .machine-figure--mobile {
+    display: block;
+  }
+}
+
+.mach {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.mach * {
+  transition:
+    fill 0.42s var(--ease),
+    stroke 0.42s var(--ease),
+    opacity 0.42s var(--ease),
+    transform 0.6s var(--ease);
+}
+
+.mach text {
+  font-family: var(--font-mono);
+}
+
+.machine-figure--desktop .mach .lbl {
+  font-size: 10;
+  letter-spacing: 0.12em;
+  fill: var(--machine-label);
+}
+
+.machine-figure--desktop .mach .lbl.fail {
+  fill: var(--machine-label-fail);
+}
+
+.machine-figure--desktop .mach .nm {
+  font-size: 11;
+  fill: var(--machine-soft);
+}
+
+.machine-figure--desktop .mach .status {
+  font-size: 11;
+  fill: var(--text-body);
+}
+
+.machine-figure--desktop .mach .status.dimtx {
+  fill: var(--machine-count);
+}
+
+.machine-figure--desktop .mach .count {
+  font-size: 11;
+}
+
+.machine-figure--desktop .mach .verdict {
+  font-size: 8;
+}
+
+.mach .lbl.fail {
+  fill: var(--machine-label-fail);
+}
+
+.mach .status.dimtx {
+  fill: var(--machine-count);
+}
+
+.mach .box {
+  fill: none;
+  stroke: var(--machine-box);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+}
+
+.mach .rule {
+  stroke: var(--machine-box);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+}
+
+.mach .wire {
+  fill: none;
+  stroke: var(--machine-wire);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+}
+
+.mach .wire.retry {
+  stroke-dasharray: 3 4;
+  stroke: var(--machine-retry);
+}
+
+.mach .wire.live {
+  stroke: var(--machine-live);
+}
+
+.mach .wire.retry.live {
+  stroke: var(--palette-red);
+}
+
+.mach .ink {
+  fill: var(--machine-ink);
+}
+
+.mach .soft {
+  fill: var(--machine-soft);
+}
+
+.mach .dim {
+  fill: var(--machine-dim);
+}
+
+.mach .today {
+  stroke: var(--machine-today);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.5;
+}
+
+.mach .tick {
+  fill: none;
+  stroke: var(--machine-tick);
+  stroke-width: 2px;
+  vector-effect: non-scaling-stroke;
+}
+
+.mach .count {
+  font-size: 11px;
+  fill: var(--machine-count);
+}
+
+.mach .verdict {
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  fill: var(--palette-night);
+  opacity: 0;
+}
+
+.mach .scan {
+  stroke: var(--machine-ink);
+  stroke-width: 1px;
+  opacity: 0;
+  vector-effect: non-scaling-stroke;
+}
+
+.mach .node.hot .box {
+  stroke: var(--machine-box-hot);
+}
+
+.mach .node.hot .nm {
+  fill: var(--machine-ink);
+}
+
+.mach .node.hot .soft {
+  fill: var(--machine-soft-hot);
+}
+
+.mach .road rect {
+  transform-box: fill-box;
+  transform-origin: left;
+}
+
+.mach [id$="-planner"].hot .road rect {
+  animation: mach-growx 0.7s var(--ease) both;
+  animation-delay: calc(var(--i) * 90ms);
+}
+
+.mach [id$="-planner"] .today {
+  transform: translateX(0);
+}
+
+.mach [id$="-planner"].hot .today {
+  animation: mach-sweep 1.4s var(--ease) both;
+}
+
+.mach .typing rect {
+  opacity: 0.15;
+}
+
+.mach .agent.hot .typing rect {
+  animation: mach-blink 0.9s ease-in-out infinite;
+}
+
+.mach .agent.hot .typing rect:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.mach .agent.hot .typing rect:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.mach .agent.done .box {
+  stroke: var(--machine-soft);
+}
+
+.mach .prog {
+  transition: none;
+}
+
+.mach .diamond {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: rotate(45deg);
+}
+
+.mach [id$="-tests"].hot .diamond {
+  transform: rotate(225deg);
+  stroke: var(--machine-box-hot);
+  transition: transform 1.2s var(--ease);
+}
+
+.mach [id$="-tests"].pass .diamond {
+  fill: var(--palette-gold);
+  stroke: var(--palette-gold);
+}
+
+.mach [id$="-tests"].fail .diamond {
+  fill: var(--palette-red);
+  stroke: var(--palette-red);
+}
+
+.mach [id$="-tests"].pass .verdict,
+.mach [id$="-tests"].fail .verdict {
+  opacity: 1;
+}
+
+.mach [id$="-review"].hot .scan {
+  animation: mach-scan 1.1s var(--ease) both;
+}
+
+.mach [id$="-review"].fail .box {
+  stroke: var(--palette-red);
+}
+
+.mach [id$="-ship"].hot .shipbox {
+  fill: var(--palette-gold);
+  stroke: var(--palette-gold);
+}
+
+.mach [id$="-ship"].hot .tick {
+  stroke: var(--palette-night);
+}
+
+.mach [id$="-ship"].hot .count {
+  fill: var(--palette-cream);
+}
+
+.mach .status.fail {
+  fill: var(--palette-red);
+}
+
+.mach .status.ok {
+  fill: var(--palette-gold);
+}
+
+.mach [id$="-bars"] rect {
+  transform-box: fill-box;
+  transform-origin: bottom;
+}
+
+.mach [id$="-observe"].hot [id$="-bars"] rect {
+  animation: mach-grow 0.6s var(--ease) both;
+  animation-delay: calc(var(--i) * 60ms);
+}
+
+.mach [id$="-mem"] rect {
+  transition:
+    transform 0.6s var(--ease),
+    opacity 0.6s;
+}
+
+.mach [id$="-mem"] rect.new {
+  animation: mach-growx 0.7s var(--ease) both;
+  transform-box: fill-box;
+  transform-origin: left;
+}
+
+.mach [id$="-queue"] rect {
+  transition:
+    transform 0.5s var(--ease),
+    opacity 0.5s;
+}
+
+.mach .pkt {
+  fill: var(--machine-packet);
+  transition: none;
+}
+
+.mach .pkt.r {
+  fill: var(--machine-packet-retry);
+}
+
+.mach .box {
+  fill: var(--machine-node-fill);
+}
+
+.mach .node.hot .box {
+  fill: var(--machine-node-hot);
+}
+
+.mach .track {
+  fill: var(--machine-track);
+}
+
+@keyframes mach-blink {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes mach-growx {
+  from {
+    transform: scaleX(0.08);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes mach-grow {
+  from {
+    transform: scaleY(0.15);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes mach-sweep {
+  from {
+    transform: translateX(-36px);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.8;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 0.5;
+  }
+}
+
+@keyframes mach-scan {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(82px);
+    opacity: 0;
+  }
+}
+
+@container site (max-width: 560px) {
+  .machine-figure--mobile .mach .lbl {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    fill: var(--machine-label);
+  }
+
+  .machine-figure--mobile .mach .nm {
+    font-size: 11px;
+    fill: var(--machine-soft);
+  }
+
+  .machine-figure--mobile .mach .status {
+    font-size: 11px;
+    fill: var(--text-body);
+  }
+
+  .machine-figure--mobile .mach .count {
+    font-size: 11px;
+  }
+
+  .machine-figure--mobile .mach .verdict {
+    font-size: 8px;
+  }
+
+  .mach [id$="-review"].hot .scan {
+    animation: mach-scan-mobile 1.1s var(--ease) both;
+  }
+}
+
+@keyframes mach-scan-mobile {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(72px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mach * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

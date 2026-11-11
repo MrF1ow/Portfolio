@@ -1,1 +1,32 @@
-<section id="climb" data-section="climb">01 The climb</section>
+---
+import MachineDesktop from "./machine/MachineDesktop.astro";
+import MachineMobile from "./machine/MachineMobile.astro";
+import "./machine/machine.css";
+---
+
+<section id="climb" data-section="climb" class="sec">
+  <div class="wp m">▲ 01 · THE CLIMB</div>
+  <h2>The machine <span class="serif">does the hiking.</span></h2>
+  <p class="sub">
+    This is the kind of thing I build: work comes in, a planner splits it across
+    agents, tests and review send back anything that isn't right, and what ships
+    teaches it for next time. Nobody has to push it along.
+  </p>
+  <div class="machine-stage">
+    <MachineDesktop />
+    <MachineMobile />
+  </div>
+</section>
+
+<script>
+  import { initMachine } from "../scripts/machine";
+
+  const section = document.getElementById("climb");
+  if (section) initMachine(section);
+</script>
+
+<style>
+  .machine-stage {
+    display: block;
+  }
+</style>
