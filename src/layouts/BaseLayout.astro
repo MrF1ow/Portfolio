@@ -7,6 +7,13 @@ import "../styles/global.css";
 import { site } from "../data/site";
 
 const canonical = `${site.url}/`;
+const ogImage = `${site.url}/og-image.png`;
+const ogImageAlt =
+  "Ethan Flow — Trail hero with a mountain photo and frosted glass headline panel";
+const themeColor = "#0b1318";
+const xProfile = site.links.x.replace(/^https?:\/\/(www\.)?(x|twitter)\.com\//i, "");
+const xHandle = `@${xProfile}`;
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -14,9 +21,25 @@ const jsonLd = {
       "@type": "Person",
       name: site.name,
       url: site.url,
-      sameAs: [site.links.github, site.links.x, site.links.linkedin],
       jobTitle: "Software Engineer",
-      worksFor: { "@type": "Organization", name: "Jedidiah Digital" },
+      sameAs: [site.links.github, site.links.x, site.links.linkedin],
+      worksFor: {
+        "@type": "Organization",
+        name: "Jedidiah Digital",
+        url: "https://jedidiahdigital.com",
+      },
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "Oregon State University",
+      },
+      homeLocation: {
+        "@type": "Place",
+        address: {
+          "@type": "PostalAddress",
+          addressRegion: "Oregon",
+          addressCountry: "US",
+        },
+      },
     },
     {
       "@type": "WebSite",
@@ -33,6 +56,7 @@ const jsonLd = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content={themeColor} />
     <title>{site.title}</title>
     <meta name="description" content={site.description} />
     <link rel="canonical" href={canonical} />
@@ -40,11 +64,19 @@ const jsonLd = {
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={site.title} />
     <meta property="og:description" content={site.description} />
-    <meta property="og:image" content={`${site.url}/og-image.png`} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={xHandle} />
+    <meta name="twitter:creator" content={xHandle} />
     <meta name="twitter:title" content={site.title} />
     <meta name="twitter:description" content={site.description} />
-    <meta name="twitter:image" content={`${site.url}/og-image.png`} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />

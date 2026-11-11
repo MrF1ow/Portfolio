@@ -1,32 +1,40 @@
-# Ethan Flow — Portfolio
+# Ethan Flow — Software Engineer
 
-> Personal portfolio of Ethan Flow, Software Engineer, Jesus Follower, Nature Lover, and Founder of Jedidiah Digital.
+> Ethan Flow builds systems that take work in, plan it, ship it, and learn — so he can focus on what is worth building and get outside.
 
 ## About
 
-Ethan Flow is a software engineer based in Oregon with a B.S. in Computer Science from Oregon State University (Jun 2025). He started in healthcare, switched to computer science, and never looked back. His faith, his wife, and his family keep him grounded. He is the founder of Jedidiah Digital.
+Ethan Flow is a software engineer based in Oregon. He earned a B.S. in Computer Science from Oregon State University in 2025. He is the founder of Jedidiah Digital.
 
-## Skills
+## What he builds
 
-- Backend: Go, Node.js, Express, MongoDB, PostgreSQL, MySQL, Docker, AWS, Stripe
-- Frontend: React, Next.js, Solid.js, TypeScript, JavaScript, HTML/CSS, Tailwind
-- Systems & Networking: Linux, Git, Docker, CI/CD, Networking, Shell Scripting
-- AI Tools: Claude Code, Codex, OpenCode
+Systems that run themselves: work comes in, gets planned, built by agents, checked, shipped, and learned from — without someone pushing every step.
 
-## Projects
+## Timeline
 
-- Go Core: Multi-tenant auth module for Go — JWT, OAuth2, WebAuthn, 2FA, RBAC, HTMX admin GUI
-- SimplySigned: Legal e-signature SaaS — PDF upload, signing links, audit trails, tamper detection
-- Foodable: AI-driven food recommendation app with vector search and OpenAI
-- Image Editor: Python/OpenCV desktop app for real-time image editing
+- 2022: JavaScript · React · Node
+- 2023: Python · C/C++ · SQL
+- 2024: Next.js · first AI integrations
+- 2025: B.S. CS, Oregon State · Go
+- 2026: agents write it. I build the system.
+
+## Skills (fluent)
+
+typescript, python, postgres, go, aws, docker
+
+## Camp stories (summaries)
+
+- Faith: Baptized at 13, wandered, then made it real. Faith comes first.
+- Education: Spanish immersion, IB, pre-med, then CS at Oregon State.
+- Family: My wife, my mom, a sister who flies planes, and 15 cousins.
+- Life: Born in Oregon. Hiking, food, and almost anything new.
 
 ## Links
 
 - GitHub: https://github.com/MrF1ow
+- X: https://x.com/MrF1ow
 - LinkedIn: https://www.linkedin.com/in/ethanflow/
-- Email: ethanflowdev@gmail.com
-- Resume: https://ethanflow.dev/Ethan-Resume.pdf
 
-## Full Content
+## Full content
 
-For complete portfolio content, see [index.md](/index.md).
+For the full llms bundle and story text, see [llms-full.txt](/llms-full.txt) and [index.md](/index.md).
