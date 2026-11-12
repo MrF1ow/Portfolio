@@ -244,6 +244,12 @@ function paragraphs(entry: CollectionEntry<"stories">) {
     overflow-y: auto;
     padding: 22px var(--space-reader-x) 10px;
     overscroll-behavior: contain;
+    /* The gold progress bar shows the reading position; hide the native scrollbar. */
+    scrollbar-width: none;
+  }
+
+  .rd .scroll::-webkit-scrollbar {
+    display: none;
   }
 
   .rd .kicker {
@@ -343,9 +349,15 @@ function paragraphs(entry: CollectionEntry<"stories">) {
   @media (max-width: 560px) {
     .rd .panel {
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       width: auto;
-      height: auto;
+      /* Cover the whole screen, including under Safari's floating address bar (large viewport),
+         but keep the controls inside the part that is actually visible (dynamic viewport). */
+      height: 100vh;
+      height: 100lvh;
+      padding-bottom: calc(100lvh - 100dvh);
       border: 0;
       transform: translateY(100%);
       box-shadow: none;
@@ -354,6 +366,8 @@ function paragraphs(entry: CollectionEntry<"stories">) {
         var(--surface-sheet-top),
         var(--palette-night) 60%
       );
+      /* Safari 26 tints its bars from background-color, not gradients. */
+      background-color: var(--palette-night);
     }
 
     .rd.on .panel,
@@ -371,7 +385,7 @@ function paragraphs(entry: CollectionEntry<"stories">) {
     }
 
     .rd .scroll {
-      padding: 56px var(--space-reader-x) 20px;
+      padding: calc(56px + env(safe-area-inset-top)) var(--space-reader-x) 20px;
     }
 
     .rd .bar {

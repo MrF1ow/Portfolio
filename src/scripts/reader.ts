@@ -129,10 +129,12 @@ export function initStoryReader() {
     if (!panel) return;
   const mobile = window.matchMedia("(max-width: 560px)").matches;
     if (mobile) {
-      panel.style.position = "fixed";
-      panel.style.inset = "0";
-      panel.style.width = "100%";
-      panel.style.height = "100%";
+      // Size and position come from StoryReader.astro's phone rules (full screen incl. under
+      // Safari's bars); only make sure nothing from the desktop layout lingers.
+      panel.style.position = "";
+      panel.style.inset = "";
+      panel.style.width = "";
+      panel.style.height = "";
     } else {
       panel.style.position = "";
       panel.style.inset = "";

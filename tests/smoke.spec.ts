@@ -8,7 +8,7 @@ test("home page smoke", async ({ page }) => {
   await expect(page).toHaveTitle("Ethan Flow — Software Engineer");
 
   const bg = await page.evaluate(() =>
-    getComputedStyle(document.body).backgroundColor,
+    getComputedStyle(document.documentElement).backgroundColor,
   );
   expect(bg).toBe("rgb(11, 19, 24)");
 

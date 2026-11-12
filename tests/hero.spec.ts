@@ -441,3 +441,43 @@ test.describe("hero robustness", () => {
     expect(gap).toBeLessThan(2);
   });
 });
+
+test.describe("hero performance", () => {
+  test("big drifting layers carry no live blur, and loops only move transform/opacity", async ({ page }) => {
+    await page.goto("/");
+    await page.waitForTimeout(3300);
+    const r = await page.evaluate(() => {
+      const filterOf = (sel: string) => getComputedStyle(document.querySelector(sel)!).filter;
+      const heroLoops = ["ambient-drift", "bg-drift", "tint-shift", "glass-sheen", "photo-breathe"];
+      const animated = new Set<string>();
+      for (const a of document.getAnimations()) {
+        const name = (a as CSSAnimation).animationName;
+        if (!heroLoops.includes(name)) continue;
+        for (const kf of (a.effect as KeyframeEffect).getKeyframes()) {
+          for (const k of Object.keys(kf)) if (!["offset", "computedOffset", "easing", "composite"].includes(k)) animated.add(k);
+        }
+      }
+      return { ambient: filterOf(".ambient"), bgblur: filterOf(".bgblur"), animated: [...animated].sort() };
+    });
+    // A live blur on these large layers re-ran every frame and held phones to ~15fps.
+    expect(r.ambient).not.toContain("blur");
+    expect(r.bgblur).not.toContain("blur");
+    for (const prop of r.animated) expect(["opacity", "transform"]).toContain(prop);
+  });
+
+  test("hero loops pause once the hero is off screen", async ({ page }) => {
+    await page.goto("/");
+    await page.waitForTimeout(3300);
+    await page.locator("#camp").scrollIntoViewIfNeeded();
+    await expect
+      .poll(() =>
+        page.evaluate(() =>
+          document
+            .getAnimations()
+            .filter((a) => ["ambient-drift", "bg-drift", "tint-shift", "glass-sheen", "photo-breathe"].includes((a as CSSAnimation).animationName))
+            .filter((a) => a.playState === "running").length,
+        ),
+      )
+      .toBe(0);
+  });
+});

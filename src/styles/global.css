@@ -13,12 +13,14 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  /* The page colour lives on html, not body: body is a size container, so its own background would
+     not propagate to the canvas and would paint over the fixed star field behind the content. */
+  background: var(--surface-page);
 }
 
 body {
   container: site / inline-size;
   min-height: 100vh;
-  background: var(--surface-page);
   color: var(--text-primary);
   font-family: var(--font-sans);
   line-height: 1.5;

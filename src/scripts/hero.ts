@@ -1,4 +1,15 @@
+/** Pause the hero's endless loops (glow, blur drift, tint, sheen) while the hero is off screen. */
+function pauseHeroLoopsOffscreen() {
+  const hero = document.getElementById("hero");
+  if (!hero || !("IntersectionObserver" in window)) return;
+  const root = document.documentElement;
+  new IntersectionObserver(([entry]) => {
+    root.toggleAttribute("data-hero-offscreen", !entry?.isIntersecting);
+  }).observe(hero);
+}
+
 function initHeroMotion() {
+  pauseHeroLoopsOffscreen();
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     return;
   }

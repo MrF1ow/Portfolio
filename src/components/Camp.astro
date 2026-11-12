@@ -8,7 +8,6 @@ const stories = (await getCollection("stories")).sort(
 ---
 
 <section id="camp" data-section="camp" class="sec">
-  <div class="stars" id="camp-stars" aria-hidden="true"></div>
   <div class="wp m">▲ 03 · CAMP</div>
   <h2>Outside <span class="serif">the machine.</span></h2>
   <p class="sub">Pull up a chair. Pick a story; it opens right here.</p>
@@ -32,58 +31,10 @@ const stories = (await getCollection("stories")).sort(
   <StoryReader stories={stories} />
 </section>
 
-<script>
-  const starsEl = document.getElementById("camp-stars");
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (starsEl && !reduce) {
-    for (let i = 0; i < 46; i++) {
-      const dot = document.createElement("i");
-      dot.style.left = `${Math.random() * 100}%`;
-      dot.style.top = `${Math.random() * 100}%`;
-      dot.style.animationDelay = `${Math.random() * 4}s`;
-      dot.style.opacity = String(Math.random() * 0.2);
-      starsEl.appendChild(dot);
-    }
-  }
-</script>
 
 <style>
   #camp {
     position: relative;
-  }
-
-  .stars {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .stars :global(i) {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: var(--palette-cream);
-    opacity: 0;
-    animation: twinkle 4s ease-in-out infinite;
-  }
-
-  @keyframes twinkle {
-    0%,
-    100% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0.35;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .stars :global(i) {
-      animation: none;
-      opacity: 0.15;
-    }
   }
 
   .life {
