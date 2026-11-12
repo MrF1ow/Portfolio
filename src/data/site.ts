@@ -10,8 +10,8 @@ export const site = {
     linkedin: "https://www.linkedin.com/in/ethanflow/",
   },
   turnstile: {
-    // TODO(manual): replace with the ethanflow.dev widget sitekey
-    sitekey: "1x00000000000000000000AA",
+    // The "ethanflow register" Turnstile widget (hostnames: ethanflow.dev and the workers.dev URL).
+    sitekey: "0x4AAAAAAF-J1Dapi1VIKgpY",
     action: "register",
   },
   timeline: [
