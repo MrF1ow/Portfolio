@@ -45,6 +45,8 @@ body {
 .sec {
   position: relative;
   padding: var(--space-section) var(--space-gutter) 0;
+  /* The hero runs edge to edge; section content stops at --content-max and centres on wide screens. */
+  padding-inline: max(var(--space-gutter), (100% - var(--content-max)) / 2);
 }
 
 .wp {
@@ -101,5 +103,6 @@ body {
 
 /* @fontsource-variable/inter registers the family as "Inter Variable"; tokens.css names "Inter". */
 :root {
+  --content-max: 1200px;
   --font-sans: "Inter Variable", "Inter", system-ui, sans-serif;
 }

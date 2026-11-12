@@ -443,41 +443,81 @@ test.describe("hero robustness", () => {
 });
 
 test.describe("hero performance", () => {
-  test("big drifting layers carry no live blur, and loops only move transform/opacity", async ({ page }) => {
+  test("the hero runs no heavy animation: big layers are static and the photo never blurs", async ({ page }) => {
     await page.goto("/");
-    await page.waitForTimeout(3300);
+    await page.waitForTimeout(1500);
     const r = await page.evaluate(() => {
       const filterOf = (sel: string) => getComputedStyle(document.querySelector(sel)!).filter;
-      const heroLoops = ["ambient-drift", "bg-drift", "tint-shift", "glass-sheen", "photo-breathe"];
-      const animated = new Set<string>();
-      for (const a of document.getAnimations()) {
-        const name = (a as CSSAnimation).animationName;
-        if (!heroLoops.includes(name)) continue;
-        for (const kf of (a.effect as KeyframeEffect).getKeyframes()) {
-          for (const k of Object.keys(kf)) if (!["offset", "computedOffset", "easing", "composite"].includes(k)) animated.add(k);
-        }
-      }
-      return { ambient: filterOf(".ambient"), bgblur: filterOf(".bgblur"), animated: [...animated].sort() };
+      const hero = document.querySelector("#hero")!;
+      const ambient = document.querySelector(".ambient")!;
+      const running = document
+        .getAnimations()
+        .filter((a) => a.playState === "running")
+        .filter((a) => {
+          const el = (a.effect as KeyframeEffect).target as Element | null;
+          return !!el && (hero.contains(el) || el === ambient);
+        })
+        .map((a) => (a as CSSAnimation).animationName);
+      return {
+        ambient: filterOf(".ambient"),
+        bgblur: filterOf(".bgblur"),
+        photo: filterOf("#hero #photo, #hero img.photo"),
+        running,
+      };
     });
-    // A live blur on these large layers re-ran every frame and held phones to ~15fps.
+    // A live blur on these large layers re-ran every frame and made the page lag on load.
     expect(r.ambient).not.toContain("blur");
     expect(r.bgblur).not.toContain("blur");
-    for (const prop of r.animated) expect(["opacity", "transform"]).toContain(prop);
+    expect(r.photo).not.toContain("blur");
+    // Only the tiny status dot and scroll marker loop once the headline has faded in.
+    for (const name of r.running) expect(["gfoot-pulse", "marker-drop"]).toContain(name);
+  });
+
+  test("the photo stays put under the pointer", async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== "desktop-1440", "pointer hover is desktop only");
+    await page.goto("/");
+    const photo = page.locator("#hero #photo, #hero img.photo").first();
+    const before = await photo.boundingBox();
+    await page.mouse.move(200, 200);
+    await page.mouse.move(1300, 700, { steps: 5 });
+    await page.waitForTimeout(900);
+    expect(await photo.boundingBox()).toEqual(before);
   });
 
   test("hero loops pause once the hero is off screen", async ({ page }) => {
     await page.goto("/");
-    await page.waitForTimeout(3300);
+    await page.waitForTimeout(1500);
     await page.locator("#camp").scrollIntoViewIfNeeded();
     await expect
       .poll(() =>
         page.evaluate(() =>
           document
             .getAnimations()
-            .filter((a) => ["ambient-drift", "bg-drift", "tint-shift", "glass-sheen", "photo-breathe"].includes((a as CSSAnimation).animationName))
+            .filter((a) => ["gfoot-pulse", "marker-drop"].includes((a as CSSAnimation).animationName))
             .filter((a) => a.playState === "running").length,
         ),
       )
       .toBe(0);
+  });
+});
+
+test.describe("desktop content width", () => {
+  test("sections stop growing past the content cap while the hero spans the screen", async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== "desktop-1440", "desktop only");
+    await page.setViewportSize({ width: 2560, height: 1300 });
+    await page.goto("/");
+    const r = await page.evaluate(() => {
+      const inner = (sel: string) => {
+        const el = document.querySelector(sel)!;
+        const cs = getComputedStyle(el);
+        return el.getBoundingClientRect().width - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      };
+      return {
+        hero: document.querySelector("#hero")!.getBoundingClientRect().width,
+        sections: ["#climb", "#trail", "#camp", "#register", "#footer"].map(inner),
+      };
+    });
+    expect(r.hero).toBe(2560);
+    for (const w of r.sections) expect(w).toBeLessThanOrEqual(1200);
   });
 });
