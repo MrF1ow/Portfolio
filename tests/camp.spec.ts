@@ -1,4 +1,4 @@
-import { execSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { expect, test } from "@playwright/test";
 
 test.use({ reducedMotion: "reduce" });
@@ -10,25 +10,11 @@ type ExpectedStory = {
   paragraphs: string[];
 };
 
+// The story text of the React site this rebuild replaced (src/data/about-tabs.ts at 8ac4393),
+// captured once so the check does not depend on git history being present.
 function loadExpectedStories(): ExpectedStory[] {
-  const raw = execSync("git show main:src/data/about-tabs.ts", { encoding: "utf8" });
-  const blocks = [
-    ...raw.matchAll(
-      /\{\s*id:\s*"([^"]+)"[\s\S]*?label:\s*"([^"]+)"[\s\S]*?heading:\s*"([^"]+)"[\s\S]*?content:\s*\[([\s\S]*?)\],\s*\}/g,
-    ),
-  ];
-  return blocks.map((m) => {
-    const contentBlock = m[4]!;
-    const paragraphs = [
-      ...contentBlock.matchAll(/value:\s*(?:"((?:[^"\\]|\\.)*)")/gs),
-    ].map((x) => x[1]!.replace(/\\n/g, "\n").replace(/\\"/g, '"'));
-    return {
-      id: m[1]!,
-      label: m[2]!,
-      heading: m[3]!,
-      paragraphs,
-    };
-  });
+  const file = new URL("./fixtures/stories.json", import.meta.url);
+  return (JSON.parse(readFileSync(file, "utf8")) as { stories: ExpectedStory[] }).stories;
 }
 
 const expected = loadExpectedStories();
@@ -166,6 +152,26 @@ test.describe("camp stories", () => {
       });
       expect(inside).toBe(true);
     }
+    await page.keyboard.press("Escape");
+    await expect(page.locator(".rd")).toHaveAttribute("aria-hidden", "true");
+  });
+});
+
+test.describe("camp stories · keys and name", () => {
+  test("keys work after clicking the story text, and the dialog is named by the shown story", async ({ page }) => {
+    await page.goto("/");
+    await page.locator("#camp").scrollIntoViewIfNeeded();
+    await page.locator(`#camp button.card[data-story="${expected[0]!.id}"]`).click();
+    await expect(page.locator(".rd")).toHaveAttribute("aria-hidden", "false");
+    const dialog = page.getByRole("dialog");
+
+    // Clicking non-focusable text moves focus to <body>; the keys must still work.
+    await page.locator(".rd .story-pane:not([hidden]) .body p").first().click();
+    await page.keyboard.press("ArrowRight");
+    await page.keyboard.press("ArrowRight");
+    await expect(dialog).toHaveAccessibleName(expected[2]!.heading);
+
+    await page.locator(".rd .story-pane:not([hidden]) .body p").first().click();
     await page.keyboard.press("Escape");
     await expect(page.locator(".rd")).toHaveAttribute("aria-hidden", "true");
   });

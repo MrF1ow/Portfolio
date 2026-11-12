@@ -73,7 +73,7 @@ export function initStoryReader() {
   const activePane = panes[cur]!;
     const heading = activePane.querySelector("h3");
     if (heading) {
-      rd.setAttribute("aria-labelledby", heading.id);
+      panel?.setAttribute("aria-labelledby", heading.id);
     }
 
     if (prevBtn) {
@@ -215,7 +215,9 @@ export function initStoryReader() {
   closeMobile?.addEventListener("click", close);
   scrim?.addEventListener("click", close);
 
-  panel?.addEventListener("keydown", (e) => {
+  // On document, not the panel: clicking the story text moves focus to <body>, and the keys
+  // must keep working wherever focus is while the reader is open.
+  document.addEventListener("keydown", (e) => {
     if (!rd.classList.contains("on")) return;
     if (e.key === "Tab" && panel) {
       const items = focusableIn(panel);
