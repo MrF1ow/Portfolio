@@ -105,8 +105,6 @@ const ambientImg = ambientBlurImg;
     -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 35%, transparent 100%);
     mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 35%, transparent 100%);
     opacity: 0.32;
-    will-change: transform, opacity;
-    animation: ambient-drift 18s ease-in-out infinite alternate;
   }
 
   .ambient::after {
@@ -121,34 +119,13 @@ const ambientImg = ambientBlurImg;
     );
   }
 
-  @keyframes ambient-drift {
-    from {
-      transform: translateY(0) scale(1);
-      opacity: 0.28;
-    }
-    to {
-      transform: translateY(-60px) scale(1.08);
-      opacity: 0.36;
-    }
-  }
 
   .bgblur {
     position: absolute;
     inset: -60px;
     background: var(--hero-img) 30% 40% / cover no-repeat;
-    /* No live filter: blur and colour are baked into the image; only transform moves. */
+    /* No live filter: blur and colour are baked into the image. Static: no drift loop. */
     transform: scale(1.15);
-    will-change: transform;
-    animation: bg-drift 16s ease-in-out infinite alternate;
-  }
-
-  @keyframes bg-drift {
-    from {
-      transform: scale(1.15);
-    }
-    to {
-      transform: scale(1.22) translateX(-20px);
-    }
   }
 
   .photo-wrap {
@@ -156,7 +133,9 @@ const ambientImg = ambientBlurImg;
     top: -20px;
     bottom: -20px;
     right: -20px;
-    width: 60%;
+    /* The photo is portrait (3:4). Past ~960px wide, cover-cropping a 3:4 image into a ~820px-tall
+       box cut the face off at the chin, so the panel stops growing there. */
+    width: min(60%, 960px);
     overflow: hidden;
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 30%);
     mask-image: linear-gradient(90deg, transparent 0%, #000 30%);
@@ -169,64 +148,22 @@ const ambientImg = ambientBlurImg;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 52%;
+    /* Bias the crop low: the face sits in the lower half of the photo, the top is sky. */
+    object-position: center 80%;
   }
 
-  .photo-wrap :global(img.photo) {
-    animation:
-      focus-pull 2.6s cubic-bezier(0.2, 0.7, 0.2, 1) both,
-      photo-breathe 22s 2.6s ease-in-out infinite alternate;
-    will-change: transform;
-  }
-
-  @keyframes focus-pull {
-    from {
-      filter: blur(22px) saturate(0.2) brightness(1.15);
-      transform: scale(1.12);
-    }
-    to {
-      filter: blur(0) saturate(1.08) brightness(1.02);
-      transform: scale(1);
-    }
-  }
-
-  @keyframes photo-breathe {
-    from {
-      transform: scale(1);
-    }
-    to {
-      transform: scale(1.05);
-    }
-  }
+  /* The photo is static: no focus-pull (a 22px live blur on the largest image was the main cause
+     of load-time jank) and no breathing loop. */
 
   .tint {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 0;
-    width: 300%;
+    right: 0;
     mix-blend-mode: soft-light;
-    background: linear-gradient(
-      120deg,
-      var(--hero-drift-warm),
-      var(--hero-drift-cool),
-      var(--hero-drift-warm)
-    );
+    background: linear-gradient(120deg, var(--hero-drift-warm), var(--hero-drift-cool));
     opacity: 0.35;
-    will-change: transform;
-    animation: tint-shift 14s ease-in-out infinite;
     pointer-events: none;
-  }
-
-  /* Slide a 3x-wide gradient instead of animating background-position (which repaints every frame). */
-  @keyframes tint-shift {
-    0%,
-    100% {
-      transform: translateX(0);
-    }
-    50% {
-      transform: translateX(-66.667%);
-    }
   }
 
   .fadeout {
@@ -301,41 +238,6 @@ const ambientImg = ambientBlurImg;
       inset 0 1px 0 var(--hero-glass-highlight),
       0 30px 80px var(--hero-shadow);
     overflow: hidden;
-    opacity: 0;
-    transform: translateX(-24px);
-    animation: glass-in 1.1s 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
-  }
-
-  @keyframes glass-in {
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  .glass::before {
-    content: "";
-    position: absolute;
-    inset: -50% auto -50% 0;
-    width: 40%;
-    transform: translateX(-150%) rotate(18deg);
-    background: linear-gradient(
-      90deg,
-      transparent,
-      var(--hero-glass-high),
-      transparent
-    );
-    animation: glass-sheen 7s 2.4s ease-in-out infinite;
-  }
-
-  @keyframes glass-sheen {
-    0% {
-      transform: translateX(-150%) rotate(18deg);
-    }
-    35%,
-    100% {
-      transform: translateX(350%) rotate(18deg);
-    }
   }
 
   .glass::after {
@@ -402,17 +304,17 @@ const ambientImg = ambientBlurImg;
     display: block;
     opacity: 0;
     transform: translateY(0.35em);
-    animation: headline-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    animation: headline-rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
   }
 
   h1 span:nth-child(1) {
-    animation-delay: 1.3s;
+    animation-delay: 0.1s;
   }
   h1 span:nth-child(2) {
-    animation-delay: 1.45s;
+    animation-delay: 0.2s;
   }
   h1 span:nth-child(3) {
-    animation-delay: 1.6s;
+    animation-delay: 0.3s;
   }
 
   @keyframes headline-rise {
@@ -426,7 +328,7 @@ const ambientImg = ambientBlurImg;
     color: var(--hero-lede);
     font-size: var(--type-lede);
     opacity: 0;
-    animation: headline-rise 0.9s 1.85s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    animation: headline-rise 0.6s 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
   }
 
   .gfoot {
@@ -532,12 +434,6 @@ const ambientImg = ambientBlurImg;
       top: auto;
       bottom: 66px;
       padding: 22px 20px 18px;
-      transform: translateY(28px);
-      animation-name: glass-in-mobile;
-    }
-
-    .glass::before {
-      width: 60%;
     }
 
     .gfoot {
@@ -563,31 +459,13 @@ const ambientImg = ambientBlurImg;
     }
   }
 
-  @keyframes glass-in-mobile {
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
   /* hero.ts sets data-offscreen while the hero is out of view: no hidden loops cost frames below it. */
-  :global([data-hero-offscreen]) .ambient,
-  :global([data-hero-offscreen]) .bgblur,
-  :global([data-hero-offscreen]) .tint,
-  :global([data-hero-offscreen]) .glass::before,
   :global([data-hero-offscreen]) .gfoot i,
-  :global([data-hero-offscreen]) .marker i,
-  :global([data-hero-offscreen]) .photo-wrap :global(img.photo) {
+  :global([data-hero-offscreen]) .marker i {
     animation-play-state: paused;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .glass {
-      opacity: 1;
-      transform: none;
-      animation: none;
-    }
-
     h1 span,
     .lede {
       opacity: 1;
@@ -595,28 +473,9 @@ const ambientImg = ambientBlurImg;
       animation: none;
     }
 
-    .photo-wrap :global(img.photo),
-    .photo-wrap :global(picture) {
-      animation: none;
-      filter: blur(0) saturate(1.08) brightness(1.02);
-      transform: scale(1);
-    }
-
-    .bgblur,
-    .ambient,
-    .tint,
-    .glass::before,
     .gfoot i,
     .marker i {
       animation: none;
-    }
-  }
-
-  @container site (max-width: 560px) {
-    @media (prefers-reduced-motion: reduce) {
-      .glass {
-        transform: none;
-      }
     }
   }
 </style>
