@@ -1,4 +1,19 @@
-# Logs
+# dependencies
+node_modules
+
+# build output
+dist
+
+# astro / cloudflare
+.astro/
+.wrangler/
+.dev.vars
+
+# testing
+test-results/
+playwright-report/
+
+# logs
 logs
 *.log
 npm-debug.log*
@@ -7,12 +22,12 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# env (tracked .env removed in P8)
+.env
+.env.*
+!.env.example
 
-# Editor directories and files
+# editor
 .vscode/*
 !.vscode/extensions.json
 .idea

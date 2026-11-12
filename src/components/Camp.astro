@@ -1,0 +1,170 @@
+---
+import { getCollection } from "astro:content";
+import StoryReader from "./StoryReader.astro";
+
+const stories = (await getCollection("stories")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<section id="camp" data-section="camp" class="sec">
+  <div class="stars" id="camp-stars" aria-hidden="true"></div>
+  <div class="wp m">▲ 03 · CAMP</div>
+  <h2>Outside <span class="serif">the machine.</span></h2>
+  <p class="sub">Pull up a chair. Pick a story; it opens right here.</p>
+  <div class="life">
+    {
+      stories.map((entry, i) => (
+        <button
+          type="button"
+          class="card"
+          data-story={entry.id}
+          data-i={i}
+        >
+          <pre class="m">{entry.data.art}</pre>
+          <b>{entry.data.label}</b>
+          <p>{entry.data.blurb}</p>
+          <span class="open m">read →</span>
+        </button>
+      ))
+    }
+  </div>
+  <StoryReader stories={stories} />
+</section>
+
+<script>
+  const starsEl = document.getElementById("camp-stars");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (starsEl && !reduce) {
+    for (let i = 0; i < 46; i++) {
+      const dot = document.createElement("i");
+      dot.style.left = `${Math.random() * 100}%`;
+      dot.style.top = `${Math.random() * 100}%`;
+      dot.style.animationDelay = `${Math.random() * 4}s`;
+      dot.style.opacity = String(Math.random() * 0.2);
+      starsEl.appendChild(dot);
+    }
+  }
+</script>
+
+<style>
+  #camp {
+    position: relative;
+  }
+
+  .stars {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .stars :global(i) {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--palette-cream);
+    opacity: 0;
+    animation: twinkle 4s ease-in-out infinite;
+  }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.35;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stars :global(i) {
+      animation: none;
+      opacity: 0.15;
+    }
+  }
+
+  .life {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-grid-gap);
+    margin-top: var(--space-waypoint-gap);
+  }
+
+  .card {
+    all: unset;
+    cursor: pointer;
+    display: block;
+    padding: var(--space-card-pad) var(--space-card-pad) calc(var(--space-card-pad) - 8px);
+    background: var(--surface-card);
+    backdrop-filter: blur(6px);
+    position: relative;
+    transition: background 0.25s;
+    box-sizing: border-box;
+  }
+
+  .card:hover {
+    background: var(--surface-card-hover);
+  }
+
+  .card pre {
+    font-family: var(--font-mono);
+    font-size: var(--type-ascii);
+    line-height: 1.25;
+    color: var(--accent-gold);
+    height: 56px;
+    margin-bottom: var(--space-tight);
+    white-space: pre;
+    transition: transform 0.35s;
+  }
+
+  .card:hover pre {
+    transform: translateY(-3px);
+  }
+
+  .card b {
+    display: block;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: var(--type-card-title);
+    margin-bottom: 4px;
+  }
+
+  .card p {
+    font-size: var(--type-card-body);
+    color: var(--text-body);
+    line-height: 1.45;
+  }
+
+  .card .open {
+    display: block;
+    margin-top: var(--space-tight);
+    font-size: var(--type-label);
+    color: var(--accent-gold);
+    transition: color 0.3s;
+  }
+
+  .card.seen .open::after {
+    content: " · read";
+    color: var(--text-muted);
+  }
+
+  @container site (max-width: 560px) {
+    .life {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .card {
+      padding: var(--space-card-pad) calc(var(--space-card-pad) - 2px)
+        calc(var(--space-card-pad) - 2px);
+    }
+
+    .card pre {
+      height: 50px;
+    }
+  }
+</style>

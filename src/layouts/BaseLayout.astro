@@ -1,0 +1,92 @@
+---
+import "@fontsource-variable/inter";
+import "@fontsource/instrument-serif/400-italic.css";
+import "@fontsource/geist-mono/400.css";
+import "@fontsource/geist-mono/500.css";
+import "../styles/global.css";
+import { site } from "../data/site";
+
+const canonical = `${site.url}/`;
+const ogImage = `${site.url}/og-image.png`;
+const ogImageAlt =
+  "Ethan Flow — Trail hero with a mountain photo and frosted glass headline panel";
+const themeColor = "#0b1318";
+const xProfile = site.links.x.replace(/^https?:\/\/(www\.)?(x|twitter)\.com\//i, "");
+const xHandle = `@${xProfile}`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      name: site.name,
+      url: site.url,
+      jobTitle: "Software Engineer",
+      sameAs: [site.links.github, site.links.x, site.links.linkedin],
+      worksFor: {
+        "@type": "Organization",
+        name: "Jedidiah Digital",
+        url: "https://jedidiahdigital.com",
+      },
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "Oregon State University",
+      },
+      homeLocation: {
+        "@type": "Place",
+        address: {
+          "@type": "PostalAddress",
+          addressRegion: "Oregon",
+          addressCountry: "US",
+        },
+      },
+    },
+    {
+      "@type": "WebSite",
+      name: site.title,
+      url: site.url,
+      description: site.description,
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content={themeColor} />
+    <title>{site.title}</title>
+    <meta name="description" content={site.description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={site.title} />
+    <meta property="og:description" content={site.description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={xHandle} />
+    <meta name="twitter:creator" content={xHandle} />
+    <meta name="twitter:title" content={site.title} />
+    <meta name="twitter:description" content={site.description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <div class="site">
+      <slot />
+    </div>
+  </body>
+</html>

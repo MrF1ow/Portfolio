@@ -1,0 +1,316 @@
+---
+import { site } from "../data/site";
+
+const METER_MAX = 20;
+const METER_BLOCK = "▮";
+
+const chartNotes: Record<number, string> = {
+  2022: "JS · React · Node",
+  2023: "Python · C/C++ · SQL",
+  2024: "Next.js · first AI",
+  2025: "B.S. CS · Go",
+  2026: "agents write it",
+};
+
+type ChartPoint = {
+  year: number;
+  cx: number;
+  cy: number;
+  delay: string;
+  noteY: number;
+  summit?: boolean;
+};
+
+const points: ChartPoint[] = [
+  { year: 2022, cx: 60, cy: 170, delay: "0.3s", noteY: 158 },
+  { year: 2023, cx: 140, cy: 140, delay: "0.8s", noteY: 128 },
+  { year: 2024, cx: 225, cy: 108, delay: "1.3s", noteY: 96 },
+  { year: 2025, cx: 305, cy: 74, delay: "1.8s", noteY: 62 },
+  { year: 2026, cx: 398, cy: 24, delay: "2.3s", noteY: 20, summit: true },
+];
+---
+
+<section id="trail" data-section="trail" class="sec">
+  <div class="wp m">▲ 02 · THE TRAIL SO FAR</div>
+  <h2>Every year <span class="serif">a little higher.</span></h2>
+  <div class="two">
+    <svg id="profile" viewBox="0 0 420 210" aria-hidden="true">
+      <defs>
+        <linearGradient id="trail-fade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="var(--accent-gold)" stop-opacity="0.22"></stop>
+          <stop offset="1" stop-color="var(--accent-gold)" stop-opacity="0"></stop>
+        </linearGradient>
+      </defs>
+      <path
+        class="area"
+        d="M10 186 L60 170 L95 176 L140 140 L175 148 L225 108 L262 116 L305 74 L340 80 L398 24 L398 200 L10 200 Z"
+      ></path>
+      <path
+        class="trail"
+        id="trailpath"
+        d="M10 186 L60 170 L95 176 L140 140 L175 148 L225 108 L262 116 L305 74 L340 80 L398 24"
+      ></path>
+      {
+        points.map((pt) => (
+          <g class="pt" style={`transition-delay:${pt.delay}`}>
+            {pt.summit ? (
+              <path
+                d="M398 24 V4 l12 5 l-12 5"
+                fill="none"
+                stroke="var(--accent-gold)"
+              ></path>
+            ) : null}
+            <circle
+              cx={pt.cx}
+              cy={pt.cy}
+              r={pt.summit ? 3.5 : 3}
+              fill={pt.summit ? "var(--accent-gold)" : "var(--text-primary)"}
+            ></circle>
+            <text
+              x={pt.cx}
+              y="194"
+              fill={pt.summit ? "var(--accent-gold)" : "var(--text-muted)"}
+              text-anchor={pt.summit ? "end" : "middle"}
+              font-size="9"
+            >
+              {pt.year}
+            </text>
+            <text
+              x={pt.summit ? 392 : pt.cx}
+              y={pt.noteY}
+              fill={pt.summit ? "var(--text-primary)" : "var(--text-body)"}
+              class="desc"
+              text-anchor={pt.summit ? "end" : "middle"}
+              font-size="8.5"
+            >
+              {chartNotes[pt.year]}
+            </text>
+          </g>
+        ))
+      }
+    </svg>
+    <ul class="tlist tlist--visually-hidden m">
+      {
+        site.timeline.map((entry) => (
+          <li class="tlist-row">
+            {entry.year === 2026 ? (
+              <>
+                <b class="g">{entry.year}</b>
+                <span class="g">{entry.label}</span>
+              </>
+            ) : (
+              <>
+                <b>{entry.year}</b>
+                {entry.label}
+              </>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+    <div class="fluent">
+      <span class="k m">STILL FLUENT IN</span>
+      <div class="meter" id="meters">
+        {
+          site.fluent.map((skill) => (
+            <div class="meter-row" data-name={skill.name} data-level={skill.level}>
+              <span class="nm">{skill.name}</span>
+              <span class="bar">{METER_BLOCK.repeat(skill.level)}</span>
+              <span class="rest">{METER_BLOCK.repeat(METER_MAX - skill.level)}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initTrailProfile } from "../scripts/profile.ts";
+  initTrailProfile();
+</script>
+
+<style>
+  .two {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 26px;
+    align-items: end;
+  }
+
+  #profile {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  #profile .trail {
+    fill: none;
+    stroke: var(--text-primary);
+    stroke-width: 1.5;
+    stroke-dasharray: var(--len);
+    stroke-dashoffset: var(--len);
+  }
+
+  #profile.on .trail {
+    transition: stroke-dashoffset 2.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+    stroke-dashoffset: 0;
+  }
+
+  #profile .area {
+    fill: url(#trail-fade);
+    opacity: 0;
+    transition: opacity 1.2s 1s;
+  }
+
+  #profile.on .area {
+    opacity: 1;
+  }
+
+  #profile .pt {
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity 0.5s,
+      transform 0.5s;
+    transform-box: fill-box;
+  }
+
+  #profile.on .pt {
+    opacity: 1;
+    transform: none;
+  }
+
+  #profile text {
+    font-family: var(--font-mono);
+  }
+
+  .tlist {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+    grid-column: 1;
+    grid-row: 2;
+    font-size: var(--type-meter);
+    line-height: 2;
+    color: var(--text-story);
+  }
+
+  .tlist-row {
+    white-space: nowrap;
+  }
+
+  .tlist.tlist--visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .tlist b {
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-right: 10px;
+  }
+
+  .tlist .g {
+    color: var(--accent-gold);
+  }
+
+  .fluent {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  .k {
+    display: block;
+    color: var(--text-muted);
+    font-size: var(--type-label);
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+
+  .meter {
+    font-family: var(--font-mono);
+    font-size: var(--type-meter);
+    line-height: 1.95;
+    margin-top: 26px;
+  }
+
+  .meter-row {
+    white-space: pre;
+  }
+
+  .meter .nm {
+    color: var(--text-primary);
+    display: inline-block;
+    width: 88px;
+  }
+
+  .meter .bar {
+    color: var(--accent-gold);
+  }
+
+  .meter .rest {
+    color: var(--text-meter-rest);
+  }
+
+  @container site (max-width: 560px) {
+    .two {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    #profile .desc {
+      display: none;
+    }
+
+    .tlist.tlist--visually-hidden {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 12px 0 0;
+      overflow: visible;
+      clip: auto;
+      white-space: normal;
+      border: 0;
+    }
+
+    .fluent {
+      grid-column: 1;
+      grid-row: auto;
+    }
+
+    .meter {
+      margin-top: 18px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #profile .trail,
+    #profile.on .trail,
+    #profile .area,
+    #profile.on .area,
+    #profile .pt,
+    #profile.on .pt {
+      transition: none !important;
+      transition-delay: 0s !important;
+    }
+
+    #profile .area,
+    #profile.on .area,
+    #profile .pt,
+    #profile.on .pt {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

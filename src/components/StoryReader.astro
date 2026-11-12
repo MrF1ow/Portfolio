@@ -1,0 +1,418 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  stories: CollectionEntry<"stories">[];
+};
+
+const { stories } = Astro.props;
+
+function headingParts(heading: string) {
+  const words = heading.split(" ");
+  const last = words.pop() ?? "";
+  return { lead: words.join(" "), last };
+}
+
+function paragraphs(entry: CollectionEntry<"stories">) {
+  return entry.body?.trim().split(/\n\n+/).filter(Boolean) ?? [];
+}
+---
+
+<div class="rd" aria-hidden="true">
+  <div class="scrim"></div>
+  <div
+    class="panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="reader-heading-0"
+  >
+    <div class="top m">
+      <span id="reader-meta">CAMP · 01 / 04</span>
+      <button
+        type="button"
+        class="x"
+        id="reader-close-desktop"
+        aria-label="Close">×</button
+      >
+    </div>
+    <div class="tabs m" role="tablist">
+      {
+        stories.map((entry, i) => (
+          <button
+            type="button"
+            class="tab"
+            role="tab"
+            data-i={i}
+            aria-selected={i === 0 ? "true" : "false"}
+          >
+            {entry.data.label}
+            <span class="dot" />
+          </button>
+        ))
+      }
+    </div>
+    <div class="bar"><i></i></div>
+    <div class="scroll">
+      {
+        stories.map((entry, i) => {
+          const { lead, last } = headingParts(entry.data.heading);
+          return (
+            <article
+              class="story-pane"
+              data-i={i}
+              data-label={entry.data.label}
+              hidden={i !== 0}
+            >
+              <div class="kicker m">{entry.data.label.toUpperCase()}</div>
+              <h3 id={`reader-heading-${i}`}>
+                {lead ? `${lead} ` : ""}
+                <em class="serif">{last}</em>
+              </h3>
+              <div class="body">
+                {paragraphs(entry).map((text) => (
+                  <p>{text}</p>
+                ))}
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+    <div class="foot m">
+      <button type="button" id="reader-prev"></button>
+      <div class="mid">
+        <span id="reader-count">01 / 04</span>
+        <button type="button" class="x2" id="reader-close-mobile" aria-label="Close"
+          >close ×</button
+        >
+      </div>
+      <button type="button" id="reader-next"></button>
+    </div>
+  </div>
+</div>
+
+<script>
+  import "../scripts/reader.ts";
+</script>
+
+<style>
+  .rd {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+    font-family: var(--font-sans);
+  }
+
+  .rd .scrim {
+    position: absolute;
+    inset: 0;
+    background: var(--surface-scrim);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 0.45s;
+  }
+
+  .rd .panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(470px, 92%);
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(
+      160deg,
+      var(--surface-drawer-top),
+      var(--surface-drawer-bottom)
+    );
+    -webkit-backdrop-filter: blur(24px) saturate(1.3);
+    backdrop-filter: blur(24px) saturate(1.3);
+    border-left: 1px solid var(--line-edge);
+    box-shadow: -30px 0 80px var(--surface-drawer-shadow);
+    transform: translateX(104%);
+    transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .rd.on {
+    pointer-events: auto;
+  }
+
+  .rd.on .scrim {
+    opacity: 1;
+  }
+
+  .rd.on .panel,
+  .rd.on .panel.open {
+    transform: none;
+  }
+
+  .rd.reduce.on .panel {
+    transform: none;
+    transition: none;
+  }
+
+  .rd.reduce .scrim {
+    transition: none;
+  }
+
+  .rd .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px var(--space-reader-x) 0;
+    font-size: var(--type-label);
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+  }
+
+  .rd .x {
+    all: unset;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line-control);
+    color: var(--text-primary);
+    font-size: var(--type-control);
+  }
+
+  .rd .tabs {
+    display: flex;
+    gap: var(--space-grid-gap);
+    padding: 14px var(--space-reader-x) 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .rd .tab {
+    all: unset;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    padding: 9px 8px 8px;
+    font-size: var(--type-label-sm);
+    color: var(--text-tab);
+    background: var(--surface-tab);
+    white-space: nowrap;
+    transition:
+      color 0.3s,
+      background 0.3s;
+  }
+
+  .rd .tab:hover {
+    color: var(--text-primary);
+  }
+
+  .rd .tab[aria-selected="true"] {
+    color: var(--text-on-accent);
+    background: var(--surface-tab-selected);
+  }
+
+  .rd .tab .dot {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: currentcolor;
+    margin-left: 6px;
+    vertical-align: 2px;
+    opacity: 0;
+  }
+
+  .rd .tab.seen .dot {
+    opacity: 0.6;
+  }
+
+  .rd .bar {
+    height: 2px;
+    margin: 0 var(--space-reader-x);
+    background: var(--line-subtle);
+  }
+
+  .rd .bar i {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--accent-gold);
+    transition: width 0.15s;
+  }
+
+  .rd .scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 22px var(--space-reader-x) 10px;
+    overscroll-behavior: contain;
+  }
+
+  .rd .kicker {
+    font-size: var(--type-label);
+    letter-spacing: 0.14em;
+    color: var(--accent-gold);
+  }
+
+  .rd h3 {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: var(--type-story-title);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin: 8px 0 18px;
+  }
+
+  .rd h3 .serif {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--accent-gold);
+    letter-spacing: -0.01em;
+    font-size: var(--type-story-title-serif);
+  }
+
+  .rd .body :global(p) {
+    margin-bottom: 12px;
+    font-size: var(--type-story-body);
+    line-height: 1.65;
+    color: var(--text-story);
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 0.45s,
+      transform 0.45s;
+  }
+
+  .rd .body :global(p.show) {
+    opacity: 1;
+    transform: none;
+  }
+
+  .rd .body :global(p:first-child) {
+    color: var(--text-primary);
+    font-size: var(--type-story-lead);
+  }
+
+  .rd.reduce .body :global(p) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .rd .foot {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px var(--space-reader-x) 18px;
+    border-top: 1px solid var(--line-subtle);
+  }
+
+  .rd .foot button {
+    all: unset;
+    cursor: pointer;
+    font-size: var(--type-label-sm);
+    color: var(--accent-gold);
+    padding: 6px 0;
+  }
+
+  .rd .foot button :global(span) {
+    color: var(--text-muted);
+  }
+
+  .rd .foot .mid {
+    display: none;
+  }
+
+  .rd .body.swap {
+    animation: swap 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .rd.reduce .body.swap {
+    animation: none;
+  }
+
+  @keyframes swap {
+    from {
+      opacity: 0;
+      transform: translateX(var(--dx, 16px));
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .rd .panel {
+      position: fixed;
+      inset: 0;
+      width: auto;
+      height: auto;
+      border: 0;
+      transform: translateY(100%);
+      box-shadow: none;
+      background: linear-gradient(
+        170deg,
+        var(--surface-sheet-top),
+        var(--palette-night) 60%
+      );
+    }
+
+    .rd.on .panel,
+    .rd.reduce.on .panel {
+      transform: none;
+    }
+
+    .rd .scrim {
+      display: none;
+    }
+
+    .rd .top,
+    .rd .tabs {
+      display: none;
+    }
+
+    .rd .scroll {
+      padding: 56px var(--space-reader-x) 20px;
+    }
+
+    .rd .bar {
+      order: 2;
+      margin: 0;
+    }
+
+    .rd .foot {
+      order: 3;
+      align-items: center;
+      padding: 12px 16px calc(14px + env(safe-area-inset-bottom));
+      border-top: 0;
+      background: var(--surface-bar);
+    }
+
+    .rd .foot .mid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: var(--type-label);
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+
+    .rd .x2 {
+      all: unset;
+      cursor: pointer;
+      font-size: var(--type-label-sm);
+      letter-spacing: 0.04em;
+      color: var(--text-primary);
+      border: 1px solid var(--line-strong);
+      padding: var(--space-control-y) var(--space-control-x);
+    }
+
+    .rd .foot button {
+      min-width: 72px;
+    }
+
+    .rd #reader-next {
+      text-align: right;
+    }
+  }
+</style>

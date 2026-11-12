@@ -1,0 +1,120 @@
+---
+const figureClass = "machine-figure--desktop";
+---
+<div class={`machine ${figureClass}`} data-machine-figure="d">
+<svg id="d-mach" class="mach" viewBox="0 0 1000 452" aria-label="Animated diagram of an a system that builds and ships on its own">
+  <!-- wires -->
+  <g class="wires">
+    <path class="wire" id="d-w-cron" d="M112 98 H132 V150 H152"/>
+    <path class="wire" id="d-w-webhook" d="M112 150 H152"/>
+    <path class="wire" id="d-w-issue" d="M112 202 H132 V150 H152"/>
+    <path class="wire" id="d-w-ip" d="M252 150 H292"/>
+    <path class="wire" id="d-w-you" d="M352 56 V92"/>
+    <path class="wire" id="d-w-f1" d="M412 150 H440 V82 H470"/>
+    <path class="wire" id="d-w-f2" d="M412 150 H470"/>
+    <path class="wire" id="d-w-f3" d="M412 150 H440 V218 H470"/>
+    <path class="wire" id="d-w-j1" d="M590 82 H620 V150 H652"/>
+    <path class="wire" id="d-w-j2" d="M590 150 H652"/>
+    <path class="wire" id="d-w-j3" d="M590 218 H620 V150 H652"/>
+    <path class="wire" id="d-w-dr" d="M708 150 H742"/>
+    <path class="wire" id="d-w-rs" d="M852 150 H890"/>
+    <path class="wire" id="d-w-down" d="M935 186 V370 H882"/>
+    <path class="wire" id="d-w-om" d="M762 370 H602"/>
+    <path class="wire" id="d-w-learn" d="M482 370 H202 V202"/>
+    <path class="wire retry" id="d-w-rt" d="M680 178 V300 H352 V210"/>
+    <path class="wire retry" id="d-w-rr" d="M797 196 V300 H680"/>
+  </g>
+  <text class="lbl" x="214" y="362">learn</text>
+  <text class="lbl fail" x="490" y="292">retry</text>
+
+  <!-- triggers -->
+  <text class="lbl" x="20" y="70">TRIGGERS</text>
+  <g id="d-t-cron" class="node"><rect class="box" x="20" y="83" width="92" height="30"/><rect class="soft" x="30" y="96" width="6" height="4"/><text class="nm" x="44" y="102">cron</text></g>
+  <g id="d-t-webhook" class="node"><rect class="box" x="20" y="135" width="92" height="30"/><rect class="soft" x="30" y="148" width="6" height="4"/><text class="nm" x="44" y="154">webhook</text></g>
+  <g id="d-t-issue" class="node"><rect class="box" x="20" y="187" width="92" height="30"/><rect class="soft" x="30" y="200" width="6" height="4"/><text class="nm" x="44" y="206">issue</text></g>
+
+  <!-- intake queue -->
+  <text class="lbl" x="152" y="90">INTAKE</text>
+  <g id="d-intake" class="node">
+    <rect class="box" x="152" y="100" width="100" height="100"/>
+    <g id="d-queue" data-x="162" data-y="112" data-step="16" data-min="40" data-max="80"></g>
+  </g>
+
+  <!-- you -->
+  <g id="d-you" class="node"><rect class="box" x="292" y="26" width="120" height="30"/><rect class="ink" x="302" y="39" width="4" height="4"/><text class="nm" x="314" y="45">you · goals</text></g>
+
+  <!-- planner -->
+  <text class="lbl" x="292" y="228">PLANNER</text>
+  <g id="d-planner" class="node">
+    <rect class="box" x="292" y="92" width="120" height="116"/>
+    <line class="rule" x1="292" y1="108" x2="412" y2="108"/>
+    <rect class="soft" x="298" y="98" width="20" height="4"/><rect class="dim" x="322" y="98" width="12" height="4"/>
+    <g class="road">
+      <rect class="ink" x="300" y="118" width="46" height="8" style="--i:0"/>
+      <rect class="soft" x="322" y="136" width="52" height="8" style="--i:1"/>
+      <rect class="soft" x="340" y="154" width="48" height="8" style="--i:2"/>
+      <rect class="soft" x="312" y="172" width="58" height="8" style="--i:3"/>
+      <rect class="ink" x="360" y="190" width="44" height="8" style="--i:4"/>
+    </g>
+    <line class="today" x1="334" y1="108" x2="334" y2="208"/>
+  </g>
+
+  <!-- agents -->
+  <text class="lbl" x="470" y="48">AGENTS</text>
+  <g id="d-a1" class="node agent" transform="translate(470,60)">
+    <rect class="box" width="120" height="44"/><text class="nm" x="10" y="17">agent.01</text>
+    <g class="typing"><rect class="ink" x="92" y="11" width="4" height="4"/><rect class="ink" x="99" y="11" width="4" height="4"/><rect class="ink" x="106" y="11" width="4" height="4"/></g>
+    <rect class="track" x="10" y="28" width="100" height="5"/><rect class="prog ink" x="10" y="28" width="0" height="5"/>
+  </g>
+  <g id="d-a2" class="node agent" transform="translate(470,128)">
+    <rect class="box" width="120" height="44"/><text class="nm" x="10" y="17">agent.02</text>
+    <g class="typing"><rect class="ink" x="92" y="11" width="4" height="4"/><rect class="ink" x="99" y="11" width="4" height="4"/><rect class="ink" x="106" y="11" width="4" height="4"/></g>
+    <rect class="track" x="10" y="28" width="100" height="5"/><rect class="prog ink" x="10" y="28" width="0" height="5"/>
+  </g>
+  <g id="d-a3" class="node agent" transform="translate(470,196)">
+    <rect class="box" width="120" height="44"/><text class="nm" x="10" y="17">agent.03</text>
+    <g class="typing"><rect class="ink" x="92" y="11" width="4" height="4"/><rect class="ink" x="99" y="11" width="4" height="4"/><rect class="ink" x="106" y="11" width="4" height="4"/></g>
+    <rect class="track" x="10" y="28" width="100" height="5"/><rect class="prog ink" x="10" y="28" width="0" height="5"/>
+  </g>
+
+  <!-- checks (diamond) -->
+  <text class="lbl" x="652" y="112">TESTS</text>
+  <g id="d-tests" class="node"><rect class="box diamond" x="662" y="132" width="36" height="36"/><text class="verdict" id="d-verdict" x="680" y="154" text-anchor="middle"></text></g>
+
+  <!-- review -->
+  <text class="lbl" x="742" y="94">REVIEW</text>
+  <g id="d-review" class="node">
+    <rect class="box" x="742" y="104" width="110" height="92"/>
+    <rect class="soft" x="752" y="116" width="70" height="4"/><rect class="soft" x="752" y="128" width="84" height="4"/>
+    <rect class="dim" x="760" y="140" width="56" height="4"/><rect class="soft" x="752" y="152" width="62" height="4"/>
+    <rect class="dim" x="760" y="164" width="74" height="4"/><rect class="soft" x="752" y="176" width="40" height="4"/>
+    <line class="scan" id="d-scan" x1="746" y1="110" x2="848" y2="110"/>
+  </g>
+
+  <!-- ship -->
+  <text class="lbl" x="890" y="104">SHIP</text>
+  <g id="d-ship" class="node">
+    <rect class="box shipbox" x="890" y="114" width="90" height="72"/>
+    <path class="tick" d="M922 150 l8 8 l16 -16"/>
+    <text class="count" id="d-shipped" x="935" y="206" text-anchor="middle">000</text>
+  </g>
+
+  <!-- observe -->
+  <text class="lbl" x="762" y="420">OBSERVE</text>
+  <g id="d-observe" class="node">
+    <rect class="box" x="762" y="330" width="120" height="78"/>
+    <g id="d-bars" data-x="772" data-step="15" data-base="398" data-w="9" data-maxh="56"></g>
+  </g>
+
+  <!-- memory -->
+  <text class="lbl" x="482" y="420">MEMORY</text>
+  <g id="d-memory" class="node">
+    <rect class="box" x="482" y="330" width="120" height="78"/>
+    <g id="d-mem" data-x="492" data-y="340" data-step="11" data-min="30" data-max="100"></g>
+  </g>
+
+  <g id="d-packets"></g>
+  <text class="status" id="d-status" data-testid="machine-status" x="0" y="448">machine idle</text>
+  <text class="status dimtx" id="d-stats" data-testid="machine-stats" x="1000" y="448" text-anchor="end">runs 0 · retries 0 · shipped 0</text>
+</svg>
+</div>

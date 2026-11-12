@@ -1,27 +1,40 @@
-# Ethan Flow — Software Engineer & Founder of Jedidiah Digital
+# Ethan Flow — Software Engineer
 
-> I started in healthcare, switched to computer science, and never looked back. My faith, my wife, and my family keep me grounded through all of it. When I'm not writing code, I'm probably outside somewhere or eating something I shouldn't be.
-
----
-
-## Personal Information
-
-- **Name:** Ethan Flow
-- **Roles:** Software Engineer, Jesus Follower, Nature Lover
-- **Company:** Jedidiah Digital (Founder)
-- **Email:** ethanflowdev@gmail.com
-- **GitHub:** https://github.com/MrF1ow
-- **LinkedIn:** https://www.linkedin.com/in/ethanflow/
-- **Education:** B.S. Computer Science, Oregon State University (Jun 2025)
-- **Location:** Oregon, United States
-- **Tagline:** Trying my hardest to get a little better every day
-- **Resume:** https://ethanflow.dev/Ethan-Resume.pdf
+> I build systems that run themselves: they take in work, plan it, build it, check it and ship it without anyone pushing. That leaves me free to decide what's worth building. And to get outside.
 
 ---
 
 ## About
 
-### My Faith through Life
+Ethan Flow is a software engineer based in Oregon. He earned a B.S. in Computer Science from Oregon State University in 2025.
+
+He builds agent-driven pipelines: work arrives, is planned, implemented, verified, shipped, and fed back into the system.
+
+**GitHub:** https://github.com/MrF1ow  
+**X:** https://x.com/MrF1ow  
+**LinkedIn:** https://www.linkedin.com/in/ethanflow/
+
+---
+
+## Timeline
+
+| Year | Milestone |
+|------|-----------|
+| 2022 | JavaScript · React · Node |
+| 2023 | Python · C/C++ · SQL |
+| 2024 | Next.js · first AI integrations |
+| 2025 | B.S. CS, Oregon State · Go |
+| 2026 | agents write it. I build the system. |
+
+## Skills
+
+typescript, python, postgres, go, aws, docker
+
+---
+
+## Camp stories
+
+### My faith through life
 
 Everyone's faith journey looks different. Mine took a few detours before it stuck.
 
@@ -37,7 +50,7 @@ It wasn't until we got engaged that we both made a real decision — faith comes
 
 Since then, my faith has only gotten stronger. I've moved a lot, switched careers, changed scenery more times than I can count. Every single one of those shifts brought me closer to the Lord. I strive every day to live the way He would and to share that with whoever will listen.
 
-### The Degree on the Wall
+### The degree on the wall
 
 I do have a degree. But getting there was more of an adventure than a straight line.
 
@@ -53,7 +66,7 @@ The shift in thinking took some adjusting. Algorithmic problem-solving is a diff
 
 Now I have a B.S. in Computer Science from Oregon State University. And I'm still trying to learn something new every single day.
 
-### I Have Been Blessed
+### I have been blessed
 
 We all got family. Mine's pretty frickin' crazy. Smart and efficient, but absolutely nuts. If you ever meet them, you'll know exactly what I'm talking about.
 
@@ -69,7 +82,7 @@ There's a reason I gained 20 pounds over COVID, and it's because I was at her pl
 
 After my faith, family is the most important thing in my life. I don't know what I'd do without them.
 
-### Outside of Software
+### Outside of software
 
 Don't get me wrong — I love waking up, pouring a cup of coffee, putting the headphones on, and just going at it. But software isn't the only thing that gets me out of bed.
 
@@ -82,72 +95,3 @@ Almost. I've had a cricket. That's about where I draw the line. A beetle? Maybe 
 Beyond all of that, I've been blessed with an incredible life. Ups and downs, sure — but overall? Amazing. I have a wife who is so far out of my league it's not even funny. My mom is an absolute bada**. My sister flies planes. My brother is incredible. The people in my life are something I don't deserve, but here I am.
 
 I wish this kind of life for anybody.
-
----
-
-## Projects
-
-### Go Core (Featured)
-
-Multi-tenant authentication and authorization module for Go — JWT auth, OAuth2 social login, WebAuthn/passkeys, magic links, 2FA, RBAC, and an embedded HTMX admin GUI.
-
-- **Technologies:** Go, Gin, PostgreSQL, Redis, JWT, WebAuthn, OAuth2, HTMX
-- **Repository:** https://github.com/MrF1ow/go-core
-
-### SimplySigned (Featured)
-
-Legal e-signature SaaS platform — upload PDFs, send signing links, and collect legally-binding electronic signatures with full audit trails and tamper detection.
-
-- **Technologies:** TypeScript, Next.js, React, Supabase, Stripe, Tailwind
-- **Repository:** https://github.com/MrF1ow/SimplySigned
-
-### Foodable
-
-AI-driven full-stack web app delivering personalized food recommendations using vector search, REST APIs, and intelligent meal insight generation.
-
-- **Technologies:** TypeScript, React, Next.js, Node.js, MongoDB, OpenAI, Docker
-- **Repository:** https://github.com/MrF1ow/foodable-legacy
-
-### Gitlawb Go Proxy
-
-Go module proxy bridging the standard Go toolchain with Gitlawb — a decentralized git network built on DIDs and IPFS/libp2p. Enables `go get` for decentralized modules with disk caching and zero external dependencies.
-
-- **Technologies:** Go, GOPROXY, IPFS, libp2p, DID, Git
-- **Repository:** https://github.com/MrF1ow/gitlawb-goproxy
-
----
-
-## Technical Skills
-
-### Backend
-Server-side systems and data layers.
-Go, Node.js, Express, MongoDB, PostgreSQL, MySQL, Docker, AWS, Stripe
-
-### Frontend
-Interfaces and client-side architecture.
-React, Next.js, Solid.js, TypeScript, JavaScript, HTML/CSS, Tailwind
-
-### Systems & Networking
-Infrastructure and tooling.
-Linux, Git, Docker, CI/CD, Networking, Shell Scripting
-
-### AI Tools
-AI-assisted development workflows.
-Claude Code, Codex, OpenCode
-
-### Personal Skills
-Problem Solving, Team Collaboration, Communication, Adaptability, Leadership
-
-### Life Interests
-Faith, Family, Hiking, Continuous Learning, Community
-
----
-
-## Contact
-
-Whether it's software, business ideas, or just chatting about tech and games, I'm always up for a good conversation. Drop me a message through the form or connect via any of the links below.
-
-- **Email:** ethanflowdev@gmail.com
-- **GitHub:** https://github.com/MrF1ow
-- **LinkedIn:** https://www.linkedin.com/in/ethanflow/
-- **Resume:** https://ethanflow.dev/Ethan-Resume.pdf

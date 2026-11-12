@@ -1,0 +1,107 @@
+---
+const figureClass = "machine-figure--mobile";
+---
+<div class={`machine ${figureClass}`} data-machine-figure="m">
+<svg id="m-mach" class="mach" viewBox="0 0 360 870" aria-label="Animated diagram of an a system that builds and ships on its own">
+  <g class="wires">
+    <path class="wire" id="m-w-cron" d="M60 58 V78 H180 V100"/>
+    <path class="wire" id="m-w-webhook" d="M180 58 V100"/>
+    <path class="wire" id="m-w-issue" d="M300 58 V78 H180 V100"/>
+    <path class="wire" id="m-w-ip" d="M180 170 V204"/>
+    <path class="wire" id="m-w-you" d="M310 150 V186 H230 V204"/>
+    <path class="wire" id="m-w-f1" d="M180 294 V312 H90 V332"/>
+    <path class="wire" id="m-w-f2" d="M180 294 V312 H200 V332"/>
+    <path class="wire" id="m-w-f3" d="M180 294 V312 H310 V332"/>
+    <path class="wire" id="m-w-j1" d="M90 382 V402 H180 V422"/>
+    <path class="wire" id="m-w-j2" d="M200 382 V402 H180 V422"/>
+    <path class="wire" id="m-w-j3" d="M310 382 V402 H180 V422"/>
+    <path class="wire" id="m-w-dr" d="M180 466 V496"/>
+    <path class="wire" id="m-w-rs" d="M180 576 V606"/>
+    <path class="wire" id="m-w-down" d="M225 636 H310 V728"/>
+    <path class="wire" id="m-w-om" d="M200 768 H160"/>
+    <path class="wire" id="m-w-learn" d="M20 768 H8 V135 H110"/>
+    <path class="wire retry" id="m-w-rt" d="M154 444 H30 V249 H90"/>
+    <path class="wire retry" id="m-w-rr" d="M110 536 H30 V444"/>
+  </g>
+  <text class="lbl" x="14" y="700" transform="rotate(-90 14 700)">learn</text>
+  <text class="lbl fail" x="38" y="340" transform="rotate(-90 38 340)">retry</text>
+
+  <text class="lbl" x="10" y="20">TRIGGERS</text>
+  <g id="m-t-cron" class="node"><rect class="box" x="10" y="28" width="100" height="30"/><rect class="soft" x="20" y="41" width="6" height="4"/><text class="nm" x="32" y="47">cron</text></g>
+  <g id="m-t-webhook" class="node"><rect class="box" x="130" y="28" width="100" height="30"/><rect class="soft" x="140" y="41" width="6" height="4"/><text class="nm" x="152" y="47">webhook</text></g>
+  <g id="m-t-issue" class="node"><rect class="box" x="250" y="28" width="100" height="30"/><rect class="soft" x="260" y="41" width="6" height="4"/><text class="nm" x="272" y="47">issue</text></g>
+
+  <g id="m-intake" class="node">
+    <rect class="box" x="110" y="100" width="140" height="70"/>
+    <g id="m-queue" data-x="120" data-y="110" data-step="11" data-min="50" data-max="110" data-h="5"></g>
+  </g>
+  <text class="lbl" x="110" y="184" transform="rotate(0)">INTAKE</text>
+
+  <g id="m-you" class="node"><rect class="box" x="262" y="120" width="96" height="30"/><rect class="ink" x="270" y="133" width="4" height="4"/><text class="nm" x="280" y="139">you</text></g>
+
+  <g id="m-planner" class="node">
+    <rect class="box" x="90" y="204" width="180" height="90"/>
+    <line class="rule" x1="90" y1="218" x2="270" y2="218"/>
+    <rect class="soft" x="96" y="209" width="20" height="4"/><rect class="dim" x="120" y="209" width="12" height="4"/>
+    <g class="road">
+      <rect class="ink" x="98" y="226" width="56" height="7" style="--i:0"/>
+      <rect class="soft" x="130" y="239" width="62" height="7" style="--i:1"/>
+      <rect class="soft" x="160" y="252" width="56" height="7" style="--i:2"/>
+      <rect class="soft" x="116" y="265" width="70" height="7" style="--i:3"/>
+      <rect class="ink" x="200" y="279" width="62" height="7" style="--i:4"/>
+    </g>
+    <line class="today" x1="150" y1="218" x2="150" y2="294"/>
+  </g>
+  <text class="lbl" x="278" y="232">PLANNER</text>
+
+  <g id="m-a1" class="node agent" transform="translate(44,332)">
+    <rect class="box" width="92" height="50"/><text class="nm" x="8" y="18">agent.01</text>
+    <g class="typing"><rect class="ink" x="8" y="26" width="4" height="4"/><rect class="ink" x="15" y="26" width="4" height="4"/><rect class="ink" x="22" y="26" width="4" height="4"/></g>
+    <rect class="track" x="8" y="37" width="76" height="5"/><rect class="prog ink" data-w="76" x="8" y="37" width="0" height="5"/>
+  </g>
+  <g id="m-a2" class="node agent" transform="translate(154,332)">
+    <rect class="box" width="92" height="50"/><text class="nm" x="8" y="18">agent.02</text>
+    <g class="typing"><rect class="ink" x="8" y="26" width="4" height="4"/><rect class="ink" x="15" y="26" width="4" height="4"/><rect class="ink" x="22" y="26" width="4" height="4"/></g>
+    <rect class="track" x="8" y="37" width="76" height="5"/><rect class="prog ink" data-w="76" x="8" y="37" width="0" height="5"/>
+  </g>
+  <g id="m-a3" class="node agent" transform="translate(264,332)">
+    <rect class="box" width="92" height="50"/><text class="nm" x="8" y="18">agent.03</text>
+    <g class="typing"><rect class="ink" x="8" y="26" width="4" height="4"/><rect class="ink" x="15" y="26" width="4" height="4"/><rect class="ink" x="22" y="26" width="4" height="4"/></g>
+    <rect class="track" x="8" y="37" width="76" height="5"/><rect class="prog ink" data-w="76" x="8" y="37" width="0" height="5"/>
+  </g>
+
+  <g id="m-tests" class="node"><rect class="box diamond" x="162" y="426" width="36" height="36"/><text class="verdict" id="m-verdict" x="180" y="448" text-anchor="middle"></text></g>
+  <text class="lbl" x="214" y="448">TESTS</text>
+
+  <g id="m-review" class="node">
+    <rect class="box" x="110" y="496" width="140" height="80"/>
+    <rect class="soft" x="120" y="507" width="80" height="4"/><rect class="soft" x="120" y="518" width="104" height="4"/>
+    <rect class="dim" x="128" y="529" width="64" height="4"/><rect class="soft" x="120" y="540" width="76" height="4"/>
+    <rect class="dim" x="128" y="551" width="90" height="4"/><rect class="soft" x="120" y="562" width="48" height="4"/>
+    <line class="scan" id="m-scan" x1="114" y1="500" x2="246" y2="500"/>
+  </g>
+  <text class="lbl" x="258" y="510">REVIEW</text>
+
+  <g id="m-ship" class="node">
+    <rect class="box shipbox" x="135" y="606" width="90" height="60"/>
+    <path class="tick" d="M168 636 l7 7 l14 -14"/>
+    <text class="count" id="m-shipped" x="180" y="684" text-anchor="middle">000</text>
+  </g>
+  <text class="lbl" x="90" y="640">SHIP</text>
+
+  <g id="m-memory" class="node">
+    <rect class="box" x="20" y="728" width="140" height="80"/>
+    <g id="m-mem" data-x="30" data-y="740" data-step="11" data-min="30" data-max="112"></g>
+  </g>
+  <text class="lbl" x="20" y="822">MEMORY</text>
+  <g id="m-observe" class="node">
+    <rect class="box" x="200" y="728" width="140" height="80"/>
+    <g id="m-bars" data-x="212" data-step="18" data-base="798" data-w="10" data-maxh="58"></g>
+  </g>
+  <text class="lbl" x="200" y="822">OBSERVE</text>
+
+  <g id="m-packets"></g>
+  <text class="status" id="m-status" data-testid="machine-status" x="0" y="848">machine idle</text>
+  <text class="status dimtx" id="m-stats" data-testid="machine-stats" x="0" y="866">runs 0 · retries 0 · shipped 0</text>
+</svg>
+</div>
