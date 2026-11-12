@@ -1,21 +1,15 @@
 ---
-import { Picture, getImage } from "astro:assets";
+import { Picture } from "astro:assets";
 import mountain from "../assets/hero/mountain.jpg";
+import blurTwinImg from "../assets/hero/mountain-blur-twin.jpg";
+import ambientBlurImg from "../assets/hero/mountain-blur-ambient.jpg";
+import landscapeBlurImg from "../assets/hero/mountain-blur-landscape.jpg";
 import { site } from "../data/site";
 
-const blurTwin = await getImage({
-  src: mountain,
-  width: 600,
-  format: "jpg",
-  quality: 55,
-});
-
-const ambientImg = await getImage({
-  src: mountain,
-  width: 600,
-  format: "jpg",
-  quality: 50,
-});
+// The blurred twin and the page glow are pre-blurred images (scripts/make-hero-blur.mjs). A live
+// CSS blur on layers this large re-runs on every composited frame and held phones to ~15-19fps.
+const blurTwin = blurTwinImg;
+const ambientImg = ambientBlurImg;
 ---
 
 <div
@@ -28,7 +22,7 @@ const ambientImg = await getImage({
   id="hero"
   data-section="hero"
   class="hero"
-  style={`--hero-img: url(${blurTwin.src})`}
+  style={`--hero-img: url(${blurTwin.src}); --hero-img-landscape: url(${landscapeBlurImg.src})`}
 >
   <div class="bgblur" aria-hidden="true"></div>
   <div class="photo-wrap">
@@ -106,8 +100,12 @@ const ambientImg = await getImage({
     z-index: -1;
     pointer-events: none;
     background: var(--hero-ambient) center 40% / cover no-repeat;
-    filter: blur(70px) saturate(1.3);
+    /* No live filter: blur and saturation are baked into the image (see the frontmatter).
+       A static mask fades the layer's edges, which the old live blur used to soften. */
+    -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 35%, transparent 100%);
+    mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 35%, transparent 100%);
     opacity: 0.32;
+    will-change: transform, opacity;
     animation: ambient-drift 18s ease-in-out infinite alternate;
   }
 
@@ -126,11 +124,11 @@ const ambientImg = await getImage({
   @keyframes ambient-drift {
     from {
       transform: translateY(0) scale(1);
-      filter: blur(70px) saturate(1.3) hue-rotate(-8deg);
+      opacity: 0.28;
     }
     to {
       transform: translateY(-60px) scale(1.08);
-      filter: blur(80px) saturate(1.5) hue-rotate(10deg);
+      opacity: 0.36;
     }
   }
 
@@ -138,17 +136,17 @@ const ambientImg = await getImage({
     position: absolute;
     inset: -60px;
     background: var(--hero-img) 30% 40% / cover no-repeat;
-    filter: blur(38px) saturate(1.35) brightness(1.05);
+    /* No live filter: blur and colour are baked into the image; only transform moves. */
     transform: scale(1.15);
+    will-change: transform;
     animation: bg-drift 16s ease-in-out infinite alternate;
   }
 
   @keyframes bg-drift {
     from {
-      filter: blur(38px) saturate(1.35) hue-rotate(-10deg);
+      transform: scale(1.15);
     }
     to {
-      filter: blur(44px) saturate(1.6) hue-rotate(12deg);
       transform: scale(1.22) translateX(-20px);
     }
   }
@@ -172,10 +170,13 @@ const ambientImg = await getImage({
     height: 100%;
     object-fit: cover;
     object-position: center 52%;
+  }
+
+  .photo-wrap :global(img.photo) {
     animation:
       focus-pull 2.6s cubic-bezier(0.2, 0.7, 0.2, 1) both,
       photo-breathe 22s 2.6s ease-in-out infinite alternate;
-    will-change: transform, filter;
+    will-change: transform;
   }
 
   @keyframes focus-pull {
@@ -200,7 +201,10 @@ const ambientImg = await getImage({
 
   .tint {
     position: absolute;
-    inset: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 300%;
     mix-blend-mode: soft-light;
     background: linear-gradient(
       120deg,
@@ -208,19 +212,20 @@ const ambientImg = await getImage({
       var(--hero-drift-cool),
       var(--hero-drift-warm)
     );
-    background-size: 300% 300%;
     opacity: 0.35;
+    will-change: transform;
     animation: tint-shift 14s ease-in-out infinite;
     pointer-events: none;
   }
 
+  /* Slide a 3x-wide gradient instead of animating background-position (which repaints every frame). */
   @keyframes tint-shift {
     0%,
     100% {
-      background-position: 0% 50%;
+      transform: translateX(0);
     }
     50% {
-      background-position: 100% 50%;
+      transform: translateX(-66.667%);
     }
   }
 
@@ -234,6 +239,7 @@ const ambientImg = await getImage({
 
   nav {
     position: relative;
+    margin-top: env(safe-area-inset-top);
     z-index: 3;
     display: flex;
     justify-content: space-between;
@@ -310,9 +316,9 @@ const ambientImg = await getImage({
   .glass::before {
     content: "";
     position: absolute;
-    inset: -50% auto -50% -60%;
+    inset: -50% auto -50% 0;
     width: 40%;
-    transform: rotate(18deg);
+    transform: translateX(-150%) rotate(18deg);
     background: linear-gradient(
       90deg,
       transparent,
@@ -324,11 +330,11 @@ const ambientImg = await getImage({
 
   @keyframes glass-sheen {
     0% {
-      left: -60%;
+      transform: translateX(-150%) rotate(18deg);
     }
     35%,
     100% {
-      left: 140%;
+      transform: translateX(350%) rotate(18deg);
     }
   }
 
@@ -545,6 +551,15 @@ const ambientImg = await getImage({
 
     .ambient {
       inset: 620px -50% auto;
+      /* Let left and right both apply (200% wide, centred); with the base width: 100% the right
+         offset was ignored and the glow sat centred on the left edge of the screen. */
+      width: auto;
+    }
+
+    /* Below the photo and behind the card: blurred sky and valley, not a second blurred face. */
+    .bgblur {
+      background-image: var(--hero-img-landscape);
+      background-position: 50% 50%;
     }
   }
 
@@ -553,6 +568,17 @@ const ambientImg = await getImage({
       opacity: 1;
       transform: none;
     }
+  }
+
+  /* hero.ts sets data-offscreen while the hero is out of view: no hidden loops cost frames below it. */
+  :global([data-hero-offscreen]) .ambient,
+  :global([data-hero-offscreen]) .bgblur,
+  :global([data-hero-offscreen]) .tint,
+  :global([data-hero-offscreen]) .glass::before,
+  :global([data-hero-offscreen]) .gfoot i,
+  :global([data-hero-offscreen]) .marker i,
+  :global([data-hero-offscreen]) .photo-wrap :global(img.photo) {
+    animation-play-state: paused;
   }
 
   @media (prefers-reduced-motion: reduce) {
