@@ -196,3 +196,83 @@ test.describe("rendered page", () => {
     expect(LOOP_RE.test(visible)).toBe(false);
   });
 });
+
+test.describe("agent files, icons and headers", () => {
+  test("the page links its Markdown version, which carries every section and story", async ({ page, request }) => {
+    await page.goto("/");
+    const alt = page.locator('link[rel="alternate"][type="text/markdown"]');
+    await expect(alt).toHaveAttribute("href", "/index.md");
+
+    const res = await request.get("/index.md");
+    expect(res.status()).toBe(200);
+    expect(res.headers()["content-type"]).toContain("text/markdown");
+    const md = await res.text();
+
+    // Every section heading on the page is in the Markdown (catches drift between the two).
+    const headings = await page.locator("main h2, section h2, .sec h2").allInnerTexts();
+    expect(headings.length).toBeGreaterThanOrEqual(4);
+    for (const h of headings) expect(md).toContain(h.replace(/\s+/g, " ").trim());
+
+    // Every story: its heading and its first and last paragraphs.
+    const fixture = JSON.parse(readFileSync(join(root, "tests", "fixtures", "stories.json"), "utf8")) as {
+      stories: { heading: string; paragraphs: string[] }[];
+    };
+    for (const s of fixture.stories) {
+      expect(md).toContain(s.heading);
+      expect(md).toContain(s.paragraphs[0]!);
+      expect(md).toContain(s.paragraphs.at(-1)!);
+    }
+    expect(findEmails(md)).toEqual([]);
+    expect(findForbiddenProse(md)).toEqual([]);
+    // Jedidiah Digital belongs only in JSON-LD and llms.txt.
+    expect(md).not.toContain(["Jedidiah", "Digital"].join(" "));
+  });
+
+  test("llms.txt points agents at the Markdown and full text", async ({ request }) => {
+    const txt = await (await request.get("/llms.txt")).text();
+    expect(txt).toContain("https://ethanflow.dev/index.md");
+    expect(txt).toContain("https://ethanflow.dev/llms-full.txt");
+    const full = await request.get("/llms-full.txt");
+    expect(full.status()).toBe(200);
+  });
+
+  test("icons and manifest are the summit mark set", async ({ page, request }) => {
+    await page.goto("/");
+    const hrefs = await page.locator('link[rel="icon"], link[rel="apple-touch-icon"], link[rel="manifest"]').evaluateAll((els) =>
+      els.map((e) => e.getAttribute("href")),
+    );
+    expect(hrefs).toEqual(expect.arrayContaining(["/favicon.ico", "/icon.svg", "/apple-icon.png", "/manifest.webmanifest"]));
+    for (const href of hrefs) expect((await request.get(href!)).status()).toBe(200);
+
+    const manifest = await (await request.get("/manifest.webmanifest")).json();
+    for (const icon of manifest.icons) expect((await request.get(icon.src)).status()).toBe(200);
+    for (const [file, size] of [["icon.png", 32], ["apple-icon.png", 180], ["icon-192.png", 192], ["icon-512.png", 512]] as const) {
+      expect(pngSize(join(clientDir, file))).toEqual({ width: size, height: size });
+    }
+    // The old headshot icons are gone.
+    for (const old of ["android-chrome-512x512.png", "apple-touch-icon.png", "site.webmanifest"]) {
+      expect(existsSync(join(clientDir, old))).toBe(false);
+    }
+  });
+
+  test("security headers are set, and the page loads with no CSP violations", async ({ page }) => {
+    const violations: string[] = [];
+    page.on("console", (m) => {
+      if (/Content Security Policy|Refused to/i.test(m.text())) violations.push(m.text());
+    });
+    await page.addInitScript(() => {
+      document.addEventListener("securitypolicyviolation", (e) =>
+        console.error(`Refused to load ${e.blockedURI} (${e.violatedDirective})`),
+      );
+    });
+    const res = await page.goto("/");
+    const h = res!.headers();
+    expect(h["content-security-policy"]).toContain("default-src 'self'");
+    expect(h["x-content-type-options"]).toBe("nosniff");
+    expect(h["referrer-policy"]).toBe("strict-origin-when-cross-origin");
+    // Exercise the scripts that run on load and on scroll.
+    await page.locator("#register").scrollIntoViewIfNeeded();
+    await page.waitForTimeout(1500);
+    expect(violations).toEqual([]);
+  });
+});

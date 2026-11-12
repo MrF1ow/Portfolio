@@ -14,6 +14,8 @@ Personal portfolio for Ethan Flow, built with [Astro](https://astro.build/) and 
 | `npm run test` | Playwright tests against `preview` |
 | `npm run deploy` | Build and `wrangler deploy` |
 | `npm run og` | Regenerate `public/og-image.png` from `/og-card` (pass the URL of a running preview) |
+| `npm run icons` | Regenerate the favicon and app icons (the summit mark) in `public/` |
+| `npm run hero-blur` | Regenerate the hero's pre-blurred images after replacing the hero photo |
 
 ## Secrets
 
@@ -46,6 +48,7 @@ The Netlify site is retired and its DNS records are gone; `notifications.ethanfl
 - `src/components/` — page sections (Hero, Machine, Trail, Camp, Register, Footer).
 - `src/data/site.ts` — site metadata, links, timeline, and skill data.
 - `src/styles/tokens.css` — design tokens from the approved Trail design.
-- `public/` — static assets: favicons, manifest, `og-image.png`, `robots.txt`, and the crawler files `llms.txt`, `llms-full.txt`, `index.md`.
+- `public/` — static assets: the icons (`npm run icons`), `og-image.png` (`npm run og`) and `_headers` (security headers and the CSP).
+- Agent and crawler files are generated from the page's own data (`src/data/site.ts` and the stories), so they never drift: `/index.md` (the page as Markdown, linked from `<head>`), `/llms.txt`, `/llms-full.txt`, `/robots.txt` and `/manifest.webmanifest`, built by `src/lib/agent-content.ts` and `src/pages/*.ts`.
 - `src/content/stories/` — the four Camp stories (content collection).
 - `tests/` — Playwright specs, run against the built Worker at 1440 and 390.
