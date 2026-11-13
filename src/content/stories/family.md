@@ -12,7 +12,7 @@ I'm the youngest of 15 cousins. Yeah, 15. We're not going into the full family t
 
 I have a brother and a sister. My sister is awesome. My brother? Even cooler. Don't tell her I said that.
 
-My mom is truly the best mom anybody could have, and I'm not afraid to say it — I'm a mama's boy. I call her a couple times a week and love every conversation. She's one of my best friends.
+My mom is truly the best mom anybody could have, and I'm not afraid to say it. I'm a mama's boy. I call her a couple times a week and love every conversation. She's one of my best friends.
 
 Then there's my wife. She's everything. I get to wake up next to a gorgeous woman every morning and I genuinely don't deserve it. She can also bake like nobody's business. I still haven't found a place that beats her cinnamon rolls. It's insane.
 
